@@ -98,6 +98,18 @@
       font-size: 14px;
     }
 
+    .language-select {
+      min-height: 38px;
+      width: auto;
+      border: 1px solid #cdd8e2;
+      border-radius: 8px;
+      color: var(--navy);
+      background: #fff;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
     .nav-links a:hover {
       color: var(--teal-dark);
     }
@@ -779,6 +791,10 @@
         display: none;
       }
 
+      .language-select {
+        max-width: 112px;
+      }
+
       .hero-inner,
       .wrap,
       .footer-inner {
@@ -833,16 +849,23 @@
     <nav class="nav" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="Global Trading Leads Engine home">
         <span class="brand-mark">G</span>
-        <span>Global Trading Leads</span>
+        <span data-i18n="brand">Global Trading Leads</span>
       </a>
       <div class="nav-links">
-        <a href="#products">Products</a>
-        <a href="#sources">Sources</a>
+        <a href="#products" data-i18n="navProducts">Products</a>
+        <a href="#sources" data-i18n="navSources">Sources</a>
         <a href="#pipeline">Pipeline</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#compliance">Compliance</a>
+        <a href="#pricing" data-i18n="navPricing">Pricing</a>
+        <a href="#compliance" data-i18n="navCompliance">Compliance</a>
       </div>
-      <a class="btn btn-primary" href="#contact">Request sample leads</a>
+      <select class="language-select" id="languageSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+        <option value="ar">العربية</option>
+        <option value="zh">中文</option>
+      </select>
+      <a class="btn btn-primary" href="#contact" data-i18n="navCta">Request sample leads</a>
     </nav>
   </header>
 
@@ -850,25 +873,25 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div>
-          <div class="eyebrow"><span class="pulse"></span> Overseas broker growth platform</div>
-          <h1 id="hero-title">Daily active trader leads for trading platforms.</h1>
-          <p class="hero-copy">Fresh lead feeds for FX, CFD, crypto, stock and gold brokers: daily updated trader, affiliate and IB records with last-seen activity, product interest, contact status and next action.</p>
+          <div class="eyebrow"><span class="pulse"></span> <span data-i18n="eyebrow">Overseas broker growth platform</span></div>
+          <h1 id="hero-title" data-i18n="heroTitle">Daily active trader leads for trading platforms.</h1>
+          <p class="hero-copy" data-i18n="heroCopy">Fresh lead feeds for FX, CFD, crypto, stock and gold brokers: daily updated trader, affiliate and IB records with last-seen activity, product interest, contact status and next action.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Request today's sample feed</a>
-            <a class="btn btn-secondary" href="#pricing">See packages</a>
+            <a class="btn btn-primary" href="#contact" data-i18n="heroCta">Request today's sample feed</a>
+            <a class="btn btn-secondary" href="#pricing" data-i18n="heroSecondary">See packages</a>
           </div>
           <div class="hero-proof" aria-label="Platform highlights">
             <div class="metric">
               <strong>4</strong>
-              <span>FX, CFD, crypto, stocks and gold</span>
+              <span data-i18n="metricOne">FX, CFD, crypto, stocks and gold</span>
             </div>
             <div class="metric">
               <strong>6</strong>
-              <span>Daily fresh trader, affiliate, IB records</span>
+              <span data-i18n="metricTwo">Daily fresh trader, affiliate, IB records</span>
             </div>
             <div class="metric">
               <strong>CRM</strong>
-              <span>Last seen, activity score, next action</span>
+              <span data-i18n="metricThree">Last seen, activity score, next action</span>
             </div>
           </div>
         </div>
@@ -901,31 +924,31 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <h2>Sell freshness, not old databases.</h2>
-            <p>The product brokers will pay for repeatedly is a daily updated active lead feed: who showed trading intent recently, what product they care about and what sales action should happen next.</p>
+            <h2 data-i18n="freshTitle">Sell freshness, not old databases.</h2>
+            <p data-i18n="freshCopy">The product brokers will pay for repeatedly is a daily updated active lead feed: who showed trading intent recently, what product they care about and what sales action should happen next.</p>
           </div>
-          <p class="muted">Each delivery includes last-seen timestamp, freshness tier, activity signal, activity score, source labels, verification status and compliance status.</p>
+          <p class="muted" data-i18n="freshSide">Each delivery includes last-seen timestamp, freshness tier, activity signal, activity score, source labels, verification status and compliance status.</p>
         </div>
         <div class="grid four">
           <article class="card">
             <div class="icon">01</div>
-            <h3>Daily Trader Feed</h3>
-            <p>Fresh retail trader and investor records segmented for FX, crypto futures, stocks, gold, indices and CFD offers.</p>
+            <h3 data-i18n="productOneTitle">Daily Trader Feed</h3>
+            <p data-i18n="productOneCopy">Fresh retail trader and investor records segmented for FX, crypto futures, stocks, gold, indices and CFD offers.</p>
           </article>
           <article class="card">
             <div class="icon">02</div>
-            <h3>Hot 24h Intent Feed</h3>
-            <p>Consent-based leads from broker guides, trading tools, webinars, checklists and demo account funnels updated daily.</p>
+            <h3 data-i18n="productTwoTitle">Hot 24h Intent Feed</h3>
+            <p data-i18n="productTwoCopy">Consent-based leads from broker guides, trading tools, webinars, checklists and demo account funnels updated daily.</p>
           </article>
           <article class="card">
             <div class="icon">03</div>
-            <h3>Active Affiliate & IB Feed</h3>
-            <p>KOLs, trading educators, community owners, IBs, financial influencers and newsletter operators with recent activity signals.</p>
+            <h3 data-i18n="productThreeTitle">Active Affiliate & IB Feed</h3>
+            <p data-i18n="productThreeCopy">KOLs, trading educators, community owners, IBs, financial influencers and newsletter operators with recent activity signals.</p>
           </article>
           <article class="card">
             <div class="icon">04</div>
-            <h3>Broker CRM Enrichment</h3>
-            <p>Append verified business emails, phones, LinkedIn URLs, firmographics, role tags, deliverability checks and refresh dates.</p>
+            <h3 data-i18n="productFourTitle">Broker CRM Enrichment</h3>
+            <p data-i18n="productFourCopy">Append verified business emails, phones, LinkedIn URLs, firmographics, role tags, deliverability checks and refresh dates.</p>
           </article>
         </div>
       </div>
@@ -972,10 +995,10 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <h2>Live market signals already connected.</h2>
-            <p>Market data does not provide personal contact details, but it makes the daily lead feed more valuable by deciding which trader segment to package today.</p>
+            <h2 data-i18n="signalsTitle">Live market signals already connected.</h2>
+            <p data-i18n="signalsCopy">Market data does not provide personal contact details, but it makes the daily lead feed more valuable by deciding which trader segment to package today.</p>
           </div>
-          <p class="muted">Connected now: TradingView FX, stocks, metals and energy widgets plus CoinGecko public crypto market feed. Contact-data APIs need private keys and should run on a backend.</p>
+          <p class="muted" data-i18n="signalsSide">Connected now: TradingView FX, stocks, metals and energy widgets plus CoinGecko public crypto market feed. Contact-data APIs need private keys and should run on a backend.</p>
         </div>
         <div class="live-grid">
           <div class="widget-box">
@@ -1216,30 +1239,30 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <h2>Packages you can sell immediately.</h2>
-            <p>Use the sample pack as the foot in the door, then close monthly delivery for specific countries and product categories.</p>
+            <h2 data-i18n="pricingTitle">Packages you can sell immediately.</h2>
+            <p data-i18n="pricingCopy">Use the sample pack as the foot in the door, then close monthly delivery for specific countries and product categories.</p>
           </div>
         </div>
         <div class="pricing">
           <article class="price-card">
-            <h3>Today Sample</h3>
+            <h3 data-i18n="priceOneTitle">Today Sample</h3>
             <div class="price">$99 <span>/ once</span></div>
-            <p class="muted">20-50 sample records showing freshness labels, activity signals, source notes and market fit.</p>
+            <p class="muted" data-i18n="priceOneCopy">20-50 sample records showing freshness labels, activity signals, source notes and market fit.</p>
           </article>
           <article class="price-card featured">
-            <h3>Daily Trader Feed</h3>
+            <h3 data-i18n="priceTwoTitle">Daily Trader Feed</h3>
             <div class="price">$2k-8k <span>/ month</span></div>
-            <p class="muted">30-200 fresh records per day for one category: FX, crypto futures, stocks, gold or CFD.</p>
+            <p class="muted" data-i18n="priceTwoCopy">30-200 fresh records per day for one category: FX, crypto futures, stocks, gold or CFD.</p>
           </article>
           <article class="price-card">
-            <h3>Active Affiliate / IB</h3>
+            <h3 data-i18n="priceThreeTitle">Active Affiliate / IB</h3>
             <div class="price">$3k-10k <span>/ month</span></div>
-            <p class="muted">Daily or weekly active KOL, educator, affiliate, IB and community owner feed.</p>
+            <p class="muted" data-i18n="priceThreeCopy">Daily or weekly active KOL, educator, affiliate, IB and community owner feed.</p>
           </article>
           <article class="price-card">
-            <h3>Performance</h3>
+            <h3 data-i18n="priceFourTitle">Performance</h3>
             <div class="price">CPA/FTD <span>/ RevShare</span></div>
-            <p class="muted">Signup, KYC, first-deposit or revenue-share campaigns after tracking is in place.</p>
+            <p class="muted" data-i18n="priceFourCopy">Signup, KYC, first-deposit or revenue-share campaigns after tracking is in place.</p>
           </article>
         </div>
       </div>
@@ -1248,9 +1271,9 @@
     <section class="section alt" id="compliance">
       <div class="wrap split">
         <div>
-          <h2>Compliance is part of the product.</h2>
-          <p class="muted">The front-end positioning should never sound like scraped personal data resale. Sell compliant acquisition, prospecting intelligence and tracked growth.</p>
-          <div class="notice">Important: this platform should not provide investment advice, profit promises, fake testimonials or high-leverage inducements. Clients must confirm their own regulatory permissions for each target market.</div>
+          <h2 data-i18n="complianceTitle">Compliance is part of the product.</h2>
+          <p class="muted" data-i18n="complianceCopy">The front-end positioning should never sound like scraped personal data resale. Sell compliant acquisition, prospecting intelligence and tracked growth.</p>
+          <div class="notice" data-i18n="complianceNotice">Important: this platform should not provide investment advice, profit promises, fake testimonials or high-leverage inducements. Clients must confirm their own regulatory permissions for each target market.</div>
         </div>
         <div class="grid">
           <article class="card">
@@ -1272,8 +1295,8 @@
     <section class="section" id="contact">
       <div class="wrap split">
         <div>
-          <h2>Launch offer: today's active sample feed.</h2>
-          <p class="muted">This is the first thing to sell. Ask the broker for product, country and payout model, then prepare a small daily-feed sample before proposing monthly volume.</p>
+          <h2 data-i18n="launchTitle">Launch offer: today's active sample feed.</h2>
+          <p class="muted" data-i18n="launchCopy">This is the first thing to sell. Ask the broker for product, country and payout model, then prepare a small daily-feed sample before proposing monthly volume.</p>
           <ul class="list">
             <li><span class="check">✓</span><span>Best first markets: LATAM, Southeast Asia, MENA and Africa.</span></li>
             <li><span class="check">✓</span><span>Best first buyers: affiliate managers, country managers, growth leads and broker CMOs.</span></li>
@@ -1281,19 +1304,19 @@
           </ul>
         </div>
         <div class="form-panel">
-          <h2>Request today's sample feed</h2>
-          <p>Tell us your market, product and payout model. We will prepare a sample daily feed structure and campaign proposal.</p>
+          <h2 data-i18n="formTitle">Request today's sample feed</h2>
+          <p data-i18n="formCopy">Tell us your market, product and payout model. We will prepare a sample daily feed structure and campaign proposal.</p>
           <form id="leadForm">
             <div class="field-grid">
-              <label>Company
+              <label><span data-i18n="labelCompany">Company</span>
                 <input name="company" placeholder="Broker or exchange name" required>
               </label>
-              <label>Work email
+              <label><span data-i18n="labelEmail">Work email</span>
                 <input name="email" type="email" placeholder="name@company.com" required>
               </label>
             </div>
             <div class="field-grid">
-              <label>Platform type
+              <label><span data-i18n="labelPlatform">Platform type</span>
                 <select name="platform" required>
                   <option value="">Select</option>
                   <option>FX / CFD broker</option>
@@ -1303,7 +1326,7 @@
                   <option>Trading education / tool</option>
                 </select>
               </label>
-              <label>Target region
+              <label><span data-i18n="labelRegion">Target region</span>
                 <select name="region" required>
                   <option value="">Select</option>
                   <option>LATAM</option>
@@ -1316,7 +1339,7 @@
               </label>
             </div>
             <div class="field-grid">
-              <label>Lead goal
+              <label><span data-i18n="labelGoal">Lead goal</span>
                 <select name="goal" required>
                   <option value="">Select</option>
                   <option>Trader leads</option>
@@ -1326,7 +1349,7 @@
                   <option>Data enrichment</option>
                 </select>
               </label>
-              <label>Preferred model
+              <label><span data-i18n="labelModel">Preferred model</span>
                 <select name="model" required>
                   <option value="">Select</option>
                   <option>CPL</option>
@@ -1337,10 +1360,10 @@
                 </select>
               </label>
             </div>
-            <label>Notes
+            <label><span data-i18n="labelNotes">Notes</span>
               <textarea name="notes" placeholder="Target countries, monthly budget, current CRM, compliance restrictions"></textarea>
             </label>
-            <button class="btn btn-primary" type="submit">Generate sample request</button>
+            <button class="btn btn-primary" type="submit" data-i18n="formButton">Generate sample request</button>
           </form>
         </div>
       </div>
@@ -1357,6 +1380,318 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
+    const translations = {
+      en: {
+        brand: "Global Trading Leads",
+        navProducts: "Products",
+        navSources: "Sources",
+        navPricing: "Pricing",
+        navCompliance: "Compliance",
+        navCta: "Request sample leads",
+        eyebrow: "Overseas broker growth platform",
+        heroTitle: "Daily active trader leads for trading platforms.",
+        heroCopy: "Fresh lead feeds for FX, CFD, crypto, stock and gold brokers: daily updated trader, affiliate and IB records with last-seen activity, product interest, contact status and next action.",
+        heroCta: "Request today's sample feed",
+        heroSecondary: "See packages",
+        metricOne: "FX, CFD, crypto, stocks and gold",
+        metricTwo: "Daily fresh trader, affiliate, IB records",
+        metricThree: "Last seen, activity score, next action",
+        freshTitle: "Sell freshness, not old databases.",
+        freshCopy: "The product brokers will pay for repeatedly is a daily updated active lead feed: who showed trading intent recently, what product they care about and what sales action should happen next.",
+        freshSide: "Each delivery includes last-seen timestamp, freshness tier, activity signal, activity score, source labels, verification status and compliance status.",
+        productOneTitle: "Daily Trader Feed",
+        productOneCopy: "Fresh retail trader and investor records segmented for FX, crypto futures, stocks, gold, indices and CFD offers.",
+        productTwoTitle: "Hot 24h Intent Feed",
+        productTwoCopy: "Consent-based leads from broker guides, trading tools, webinars, checklists and demo account funnels updated daily.",
+        productThreeTitle: "Active Affiliate & IB Feed",
+        productThreeCopy: "KOLs, trading educators, community owners, IBs, financial influencers and newsletter operators with recent activity signals.",
+        productFourTitle: "Broker CRM Enrichment",
+        productFourCopy: "Append verified business emails, phones, LinkedIn URLs, firmographics, role tags, deliverability checks and refresh dates.",
+        signalsTitle: "Live market signals already connected.",
+        signalsCopy: "Market data does not provide personal contact details, but it makes the daily lead feed more valuable by deciding which trader segment to package today.",
+        signalsSide: "Connected now: TradingView FX, stocks, metals and energy widgets plus CoinGecko public crypto market feed. Contact-data APIs need private keys and should run on a backend.",
+        pricingTitle: "Packages you can sell immediately.",
+        pricingCopy: "Use the sample pack as the foot in the door, then close monthly delivery for specific countries and product categories.",
+        priceOneTitle: "Today Sample",
+        priceOneCopy: "20-50 sample records showing freshness labels, activity signals, source notes and market fit.",
+        priceTwoTitle: "Daily Trader Feed",
+        priceTwoCopy: "30-200 fresh records per day for one category: FX, crypto futures, stocks, gold or CFD.",
+        priceThreeTitle: "Active Affiliate / IB",
+        priceThreeCopy: "Daily or weekly active KOL, educator, affiliate, IB and community owner feed.",
+        priceFourTitle: "Performance",
+        priceFourCopy: "Signup, KYC, first-deposit or revenue-share campaigns after tracking is in place.",
+        complianceTitle: "Compliance is part of the product.",
+        complianceCopy: "The front-end positioning should never sound like scraped personal data resale. Sell compliant acquisition, prospecting intelligence and tracked growth.",
+        complianceNotice: "Important: this platform should not provide investment advice, profit promises, fake testimonials or high-leverage inducements. Clients must confirm their own regulatory permissions for each target market.",
+        launchTitle: "Launch offer: today's active sample feed.",
+        launchCopy: "This is the first thing to sell. Ask the broker for product, country and payout model, then prepare a small daily-feed sample before proposing monthly volume.",
+        formTitle: "Request today's sample feed",
+        formCopy: "Tell us your market, product and payout model. We will prepare a sample daily feed structure and campaign proposal.",
+        labelCompany: "Company",
+        labelEmail: "Work email",
+        labelPlatform: "Platform type",
+        labelRegion: "Target region",
+        labelGoal: "Lead goal",
+        labelModel: "Preferred model",
+        labelNotes: "Notes",
+        formButton: "Generate sample request"
+      },
+      es: {
+        brand: "Leads Globales de Trading",
+        navProducts: "Productos",
+        navSources: "Fuentes",
+        navPricing: "Precios",
+        navCompliance: "Cumplimiento",
+        navCta: "Solicitar leads",
+        eyebrow: "Plataforma global de crecimiento para brokers",
+        heroTitle: "Leads diarios activos para plataformas de trading.",
+        heroCopy: "Feeds frescos para brokers de FX, CFD, cripto, acciones y oro: traders, afiliados e IBs actualizados cada día con actividad reciente, interés de producto, estado de contacto y próxima acción.",
+        heroCta: "Solicitar muestra de hoy",
+        heroSecondary: "Ver paquetes",
+        metricOne: "FX, CFD, cripto, acciones y oro",
+        metricTwo: "Registros diarios de traders, afiliados e IBs",
+        metricThree: "Última actividad, score y próxima acción",
+        freshTitle: "Vende frescura, no bases viejas.",
+        freshCopy: "Lo que los brokers pagan de forma recurrente es un feed activo diario: quién mostró intención reciente, qué producto le interesa y qué acción comercial sigue.",
+        freshSide: "Cada entrega incluye última actividad, frescura, señal de actividad, score, fuente, verificación y estado de cumplimiento.",
+        productOneTitle: "Feed Diario de Traders",
+        productOneCopy: "Registros frescos de traders e inversores segmentados para FX, futuros cripto, acciones, oro, índices y CFD.",
+        productTwoTitle: "Feed Hot 24h",
+        productTwoCopy: "Leads con consentimiento desde guías, herramientas, webinars, checklists y funnels de demo actualizados cada día.",
+        productThreeTitle: "Feed Activo de Afiliados e IBs",
+        productThreeCopy: "KOLs, educadores, comunidades, IBs, influencers financieros y newsletters con señales recientes.",
+        productFourTitle: "Enriquecimiento CRM para Brokers",
+        productFourCopy: "Añade emails, teléfonos, LinkedIn, datos de empresa, roles, validación y fechas de refresh.",
+        signalsTitle: "Señales de mercado conectadas.",
+        signalsCopy: "Los datos de mercado no dan contactos personales, pero hacen más valioso el feed diario al decidir qué segmento empaquetar hoy.",
+        signalsSide: "Conectado: TradingView para FX, acciones, metales y energía, más CoinGecko para cripto. Las APIs de contacto necesitan claves privadas y backend.",
+        pricingTitle: "Paquetes que puedes vender ya.",
+        pricingCopy: "Usa la muestra para abrir la puerta y luego cierra entregas mensuales por país y categoría.",
+        priceOneTitle: "Muestra de Hoy",
+        priceOneCopy: "20-50 registros con frescura, actividad, fuente y ajuste de mercado.",
+        priceTwoTitle: "Feed Diario de Traders",
+        priceTwoCopy: "30-200 registros frescos al día para FX, cripto, acciones, oro o CFD.",
+        priceThreeTitle: "Afiliados / IB Activos",
+        priceThreeCopy: "Feed diario o semanal de KOLs, educadores, afiliados, IBs y comunidades.",
+        priceFourTitle: "Performance",
+        priceFourCopy: "Campañas por registro, KYC, primer depósito o revenue share con tracking.",
+        complianceTitle: "El cumplimiento es parte del producto.",
+        complianceCopy: "El posicionamiento no debe sonar a reventa de datos scrapeados. Vende adquisición compliant, inteligencia de prospección y crecimiento medible.",
+        complianceNotice: "Importante: la plataforma no debe dar consejos de inversión, promesas de ganancias, testimonios falsos ni inducir alto apalancamiento. Cada cliente debe confirmar sus permisos regulatorios.",
+        launchTitle: "Oferta inicial: feed activo de hoy.",
+        launchCopy: "Primero vende una muestra diaria. Pide producto, país y modelo de pago; luego propone volumen mensual.",
+        formTitle: "Solicitar feed de muestra",
+        formCopy: "Indica mercado, producto y modelo. Prepararemos una muestra diaria y propuesta de campaña.",
+        labelCompany: "Empresa",
+        labelEmail: "Email laboral",
+        labelPlatform: "Tipo de plataforma",
+        labelRegion: "Región objetivo",
+        labelGoal: "Objetivo",
+        labelModel: "Modelo preferido",
+        labelNotes: "Notas",
+        formButton: "Generar solicitud"
+      },
+      pt: {
+        brand: "Global Trading Leads",
+        navProducts: "Produtos",
+        navSources: "Fontes",
+        navPricing: "Preços",
+        navCompliance: "Compliance",
+        navCta: "Solicitar leads",
+        eyebrow: "Plataforma global de crescimento para brokers",
+        heroTitle: "Leads ativos diários para plataformas de trading.",
+        heroCopy: "Feeds frescos para brokers de FX, CFD, cripto, ações e ouro: traders, afiliados e IBs atualizados diariamente com atividade recente, interesse de produto, status de contato e próxima ação.",
+        heroCta: "Solicitar amostra de hoje",
+        heroSecondary: "Ver pacotes",
+        metricOne: "FX, CFD, cripto, ações e ouro",
+        metricTwo: "Registros diários de traders, afiliados e IBs",
+        metricThree: "Última atividade, score e próxima ação",
+        freshTitle: "Venda frescor, não bases antigas.",
+        freshCopy: "O que brokers pagam de forma recorrente é um feed ativo diário: quem demonstrou intenção recentemente, qual produto interessa e qual ação comercial vem depois.",
+        freshSide: "Cada entrega inclui última atividade, nível de frescor, sinal, score, fonte, verificação e status de compliance.",
+        productOneTitle: "Feed Diário de Traders",
+        productOneCopy: "Registros frescos de traders e investidores segmentados para FX, futuros cripto, ações, ouro, índices e CFD.",
+        productTwoTitle: "Feed Hot 24h",
+        productTwoCopy: "Leads com consentimento vindos de guias, ferramentas, webinars, checklists e funis de demo atualizados diariamente.",
+        productThreeTitle: "Feed Ativo de Afiliados e IBs",
+        productThreeCopy: "KOLs, educadores, comunidades, IBs, influenciadores financeiros e newsletters com sinais recentes.",
+        productFourTitle: "Enriquecimento CRM para Brokers",
+        productFourCopy: "Adicione emails, telefones, LinkedIn, firmografia, cargos, validação e datas de atualização.",
+        signalsTitle: "Sinais de mercado conectados.",
+        signalsCopy: "Dados de mercado não trazem contatos pessoais, mas tornam o feed diário mais valioso ao definir qual segmento empacotar hoje.",
+        signalsSide: "Conectado: TradingView para FX, ações, metais e energia, mais CoinGecko para cripto. APIs de contato precisam de chaves privadas e backend.",
+        pricingTitle: "Pacotes para vender imediatamente.",
+        pricingCopy: "Use a amostra para abrir a conversa e depois feche entregas mensais por país e categoria.",
+        priceOneTitle: "Amostra de Hoje",
+        priceOneCopy: "20-50 registros com frescor, atividade, fonte e fit de mercado.",
+        priceTwoTitle: "Feed Diário de Traders",
+        priceTwoCopy: "30-200 registros frescos por dia para FX, cripto, ações, ouro ou CFD.",
+        priceThreeTitle: "Afiliados / IB Ativos",
+        priceThreeCopy: "Feed diário ou semanal de KOLs, educadores, afiliados, IBs e comunidades.",
+        priceFourTitle: "Performance",
+        priceFourCopy: "Campanhas por signup, KYC, primeiro depósito ou revenue share com tracking.",
+        complianceTitle: "Compliance faz parte do produto.",
+        complianceCopy: "A mensagem não deve parecer revenda de dados raspados. Venda aquisição compliant, inteligência de prospecção e crescimento rastreável.",
+        complianceNotice: "Importante: a plataforma não deve oferecer conselho de investimento, prometer lucros, usar depoimentos falsos ou induzir alta alavancagem. Cada cliente confirma suas permissões regulatórias.",
+        launchTitle: "Oferta inicial: feed ativo de hoje.",
+        launchCopy: "Primeiro venda uma amostra diária. Peça produto, país e modelo de pagamento; depois proponha volume mensal.",
+        formTitle: "Solicitar feed de amostra",
+        formCopy: "Informe mercado, produto e modelo. Prepararemos uma amostra diária e proposta de campanha.",
+        labelCompany: "Empresa",
+        labelEmail: "Email profissional",
+        labelPlatform: "Tipo de plataforma",
+        labelRegion: "Região alvo",
+        labelGoal: "Objetivo",
+        labelModel: "Modelo preferido",
+        labelNotes: "Notas",
+        formButton: "Gerar solicitação"
+      },
+      ar: {
+        brand: "Global Trading Leads",
+        navProducts: "المنتجات",
+        navSources: "المصادر",
+        navPricing: "الأسعار",
+        navCompliance: "الامتثال",
+        navCta: "طلب عينة",
+        eyebrow: "منصة نمو عالمية للوسطاء",
+        heroTitle: "عملاء تداول نشطون يوميا لمنصات التداول.",
+        heroCopy: "تدفقات حديثة لوسطاء الفوركس والعقود مقابل الفروقات والعملات الرقمية والأسهم والذهب، مع نشاط حديث واهتمام بالمنتج وحالة التواصل والخطوة التالية.",
+        heroCta: "اطلب عينة اليوم",
+        heroSecondary: "عرض الباقات",
+        metricOne: "فوركس، CFD، كريبتو، أسهم وذهب",
+        metricTwo: "سجلات يومية للمتداولين والشركاء وIB",
+        metricThree: "آخر ظهور، درجة النشاط، الخطوة التالية",
+        freshTitle: "بع الحداثة، لا قواعد بيانات قديمة.",
+        freshCopy: "ما يدفع له الوسطاء بشكل متكرر هو تدفق يومي نشط: من أظهر نية تداول حديثة، وما المنتج المناسب له، وما الإجراء التالي.",
+        freshSide: "كل تسليم يشمل آخر ظهور، مستوى الحداثة، إشارة النشاط، الدرجة، المصدر، التحقق وحالة الامتثال.",
+        productOneTitle: "تدفق متداولين يومي",
+        productOneCopy: "سجلات حديثة لمتداولين ومستثمرين حسب الفوركس والكريبتو والأسهم والذهب والمؤشرات وCFD.",
+        productTwoTitle: "تدفق نية خلال 24 ساعة",
+        productTwoCopy: "عملاء بموافقة من الأدلة والأدوات والندوات وقوائم التحقق ومسارات الحساب التجريبي.",
+        productThreeTitle: "تدفق شركاء وIB نشطين",
+        productThreeCopy: "مؤثرون، مدربو تداول، مجتمعات، IB، مؤثرون ماليون ونشرات لديهم نشاط حديث.",
+        productFourTitle: "إثراء CRM للوسطاء",
+        productFourCopy: "إضافة بريد، هاتف، LinkedIn، بيانات شركة، أدوار، تحقق وتاريخ تحديث.",
+        signalsTitle: "إشارات سوق مباشرة متصلة.",
+        signalsCopy: "بيانات السوق لا تعطي بيانات تواصل شخصية، لكنها تحدد أي شريحة متداولين يجب تجهيزها اليوم.",
+        signalsSide: "متصل الآن: TradingView للفوركس والأسهم والمعادن والطاقة، وCoinGecko للكريبتو. APIs بيانات التواصل تحتاج مفاتيح خاصة وخادما خلفيا.",
+        pricingTitle: "باقات يمكن بيعها فورا.",
+        pricingCopy: "ابدأ بالعينة ثم أغلق تسليما شهريا حسب البلد وفئة المنتج.",
+        priceOneTitle: "عينة اليوم",
+        priceOneCopy: "20-50 سجلا مع الحداثة والنشاط والمصدر وملاءمة السوق.",
+        priceTwoTitle: "تدفق متداولين يومي",
+        priceTwoCopy: "30-200 سجل حديث يوميا لفوركس أو كريبتو أو أسهم أو ذهب أو CFD.",
+        priceThreeTitle: "شركاء / IB نشطون",
+        priceThreeCopy: "تدفق يومي أو أسبوعي للمؤثرين والمدربين والشركاء وIB والمجتمعات.",
+        priceFourTitle: "الأداء",
+        priceFourCopy: "حملات تسجيل وKYC وإيداع أول أو مشاركة إيراد بعد تفعيل التتبع.",
+        complianceTitle: "الامتثال جزء من المنتج.",
+        complianceCopy: "يجب ألا تبدو الرسالة كإعادة بيع بيانات مسروقة. بع اكتسابا متوافقا وذكاء بحث ونموا قابلا للتتبع.",
+        complianceNotice: "مهم: لا تقدم المنصة نصائح استثمارية أو وعود ربح أو شهادات مزيفة أو تحفيزا على رافعة عالية. يجب على كل عميل تأكيد صلاحياته التنظيمية.",
+        launchTitle: "عرض الإطلاق: تدفق عينة اليوم.",
+        launchCopy: "ابدأ ببيع عينة يومية. اسأل الوسيط عن المنتج والبلد ونموذج الدفع ثم اقترح حجما شهريا.",
+        formTitle: "طلب تدفق عينة اليوم",
+        formCopy: "أخبرنا بالسوق والمنتج ونموذج الدفع وسنجهز عينة يومية ومقترح حملة.",
+        labelCompany: "الشركة",
+        labelEmail: "بريد العمل",
+        labelPlatform: "نوع المنصة",
+        labelRegion: "المنطقة المستهدفة",
+        labelGoal: "هدف العملاء",
+        labelModel: "النموذج المفضل",
+        labelNotes: "ملاحظات",
+        formButton: "إنشاء الطلب"
+      },
+      zh: {
+        brand: "全球交易线索",
+        navProducts: "产品",
+        navSources: "来源",
+        navPricing: "价格",
+        navCompliance: "合规",
+        navCta: "申请样例线索",
+        eyebrow: "面向海外 broker 的增长平台",
+        heroTitle: "为交易平台提供每日活跃交易客户线索。",
+        heroCopy: "面向外汇、CFD、加密货币、股票和黄金平台的每日更新客户 feed：包含交易者、Affiliate、IB 的近期活跃、产品兴趣、联系方式状态和下一步动作。",
+        heroCta: "申请今日样例 feed",
+        heroSecondary: "查看套餐",
+        metricOne: "外汇、CFD、加密货币、股票、黄金",
+        metricTwo: "每日新鲜交易者、Affiliate、IB 记录",
+        metricThree: "最近活跃、活跃评分、下一步动作",
+        freshTitle: "卖新鲜活跃客户，不卖旧数据库。",
+        freshCopy: "broker 会持续付费的产品，是每日更新的活跃线索：谁最近表现出交易意向、关注什么产品、销售团队下一步该做什么。",
+        freshSide: "每次交付包含最近活跃时间、鲜度等级、活跃信号、活跃评分、来源标签、验证状态和合规状态。",
+        productOneTitle: "每日交易者 Feed",
+        productOneCopy: "按外汇、加密合约、股票、黄金、指数和 CFD 分层的新鲜交易者/投资者记录。",
+        productTwoTitle: "24 小时高意向 Feed",
+        productTwoCopy: "来自 broker 指南、交易工具、webinar、清单和模拟账户漏斗的授权线索，每日更新。",
+        productThreeTitle: "活跃 Affiliate 与 IB Feed",
+        productThreeCopy: "近期活跃的 KOL、交易教育者、社群主、IB、财经影响者和 newsletter 运营者。",
+        productFourTitle: "Broker CRM 数据增强",
+        productFourCopy: "补充验证邮箱、电话、LinkedIn、公司信息、角色标签、送达检查和刷新日期。",
+        signalsTitle: "已接入实时市场信号。",
+        signalsCopy: "市场数据本身不提供个人联系方式，但能决定今天该打包哪类交易客户，从而提升每日 feed 的价值。",
+        signalsSide: "当前已接入 TradingView 外汇、股票、贵金属、能源组件，以及 CoinGecko 加密货币公开行情。联系人数据 API 需要私钥和后端。",
+        pricingTitle: "可以马上销售的套餐。",
+        pricingCopy: "先用样例包打开客户，再按国家和产品品类成交月度交付。",
+        priceOneTitle: "今日样例",
+        priceOneCopy: "20-50 条样例记录，展示鲜度、活跃信号、来源和市场匹配度。",
+        priceTwoTitle: "每日交易者 Feed",
+        priceTwoCopy: "每天 30-200 条新鲜记录，适用于外汇、加密合约、股票、黄金或 CFD。",
+        priceThreeTitle: "活跃 Affiliate / IB",
+        priceThreeCopy: "每日或每周交付活跃 KOL、教育者、Affiliate、IB 和社群主 feed。",
+        priceFourTitle: "效果付费",
+        priceFourCopy: "在追踪打通后，按注册、KYC、首次入金或 revenue share 合作。",
+        complianceTitle: "合规是产品的一部分。",
+        complianceCopy: "前台定位不能像是在转售爬取来的个人数据，而应销售合规获客、潜客情报和可追踪增长。",
+        complianceNotice: "重要：平台不应提供投资建议、收益承诺、虚假见证或诱导高杠杆。客户必须确认自己在目标市场的监管许可。",
+        launchTitle: "启动报价：今日活跃样例 feed。",
+        launchCopy: "第一步就卖这个。先问 broker 的产品、国家和计费模式，再准备小样例，然后报价月度交付。",
+        formTitle: "申请今日样例 feed",
+        formCopy: "告诉我们你的市场、产品和计费方式，我们会准备每日 feed 样例结构和投放建议。",
+        labelCompany: "公司",
+        labelEmail: "工作邮箱",
+        labelPlatform: "平台类型",
+        labelRegion: "目标地区",
+        labelGoal: "线索目标",
+        labelModel: "首选计费模式",
+        labelNotes: "备注",
+        formButton: "生成样例请求"
+      }
+    };
+
+    const languageSelect = document.querySelector("#languageSelect");
+    const supportedLanguages = Object.keys(translations);
+
+    function detectLanguage() {
+      const saved = window.localStorage?.getItem("preferredLanguage");
+      if (supportedLanguages.includes(saved)) return saved;
+      const browserLanguage = (navigator.language || "en").toLowerCase();
+      if (browserLanguage.startsWith("es")) return "es";
+      if (browserLanguage.startsWith("pt")) return "pt";
+      if (browserLanguage.startsWith("ar")) return "ar";
+      if (browserLanguage.startsWith("zh")) return "zh";
+      return "en";
+    }
+
+    function applyLanguage(language) {
+      const dict = translations[language] || translations.en;
+      document.documentElement.lang = language;
+      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const key = node.dataset.i18n;
+        if (dict[key]) node.textContent = dict[key];
+      });
+      if (languageSelect) languageSelect.value = language;
+    }
+
+    const initialLanguage = detectLanguage();
+    applyLanguage(initialLanguage);
+
+    languageSelect?.addEventListener("change", (event) => {
+      const language = event.target.value;
+      window.localStorage?.setItem("preferredLanguage", language);
+      applyLanguage(language);
+    });
+
     const form = document.querySelector("#leadForm");
     const toast = document.querySelector("#toast");
     const cryptoSignals = document.querySelector("#cryptoSignals");
