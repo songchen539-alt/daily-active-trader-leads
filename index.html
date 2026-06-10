@@ -480,6 +480,13 @@
       align-items: stretch;
     }
 
+    .market-widgets {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
     .widget-box {
       min-height: 500px;
       overflow: hidden;
@@ -794,7 +801,8 @@
       .pricing,
       .pipeline,
       .field-grid,
-      .live-grid {
+      .live-grid,
+      .market-widgets {
         grid-template-columns: 1fr;
       }
 
@@ -1026,6 +1034,58 @@
               <div class="signal-item"><strong>Loading market feed</strong><span>CoinGecko</span></div>
             </div>
           </article>
+        </div>
+        <div class="market-widgets">
+          <div class="widget-box">
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+              {
+                "symbols": [
+                  { "proName": "FX:EURUSD", "title": "EUR/USD" },
+                  { "proName": "FX:GBPUSD", "title": "GBP/USD" },
+                  { "proName": "FX:USDJPY", "title": "USD/JPY" },
+                  { "proName": "FX:AUDUSD", "title": "AUD/USD" },
+                  { "proName": "FX:USDCAD", "title": "USD/CAD" },
+                  { "proName": "FX:XAUUSD", "title": "Gold" },
+                  { "proName": "TVC:DXY", "title": "US Dollar Index" }
+                ],
+                "showSymbolLogo": true,
+                "colorTheme": "light",
+                "isTransparent": false,
+                "displayMode": "adaptive",
+                "locale": "en"
+              }
+              </script>
+            </div>
+          </div>
+          <div class="widget-box">
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>
+              {
+                "colorTheme": "light",
+                "dateRange": "12M",
+                "exchange": "US",
+                "showChart": true,
+                "locale": "en",
+                "largeChartUrl": "",
+                "isTransparent": false,
+                "showSymbolLogo": true,
+                "showFloatingTooltip": false,
+                "width": "100%",
+                "height": "500",
+                "plotLineColorGrowing": "rgba(15, 139, 141, 1)",
+                "plotLineColorFalling": "rgba(200, 76, 69, 1)",
+                "gridLineColor": "rgba(240, 243, 250, 0)",
+                "scaleFontColor": "rgba(98, 112, 127, 1)",
+                "belowLineFillColorGrowing": "rgba(15, 139, 141, 0.12)",
+                "belowLineFillColorFalling": "rgba(200, 76, 69, 0.12)",
+                "symbolActiveColor": "rgba(15, 139, 141, 0.12)"
+              }
+              </script>
+            </div>
+          </div>
         </div>
       </div>
     </section>

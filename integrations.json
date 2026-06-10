@@ -5,6 +5,7 @@
       "type": "market_signal_widget",
       "status": "connected",
       "requires_api_key": false,
+      "coverage": "FX ticker, FX/gold overview, US stock hotlists, stock overview, crypto overview",
       "url": "https://www.tradingview.com/widget/"
     },
     {
@@ -47,16 +48,28 @@
   ],
   "market_signal_next": [
     {
+      "name": "Alpha Vantage",
+      "status": "needs_api_key",
+      "role": "stocks, ETFs, FX, commodities, crypto and indicators",
+      "url": "https://www.alphavantage.co/documentation/"
+    },
+    {
+      "name": "Twelve Data",
+      "status": "needs_api_key",
+      "role": "real-time and historical stocks, forex, ETFs, indices and crypto",
+      "url": "https://twelvedata.com/"
+    },
+    {
+      "name": "Polygon.io",
+      "status": "needs_api_key",
+      "role": "US stocks, options, indices, forex and crypto market data",
+      "url": "https://polygon.io/"
+    },
+    {
       "name": "CoinMarketCap",
       "status": "needs_api_key_for_production",
       "role": "crypto markets, exchanges, pairs and liquidity",
       "url": "https://coinmarketcap.com/api/documentation/"
-    },
-    {
-      "name": "Alpha Vantage",
-      "status": "needs_api_key",
-      "role": "stocks, FX, commodities, crypto and indicators",
-      "url": "https://www.alphavantage.co/documentation/"
     },
     {
       "name": "Nasdaq Market Data",

@@ -4,7 +4,7 @@
 
 ### TradingView Widgets
 
-Use: live FX, stock, gold and crypto market overview.
+Use: live FX, stock, gold and crypto market overview, FX ticker tape and US stock hotlists.
 
 Why it matters: brokers can see the platform is driven by current market context. This supports daily campaign packaging such as FX volatility, gold moves, crypto futures interest and stock trading demand.
 
@@ -92,6 +92,36 @@ Best role: orchestration layer for Apollo, Wiza, Lusha, ContactOut and email ver
 
 ## Market Signal APIs To Add Next
 
+### Alpha Vantage
+
+Use: stocks, ETFs, FX, commodities, crypto and technical indicators.
+
+Priority: high for API-level FX and stock data after the public widget MVP.
+
+Integration type: API key.
+
+Official docs: https://www.alphavantage.co/documentation/
+
+### Twelve Data
+
+Use: real-time and historical stocks, forex, ETFs, indices and crypto market data.
+
+Priority: high if you need one API covering both FX and stocks.
+
+Integration type: API key.
+
+Official site/docs: https://twelvedata.com/
+
+### Polygon.io
+
+Use: US stocks, options, indices, forex and crypto market data.
+
+Priority: high for serious stock/option broker campaigns.
+
+Integration type: paid API key for most commercial usage.
+
+Official site/docs: https://polygon.io/
+
 ### CoinMarketCap
 
 Use: crypto market rankings, latest pricing, exchange activity, market pairs and liquidity.
@@ -99,14 +129,6 @@ Use: crypto market rankings, latest pricing, exchange activity, market pairs and
 Priority: high for crypto exchange and futures broker campaigns.
 
 Official docs: https://coinmarketcap.com/api/documentation/
-
-### Alpha Vantage
-
-Use: stocks, ETFs, FX, commodities, crypto and technical indicators.
-
-Priority: medium.
-
-Official docs: https://www.alphavantage.co/documentation/
 
 ### Nasdaq Data Link / Nasdaq Market Data
 
