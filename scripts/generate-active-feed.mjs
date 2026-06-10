@@ -125,6 +125,87 @@ function csvEscape(value) {
   return text;
 }
 
+function campaignFromRow(row) {
+  const product = row.target_product || "Trading";
+  const signal = row.activity_signal || "";
+  if (/Affiliate|IB/i.test(product) || /affiliate|ib|signals provider|signal provider|educator|course|community|telegram/i.test(signal)) {
+    return {
+      audience_segment: "Trading educators, affiliates, IBs and signal communities",
+      broker_use_case: "Recruit affiliates, IB partners and trading education channels.",
+      campaign_angle: "Active trading education and signal-provider topics indicate partner opportunities.",
+      outreach_hook: "We can source active trading educators and IB-style partner prospects."
+    };
+  }
+  if (/gold|xau/i.test(signal) || /Metals/i.test(product)) {
+    return {
+      audience_segment: "Gold, silver and oil CFD traders",
+      broker_use_case: "Run a metals/energy CFD demo account or webinar campaign.",
+      campaign_angle: "Market volatility in gold, silver and crude oil is creating active trader attention.",
+      outreach_hook: "Want today's active gold/oil trader topics and creator channels?"
+    };
+  }
+  if (/crypto|bitcoin|ethereum|solana|xrp|bnb|futures/i.test(signal) || /Crypto/i.test(product)) {
+    return {
+      audience_segment: "Crypto futures and exchange traders",
+      broker_use_case: "Run crypto futures education, demo, exchange signup or affiliate campaign.",
+      campaign_angle: "Crypto volatility is creating fresh futures and exchange intent.",
+      outreach_hook: "We can package today's active crypto futures traffic themes for your exchange."
+    };
+  }
+  if (/eur|usd|forex|fx|mt4|mt5/i.test(signal) || product === "FX") {
+    return {
+      audience_segment: "FX and MT4/MT5 traders",
+      broker_use_case: "Run MT4/MT5 onboarding, low-spread broker comparison or FX webinar campaign.",
+      campaign_angle: "FX analysis and broker-selection topics are active today.",
+      outreach_hook: "Do you want today's active FX intent feed for your sales or affiliate team?"
+    };
+  }
+  if (/stock|nasdaq|option|nvda|tesla|earnings/i.test(signal) || /Stocks/i.test(product)) {
+    return {
+      audience_segment: "Stock, ETF and options traders",
+      broker_use_case: "Run stock trading app, CFD equities or options education campaign.",
+      campaign_angle: "US equities and options conversations are active around market movers.",
+      outreach_hook: "We can package active stock-trading topics and creators for your brokerage."
+    };
+  }
+  return {
+    audience_segment: "Multi-asset active traders",
+    broker_use_case: "Review for campaign planning and lead-package selection.",
+    campaign_angle: "Public trading interest is active around this topic.",
+    outreach_hook: "We can turn this public intent signal into a targeted broker campaign."
+  };
+}
+
+function toClientOpportunity(row, index) {
+  const campaign = campaignFromRow(row);
+  const signal = row.activity_signal || "";
+  const product = /gold|xau|silver|xag|crude|oil|wti|brent|natural gas/i.test(signal)
+    ? "Metals / Energy CFD"
+    : /bitcoin|crypto|ethereum|solana|xrp|bnb|futures/i.test(signal)
+      ? "Crypto Futures"
+      : /eur\/usd|forex|mt4|mt5|usd\/jpy|gbp\/usd/i.test(signal)
+        ? "FX"
+        : /stock|nasdaq|option|nvda|tesla|earnings/i.test(signal)
+          ? "Stocks / Options"
+          : row.target_product;
+  return {
+    opportunity_id: `OPP-${feedDate}-${String(index + 1).padStart(3, "0")}`,
+    date: feedDate,
+    priority: Number(row.activity_score || 0) >= 85 ? "High" : Number(row.activity_score || 0) >= 70 ? "Medium" : "Watch",
+    product,
+    audience_segment: campaign.audience_segment,
+    signal_summary: row.activity_signal,
+    source: row.public_author || row.source_type,
+    source_url: row.source_url,
+    score: row.activity_score,
+    broker_use_case: campaign.broker_use_case,
+    campaign_angle: campaign.campaign_angle,
+    outreach_hook: campaign.outreach_hook,
+    compliance_note: "Public intent signal only. Not a personal contact record.",
+    recommended_next_step: row.next_action
+  };
+}
+
 async function fetchJson(url, options = {}) {
   const maxTime = Math.max(2, Math.ceil((options.timeoutMs || 8000) / 1000));
   const { stdout } = await execFileAsync("curl", [
@@ -395,6 +476,10 @@ async function main() {
     connector_events: connectorEvents,
     rows
   };
+  const clientOpportunities = rows
+    .filter((row) => Number(row.activity_score || 0) > 0)
+    .slice(0, 50)
+    .map(toClientOpportunity);
 
   await mkdir("data", { recursive: true });
   await writeFile("data/latest-active-feed.json", JSON.stringify(feed, null, 2));
@@ -423,6 +508,77 @@ async function main() {
     ...rows.map((row) => headers.map((header) => csvEscape(row[header])).join(","))
   ].join("\n");
   await writeFile("data/latest-active-feed.csv", `${csv}\n`);
+
+  const clientHeaders = [
+    "opportunity_id",
+    "date",
+    "priority",
+    "product",
+    "audience_segment",
+    "signal_summary",
+    "source",
+    "source_url",
+    "score",
+    "broker_use_case",
+    "campaign_angle",
+    "outreach_hook",
+    "compliance_note",
+    "recommended_next_step"
+  ];
+  const clientCsv = [
+    clientHeaders.join(","),
+    ...clientOpportunities.map((row) => clientHeaders.map((header) => csvEscape(row[header])).join(","))
+  ].join("\n");
+  await writeFile("data/client-opportunities.csv", `${clientCsv}\n`);
+  await writeFile("data/client-opportunities.json", JSON.stringify({
+    generated_at: isoNow,
+    feed_date: feedDate,
+    purpose: "Customer-facing opportunity list for broker campaign planning. Not personal contact data.",
+    row_count: clientOpportunities.length,
+    opportunities: clientOpportunities
+  }, null, 2));
+
+  const htmlRows = clientOpportunities.slice(0, 25).map((row) => `
+    <tr>
+      <td>${row.priority}</td>
+      <td>${row.product}</td>
+      <td>${row.audience_segment}</td>
+      <td>${row.signal_summary}</td>
+      <td>${row.broker_use_case}</td>
+      <td><a href="${row.source_url}">source</a></td>
+    </tr>
+  `).join("");
+  const reportHtml = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Broker Opportunities</title>
+  <style>
+    body{font-family:Inter,system-ui,sans-serif;margin:0;color:#142333;background:#f4f7fa}
+    main{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:42px 0}
+    h1{font-size:38px;margin:0 0 8px}
+    p{color:#62707f}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #dbe3ea}
+    th,td{text-align:left;padding:12px;border-bottom:1px solid #dbe3ea;vertical-align:top;font-size:14px}
+    th{background:#edf4f7;color:#142333}
+    a{color:#0f8b8d}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Daily Broker Opportunities</h1>
+    <p>Generated at ${isoNow}. Customer-facing campaign opportunities based on public market and topic signals. Not personal contact data.</p>
+    <table>
+      <thead>
+        <tr><th>Priority</th><th>Product</th><th>Audience</th><th>Signal</th><th>Broker use case</th><th>Source</th></tr>
+      </thead>
+      <tbody>${htmlRows}</tbody>
+    </table>
+  </main>
+</body>
+</html>`;
+  await writeFile("data/client-opportunities.html", reportHtml);
 
   console.log(`Generated ${rows.length} active feed rows at ${isoNow}`);
 }
