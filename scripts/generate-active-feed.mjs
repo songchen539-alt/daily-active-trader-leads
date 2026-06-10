@@ -86,8 +86,29 @@ function extractEmails(text) {
   const blocked = new Set(["example@example.com", "name@example.com", "email@example.com"]);
   return [...new Set(matches.map((email) => email.toLowerCase()))]
     .filter((email) => !blocked.has(email))
+    .filter((email) => !/^(example|test|demo|sample|user|you|name)@/i.test(email))
+    .filter((email) => !/(example\.com|mailinator\.com|sentry\.io|ingest\.|wixpress\.com|schema\.org)$/i.test(email.split("@")[1] || ""))
     .filter((email) => !/\.(png|jpg|jpeg|gif|webp|svg)$/i.test(email))
     .slice(0, 10);
+}
+
+function cleanPhone(value) {
+  return String(value || "").replace(/[^\d+]/g, "").replace(/^00/, "+");
+}
+
+function extractPhonesFromLinks(html) {
+  const phones = [];
+  const regex = /href=["']([^"']+)["']/gi;
+  let match;
+  while ((match = regex.exec(String(html || "")))) {
+    const href = decodeXml(match[1]);
+    if (/^tel:/i.test(href)) phones.push(cleanPhone(href.replace(/^tel:/i, "")));
+    const wa = href.match(/(?:wa\.me\/|phone=)(\+?\d{8,18})/i);
+    if (wa) phones.push(cleanPhone(wa[1]));
+  }
+  return [...new Set(phones)]
+    .filter((phone) => phone.length >= 9 && phone.length <= 18)
+    .slice(0, 8);
 }
 
 function extractSocialLinks(html) {
@@ -99,9 +120,21 @@ function extractSocialLinks(html) {
     if (/^(https?:)?\/\/(www\.)?(youtube\.com\/(channel|c|@)|x\.com\/[^/]+\/?$|twitter\.com\/[^/]+\/?$|tiktok\.com\/@|telegram\.me\/[^/]+|t\.me\/[^/]+|discord\.gg\/[^/]+|linkedin\.com\/(in|company)\/|stocktwits\.com\/[^/]+\/?$|substack\.com\/@)/i.test(href)) {
       links.push(href.startsWith("//") ? `https:${href}` : href);
     }
+    if (/^https?:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(href)) links.push(href);
     if (/^mailto:/i.test(href) && /@/.test(href)) links.push(href);
   }
   return [...new Set(links)].slice(0, 20);
+}
+
+function extractWhatsAppLinks(html) {
+  const links = [];
+  const regex = /href=["']([^"']+)["']/gi;
+  let match;
+  while ((match = regex.exec(String(html || "")))) {
+    const href = decodeXml(match[1]);
+    if (/^https?:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(href)) links.push(href);
+  }
+  return [...new Set(links)].slice(0, 8);
 }
 
 function extractContactLinks(html, baseUrl) {
@@ -158,6 +191,38 @@ function guessedEmailsForDomain(domain, productInterest) {
   ];
   if (/FX|Metals/i.test(productInterest || "")) rolePrefixes.unshift("ib");
   return [...new Set(rolePrefixes.map((prefix) => `${prefix}@${domain}`))].slice(0, 8);
+}
+
+function likelyContactPaths(productInterest) {
+  const paths = [
+    "/contact",
+    "/contact-us",
+    "/advertise",
+    "/advertising",
+    "/advertising-info",
+    "/media-kit",
+    "/sponsor",
+    "/sponsorship",
+    "/partners",
+    "/partner",
+    "/partner-program",
+    "/affiliates",
+    "/affiliate",
+    "/affiliate-program"
+  ];
+  if (/FX|Metals|CFD/i.test(productInterest || "")) {
+    paths.push("/ib", "/introducing-broker", "/introducing-brokers", "/broker-partners");
+  }
+  return [...new Set(paths)];
+}
+
+function candidateContactUrls(seedUrl, productInterest) {
+  try {
+    const url = new URL(seedUrl);
+    return likelyContactPaths(productInterest).map((path) => `${url.origin}${path}`);
+  } catch {
+    return [];
+  }
 }
 
 function getTag(block, tag) {
@@ -346,16 +411,34 @@ async function loadPublicContactProspects() {
   const seeds = await loadPublicContactSeeds();
   const tasks = seeds.map(async (seed) => {
     try {
-      const html = await fetchText(seed.url, { timeoutMs: 10000 });
-      const emails = extractEmails(html);
-      const socialLinks = extractSocialLinks(html);
-      const contactLinks = extractContactLinks(html, seed.url);
-      const title = htmlTitle(html) || seed.url;
       const domain = hostnameFromUrl(seed.url);
       const domainMxStatus = await mxStatus(domain);
+      const urlsToTry = [seed.url, ...candidateContactUrls(seed.url, seed.product_interest)];
+      const fetched = [];
+      for (const url of urlsToTry.slice(0, 18)) {
+        try {
+          const html = await fetchText(url, { timeoutMs: 7000 });
+          fetched.push({ url, html });
+        } catch {
+          // Most guessed paths will not exist; ignore and keep the seed page result.
+        }
+      }
+      if (!fetched.length) throw new Error("No public pages fetched from seed or candidate contact paths");
+      const combinedHtml = fetched.map((page) => page.html).join("\n");
+      const emails = extractEmails(combinedHtml);
+      const phones = extractPhonesFromLinks(combinedHtml);
+      const whatsappLinks = extractWhatsAppLinks(combinedHtml);
+      const socialLinks = extractSocialLinks(combinedHtml);
+      const contactLinks = [
+        ...fetched.map((page) => page.url).filter((url) => url !== seed.url && /(contact|advertis|sponsor|affiliate|partner|ib|media-kit)/i.test(url)),
+        ...fetched.flatMap((page) => extractContactLinks(page.html, page.url))
+      ];
+      const title = htmlTitle(fetched[0].html) || seed.url;
       const guessedEmails = emails.length ? [] : guessedEmailsForDomain(domain, seed.product_interest);
       const contactStatus = emails.length
         ? "public_business_email_found"
+        : phones.length || whatsappLinks.length
+          ? "public_phone_or_whatsapp_found"
         : contactLinks.length
           ? "public_contact_page_found"
           : socialLinks.length
@@ -375,6 +458,8 @@ async function loadPublicContactProspects() {
         mx_status: domainMxStatus,
         source_url: seed.url,
         public_email: emails.join("; "),
+        public_phone: phones.join("; "),
+        whatsapp_url: whatsappLinks.join("; "),
         guessed_email_candidates: guessedEmails.join("; "),
         deliverability_status: emails.length
           ? "public_email_unverified"
@@ -387,12 +472,12 @@ async function loadPublicContactProspects() {
         public_social_links: socialLinks.filter((link) => !/^mailto:/i.test(link)).slice(0, 5).join("; "),
         contact_status: contactStatus,
         activity_signal: `Public page reviewed: ${title}`,
-        activity_score: Math.min(100, 35 + emails.length * 25 + (domainMxStatus === "mx_found" ? 8 : 0) + contactLinks.length * 15 + socialLinks.length * 5),
+        activity_score: Math.min(100, 30 + emails.length * 25 + phones.length * 25 + whatsappLinks.length * 20 + (domainMxStatus === "mx_found" ? 8 : 0) + contactLinks.length * 10 + socialLinks.length * 4),
         compliance_status: "public_page_contact_review_required",
         recommended_offer: seed.product_interest === "Crypto Futures" ? "Crypto exchange affiliate/partner outreach" : seed.product_interest === "FX" ? "FX broker affiliate/IB outreach" : "Trading platform partnership outreach",
-        next_action: emails.length
+        next_action: emails.length || phones.length || whatsappLinks.length
           ? "Manually verify business relevance, then send compliant one-to-one B2B outreach."
-          : "Review page for creator/community fit; do not treat as a contact record without a public business channel."
+          : "Review page for creator/community fit; use contact page or candidate role email only after manual verification."
       };
     } catch (error) {
       recordConnectorEvent("Public contact prospecting", "blocked_or_unavailable", `${seed.url}: ${error.message}`);
@@ -764,6 +849,8 @@ async function main() {
     "mx_status",
     "source_url",
     "public_email",
+    "public_phone",
+    "whatsapp_url",
     "guessed_email_candidates",
     "deliverability_status",
     "contact_url",
@@ -789,7 +876,7 @@ async function main() {
   }, null, 2));
 
   const contactableProspects = contactProspects
-    .filter((row) => row.public_email || row.contact_url || row.public_social_links || row.guessed_email_candidates)
+    .filter((row) => row.public_email || row.public_phone || row.whatsapp_url || row.contact_url || row.public_social_links || row.guessed_email_candidates)
     .map((row, index) => ({
       prospect_id: `CONTACT-${feedDate}-${String(index + 1).padStart(3, "0")}`,
       priority: row.public_email ? "High" : row.contact_url ? "Medium" : "Review",
@@ -799,6 +886,8 @@ async function main() {
       domain: row.domain,
       mx_status: row.mx_status,
       public_email: row.public_email,
+      public_phone: row.public_phone,
+      whatsapp_url: row.whatsapp_url,
       guessed_email_candidates: row.guessed_email_candidates,
       deliverability_status: row.deliverability_status,
       contact_url: row.contact_url,
@@ -807,6 +896,8 @@ async function main() {
       activity_score: row.activity_score,
       compliance_note: row.public_email
         ? "Publicly displayed business email. Verify relevance before one-to-one B2B outreach."
+        : row.public_phone || row.whatsapp_url
+          ? "Publicly displayed business phone or WhatsApp route. Verify business context before outreach."
         : row.guessed_email_candidates
           ? "Candidate role emails only. Not verified. Use only after manual verification and lawful basis review."
           : "Public contact or social channel. Manual review required before outreach.",
@@ -823,6 +914,8 @@ async function main() {
     "domain",
     "mx_status",
     "public_email",
+    "public_phone",
+    "whatsapp_url",
     "guessed_email_candidates",
     "deliverability_status",
     "contact_url",
@@ -851,7 +944,7 @@ async function main() {
       <td>${row.priority}</td>
       <td>${row.product_interest}</td>
       <td>${row.name_or_profile}</td>
-      <td>${row.public_email || row.guessed_email_candidates || row.contact_url || row.public_social_links}</td>
+      <td>${row.public_email || row.public_phone || row.whatsapp_url || row.guessed_email_candidates || row.contact_url || row.public_social_links}</td>
       <td>${row.deliverability_status}</td>
       <td>${row.recommended_offer}</td>
     </tr>
