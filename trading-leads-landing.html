@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Global Trading Leads Engine</title>
+  <meta name="description" content="Qualified trader, investor, affiliate and IB leads for FX, CFD, crypto, stock and precious metals platforms.">
+  <style>
+    :root {
+      --ink: #0f1720;
+      --panel: #ffffff;
+      --muted: #62707f;
+      --line: #dbe3ea;
+      --wash: #f4f7fa;
+      --teal: #0f8b8d;
+      --teal-dark: #08666a;
+      --amber: #d9902f;
+      --blue: #2f6fbd;
+      --navy: #142333;
+      --green: #2f9e72;
+      --radius: 8px;
+      --shadow: 0 18px 54px rgba(18, 35, 51, .14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(219, 227, 234, .72);
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 68px;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      box-shadow: 0 8px 22px rgba(15, 139, 141, .28);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: #425263;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal-dark);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 750;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: var(--teal);
+      box-shadow: 0 12px 26px rgba(15, 139, 141, .22);
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-dark);
+    }
+
+    .btn-secondary {
+      color: var(--navy);
+      border-color: #cdd8e2;
+      background: #fff;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(15, 23, 32, .94) 0%, rgba(20, 35, 51, .88) 42%, rgba(20, 35, 51, .48) 100%),
+        radial-gradient(circle at 76% 24%, rgba(47, 111, 189, .36), transparent 32%),
+        linear-gradient(135deg, #0f1720, #142333 70%, #17313f);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+      align-items: center;
+      gap: 42px;
+      width: min(1180px, calc(100% - 40px));
+      min-height: calc(100vh - 68px);
+      margin: 0 auto;
+      padding: 78px 0 62px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: #bfe9e4;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(47, 158, 114, .18);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin-bottom: 20px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 690px;
+      color: #d9e7ef;
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 42px;
+      max-width: 680px;
+    }
+
+    .metric {
+      min-height: 98px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #fff;
+      font-size: 26px;
+      line-height: 1.05;
+    }
+
+    .metric span {
+      color: #bed0dd;
+      font-size: 13px;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 8px;
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02)),
+        linear-gradient(135deg, rgba(15, 139, 141, .22), rgba(47, 111, 189, .22));
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .32);
+      overflow: hidden;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0 49%, rgba(255, 255, 255, .05) 50%, transparent 51%),
+        linear-gradient(0deg, transparent 0 49%, rgba(255, 255, 255, .045) 50%, transparent 51%);
+      background-size: 54px 54px;
+      opacity: .55;
+    }
+
+    .map-panel {
+      position: absolute;
+      inset: 26px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background:
+        radial-gradient(circle at 62% 34%, rgba(15, 139, 141, .58), transparent 16%),
+        radial-gradient(circle at 32% 48%, rgba(217, 144, 47, .38), transparent 15%),
+        radial-gradient(circle at 78% 66%, rgba(47, 111, 189, .42), transparent 14%),
+        rgba(10, 22, 31, .8);
+    }
+
+    .flow-line {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #70d6d3, transparent);
+      transform-origin: left center;
+      opacity: .82;
+    }
+
+    .flow-line.one {
+      top: 142px;
+      left: 70px;
+      width: 330px;
+      transform: rotate(16deg);
+    }
+
+    .flow-line.two {
+      top: 278px;
+      left: 94px;
+      width: 390px;
+      transform: rotate(-12deg);
+    }
+
+    .flow-line.three {
+      top: 362px;
+      left: 160px;
+      width: 260px;
+      transform: rotate(22deg);
+    }
+
+    .lead-card {
+      position: absolute;
+      width: 214px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .24);
+    }
+
+    .lead-card h3 {
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .lead-card p {
+      margin: 0;
+      color: #c8d7e3;
+      font-size: 12px;
+    }
+
+    .lead-card.a {
+      top: 58px;
+      right: 42px;
+    }
+
+    .lead-card.b {
+      right: 76px;
+      bottom: 70px;
+    }
+
+    .lead-card.c {
+      left: 44px;
+      bottom: 48px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      padding: 4px 7px;
+      border-radius: 999px;
+      color: #eaffff;
+      background: rgba(15, 139, 141, .34);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 86px 0;
+    }
+
+    .section.alt {
+      background: var(--wash);
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .88fr) minmax(300px, .55fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .section-head p,
+    .muted {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid.four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .card {
+      min-height: 100%;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 10px 28px rgba(18, 35, 51, .05);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--navy);
+      font-size: 20px;
+      line-height: 1.18;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      color: var(--teal-dark);
+      background: #e3f3f2;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(360px, .65fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+      color: #314252;
+    }
+
+    .check {
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .data-table {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr .8fr;
+      gap: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .row:last-child {
+      border-bottom: 0;
+    }
+
+    .row div {
+      padding: 15px 16px;
+      border-right: 1px solid var(--line);
+      color: #415363;
+      font-size: 14px;
+    }
+
+    .row div:last-child {
+      border-right: 0;
+    }
+
+    .row.head div {
+      color: var(--navy);
+      background: #edf4f7;
+      font-weight: 800;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .price-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .price-card.featured {
+      border-color: rgba(15, 139, 141, .45);
+      box-shadow: var(--shadow);
+    }
+
+    .price {
+      color: var(--navy);
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 850;
+    }
+
+    .price span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .step {
+      position: relative;
+      min-height: 142px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .step-num {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      margin-bottom: 14px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--navy);
+      font-weight: 800;
+    }
+
+    .step h3 {
+      margin-bottom: 6px;
+      font-size: 17px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .form-panel {
+      padding: 28px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: var(--navy);
+      box-shadow: var(--shadow);
+    }
+
+    .form-panel h2 {
+      color: #fff;
+      font-size: 32px;
+    }
+
+    .form-panel p {
+      color: #c9d7e2;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: #dce8f0;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 8px;
+      color: #fff;
+      background: rgba(255, 255, 255, .08);
+      padding: 10px 12px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #8da2b2;
+    }
+
+    select option {
+      color: var(--ink);
+    }
+
+    .notice {
+      padding: 18px;
+      border-left: 4px solid var(--amber);
+      border-radius: 8px;
+      background: #fff7ea;
+      color: #5c4730;
+      font-size: 14px;
+    }
+
+    .footer {
+      padding: 34px 0;
+      color: #91a1af;
+      background: #101923;
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      max-width: 360px;
+      padding: 14px 16px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--navy);
+      box-shadow: var(--shadow);
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner,
+      .section-head,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner {
+        min-height: auto;
+      }
+
+      .hero-visual {
+        min-height: 460px;
+      }
+
+      .grid.three,
+      .grid.four,
+      .pricing,
+      .pipeline {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav .btn {
+        display: none;
+      }
+
+      .hero-inner,
+      .wrap,
+      .footer-inner {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .hero {
+        background:
+          linear-gradient(180deg, rgba(15, 23, 32, .98), rgba(20, 35, 51, .9)),
+          linear-gradient(135deg, #0f1720, #142333);
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .hero-proof,
+      .grid.three,
+      .grid.four,
+      .pricing,
+      .pipeline,
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 390px;
+      }
+
+      .lead-card {
+        width: 190px;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      .row div {
+        border-right: 0;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Global Trading Leads Engine home">
+        <span class="brand-mark">G</span>
+        <span>Global Trading Leads</span>
+      </a>
+      <div class="nav-links">
+        <a href="#products">Products</a>
+        <a href="#sources">Sources</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#compliance">Compliance</a>
+      </div>
+      <a class="btn btn-primary" href="#contact">Request sample leads</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> Overseas broker growth platform</div>
+          <h1 id="hero-title">Daily active trader leads for trading platforms.</h1>
+          <p class="hero-copy">Fresh lead feeds for FX, CFD, crypto, stock and gold brokers: daily updated trader, affiliate and IB records with last-seen activity, product interest, contact status and next action.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Request today's sample feed</a>
+            <a class="btn btn-secondary" href="#pricing">See packages</a>
+          </div>
+          <div class="hero-proof" aria-label="Platform highlights">
+            <div class="metric">
+              <strong>4</strong>
+              <span>FX, CFD, crypto, stocks and gold</span>
+            </div>
+            <div class="metric">
+              <strong>6</strong>
+              <span>Daily fresh trader, affiliate, IB records</span>
+            </div>
+            <div class="metric">
+              <strong>CRM</strong>
+              <span>Last seen, activity score, next action</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" role="img" aria-label="Global lead network dashboard for trading platforms">
+          <div class="map-panel"></div>
+          <span class="flow-line one"></span>
+          <span class="flow-line two"></span>
+          <span class="flow-line three"></span>
+          <article class="lead-card a">
+            <h3>Hot 24h Trader</h3>
+            <p>SEA · Crypto futures · Guide download</p>
+            <div class="tag-row"><span class="tag">last seen today</span><span class="tag">score 92</span></div>
+          </article>
+          <article class="lead-card b">
+            <h3>Active IB Prospect</h3>
+            <p>MENA · FX educator · New webinar</p>
+            <div class="tag-row"><span class="tag">warm 72h</span><span class="tag">WhatsApp</span></div>
+          </article>
+          <article class="lead-card c">
+            <h3>Gold CFD Intent</h3>
+            <p>LATAM · Gold/CFD · Webinar signup</p>
+            <div class="tag-row"><span class="tag">consented</span><span class="tag">hot 24h</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Sell freshness, not old databases.</h2>
+            <p>The product brokers will pay for repeatedly is a daily updated active lead feed: who showed trading intent recently, what product they care about and what sales action should happen next.</p>
+          </div>
+          <p class="muted">Each delivery includes last-seen timestamp, freshness tier, activity signal, activity score, source labels, verification status and compliance status.</p>
+        </div>
+        <div class="grid four">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Daily Trader Feed</h3>
+            <p>Fresh retail trader and investor records segmented for FX, crypto futures, stocks, gold, indices and CFD offers.</p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Hot 24h Intent Feed</h3>
+            <p>Consent-based leads from broker guides, trading tools, webinars, checklists and demo account funnels updated daily.</p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Active Affiliate & IB Feed</h3>
+            <p>KOLs, trading educators, community owners, IBs, financial influencers and newsletter operators with recent activity signals.</p>
+          </article>
+          <article class="card">
+            <div class="icon">04</div>
+            <h3>Broker CRM Enrichment</h3>
+            <p>Append verified business emails, phones, LinkedIn URLs, firmographics, role tags, deliverability checks and refresh dates.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="sources">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Six source channels, one commercial lead engine.</h2>
+            <p>Combine data platforms with intent capture so clients can buy more than raw contacts.</p>
+          </div>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <h3>B2B Data Platforms</h3>
+            <p>Wiza, Apollo, ZoomInfo, Lusha, RocketReach, Clay and similar tools for affiliate managers, IBs, KOLs and financial partners.</p>
+          </article>
+          <article class="card">
+            <h3>SEO Intent Pages</h3>
+            <p>Broker comparison, demo account, MT4/MT5, low spread, gold trading, crypto futures and country-specific acquisition pages.</p>
+          </article>
+          <article class="card">
+            <h3>KOL & Community</h3>
+            <p>YouTube, TikTok, X, Telegram, Discord, TradingView and Substack campaigns with tracked affiliate links and source attribution.</p>
+          </article>
+          <article class="card">
+            <h3>Trading Tools</h3>
+            <p>Margin, pip, position size, spread cost, liquidation, currency converter and broker matching calculators that capture intent.</p>
+          </article>
+          <article class="card">
+            <h3>Paid Acquisition</h3>
+            <p>Search, YouTube, native and social campaigns promoting education assets, webinars and broker checklist downloads.</p>
+          </article>
+          <article class="card">
+            <h3>CRM Automation</h3>
+            <p>Email, WhatsApp, Telegram and sales handoff workflows designed for regional language, product interest and compliance status.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <h2>Standard fields your clients can actually use.</h2>
+          <p class="muted">The delivery format should make broker sales teams faster on day one. Every row needs recency, activity, source, status and next action, not just an email address.</p>
+          <ul class="list">
+            <li><span class="check">✓</span><span>Name, country, language, timezone and preferred contact channel.</span></li>
+            <li><span class="check">✓</span><span>Feed date, last seen timestamp, freshness tier and activity score.</span></li>
+            <li><span class="check">✓</span><span>Product interest: FX, crypto futures, stocks, CFDs, gold, indices, education or IB partnership.</span></li>
+            <li><span class="check">✓</span><span>Source record: platform, campaign, form, tool, partner or enrichment vendor.</span></li>
+            <li><span class="check">✓</span><span>Consent and compliance status: opted-in lead, enriched prospect, suppression match or restricted region.</span></li>
+            <li><span class="check">✓</span><span>Commercial stage: lead, signup, KYC, first deposit, active trader or affiliate partner.</span></li>
+          </ul>
+        </div>
+        <div class="data-table" aria-label="Lead delivery table example">
+          <div class="row head"><div>Field</div><div>Example</div><div>Use</div></div>
+          <div class="row"><div>Freshness</div><div>hot_24h · last seen today</div><div>Priority</div></div>
+          <div class="row"><div>Market</div><div>Mexico · Spanish</div><div>Routing</div></div>
+          <div class="row"><div>Interest</div><div>Gold CFD, MT5</div><div>Offer match</div></div>
+          <div class="row"><div>Activity</div><div>Registered for gold webinar</div><div>Scoring</div></div>
+          <div class="row"><div>Contact</div><div>Email + WhatsApp</div><div>Outreach</div></div>
+          <div class="row"><div>Status</div><div>Consented lead</div><div>Compliance</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="pipeline">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Fast launch pipeline.</h2>
+            <p>Use this process to go live quickly without pretending raw data is the whole product.</p>
+          </div>
+        </div>
+        <div class="pipeline">
+          <article class="step">
+            <span class="step-num">1</span>
+            <h3>Define target</h3>
+            <p>Choose products, countries, languages, lead type and payout model.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">2</span>
+            <h3>Capture activity</h3>
+            <p>Mix daily form fills, tools, webinars, KOL activity and data refresh signals.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">3</span>
+            <h3>Refresh & score</h3>
+            <p>Validate contacts, assign hot_24h/warm_72h/cooling_7d and remove restricted records.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">4</span>
+            <h3>Deliver daily</h3>
+            <p>Send CSV, Airtable, HubSpot, Salesforce, Pipedrive or API payloads every day.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">5</span>
+            <h3>Optimize ROI</h3>
+            <p>Track signup, KYC, FTD, retention and affiliate activation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Packages you can sell immediately.</h2>
+            <p>Use the sample pack as the foot in the door, then close monthly delivery for specific countries and product categories.</p>
+          </div>
+        </div>
+        <div class="pricing">
+          <article class="price-card">
+            <h3>Today Sample</h3>
+            <div class="price">$99 <span>/ once</span></div>
+            <p class="muted">20-50 sample records showing freshness labels, activity signals, source notes and market fit.</p>
+          </article>
+          <article class="price-card featured">
+            <h3>Daily Trader Feed</h3>
+            <div class="price">$2k-8k <span>/ month</span></div>
+            <p class="muted">30-200 fresh records per day for one category: FX, crypto futures, stocks, gold or CFD.</p>
+          </article>
+          <article class="price-card">
+            <h3>Active Affiliate / IB</h3>
+            <div class="price">$3k-10k <span>/ month</span></div>
+            <p class="muted">Daily or weekly active KOL, educator, affiliate, IB and community owner feed.</p>
+          </article>
+          <article class="price-card">
+            <h3>Performance</h3>
+            <div class="price">CPA/FTD <span>/ RevShare</span></div>
+            <p class="muted">Signup, KYC, first-deposit or revenue-share campaigns after tracking is in place.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="compliance">
+      <div class="wrap split">
+        <div>
+          <h2>Compliance is part of the product.</h2>
+          <p class="muted">The front-end positioning should never sound like scraped personal data resale. Sell compliant acquisition, prospecting intelligence and tracked growth.</p>
+          <div class="notice">Important: this platform should not provide investment advice, profit promises, fake testimonials or high-leverage inducements. Clients must confirm their own regulatory permissions for each target market.</div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Data controls</h3>
+            <p>Source logging, consent labels, suppression lists, opt-out handling, deletion requests and data processing terms.</p>
+          </article>
+          <article class="card">
+            <h3>Market controls</h3>
+            <p>Restricted country filtering, product eligibility, age gating, risk warnings and broker license review workflow.</p>
+          </article>
+          <article class="card">
+            <h3>Marketing controls</h3>
+            <p>No guaranteed returns, no fabricated earnings screenshots, no unauthorized financial advice and no misleading scarcity language.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap split">
+        <div>
+          <h2>Launch offer: today's active sample feed.</h2>
+          <p class="muted">This is the first thing to sell. Ask the broker for product, country and payout model, then prepare a small daily-feed sample before proposing monthly volume.</p>
+          <ul class="list">
+            <li><span class="check">✓</span><span>Best first markets: LATAM, Southeast Asia, MENA and Africa.</span></li>
+            <li><span class="check">✓</span><span>Best first buyers: affiliate managers, country managers, growth leads and broker CMOs.</span></li>
+            <li><span class="check">✓</span><span>Best first product: Daily Trader Feed plus Active Affiliate & IB Feed.</span></li>
+          </ul>
+        </div>
+        <div class="form-panel">
+          <h2>Request today's sample feed</h2>
+          <p>Tell us your market, product and payout model. We will prepare a sample daily feed structure and campaign proposal.</p>
+          <form id="leadForm">
+            <div class="field-grid">
+              <label>Company
+                <input name="company" placeholder="Broker or exchange name" required>
+              </label>
+              <label>Work email
+                <input name="email" type="email" placeholder="name@company.com" required>
+              </label>
+            </div>
+            <div class="field-grid">
+              <label>Platform type
+                <select name="platform" required>
+                  <option value="">Select</option>
+                  <option>FX / CFD broker</option>
+                  <option>Crypto exchange</option>
+                  <option>Stock broker</option>
+                  <option>Precious metals platform</option>
+                  <option>Trading education / tool</option>
+                </select>
+              </label>
+              <label>Target region
+                <select name="region" required>
+                  <option value="">Select</option>
+                  <option>LATAM</option>
+                  <option>Southeast Asia</option>
+                  <option>MENA</option>
+                  <option>Africa</option>
+                  <option>Europe B2B only</option>
+                  <option>Multiple regions</option>
+                </select>
+              </label>
+            </div>
+            <div class="field-grid">
+              <label>Lead goal
+                <select name="goal" required>
+                  <option value="">Select</option>
+                  <option>Trader leads</option>
+                  <option>Signups</option>
+                  <option>KYC / first deposit</option>
+                  <option>Affiliate / IB partners</option>
+                  <option>Data enrichment</option>
+                </select>
+              </label>
+              <label>Preferred model
+                <select name="model" required>
+                  <option value="">Select</option>
+                  <option>CPL</option>
+                  <option>CPA signup</option>
+                  <option>FTD</option>
+                  <option>Revenue share</option>
+                  <option>Monthly retainer</option>
+                </select>
+              </label>
+            </div>
+            <label>Notes
+              <textarea name="notes" placeholder="Target countries, monthly budget, current CRM, compliance restrictions"></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">Generate sample request</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Global Trading Leads Engine</span>
+      <span>Qualified acquisition infrastructure for regulated trading businesses.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const form = document.querySelector("#leadForm");
+    const toast = document.querySelector("#toast");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const summary = [
+        `Sample request prepared for ${data.company}.`,
+        `Focus: ${data.platform}, ${data.region}, ${data.goal}, ${data.model}.`
+      ].join(" ");
+
+      toast.textContent = summary;
+      toast.classList.add("show");
+      window.setTimeout(() => toast.classList.remove("show"), 5200);
+
+      try {
+        const existing = JSON.parse(window.localStorage.getItem("sampleLeadRequests") || "[]");
+        existing.push({ ...data, createdAt: new Date().toISOString() });
+        window.localStorage.setItem("sampleLeadRequests", JSON.stringify(existing));
+      } catch (error) {
+        window.sampleLeadRequests = window.sampleLeadRequests || [];
+        window.sampleLeadRequests.push({ ...data, createdAt: new Date().toISOString() });
+      }
+      form.reset();
+    });
+  </script>
+</body>
+</html>
