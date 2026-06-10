@@ -41,6 +41,70 @@ const topics = [
   }
 ];
 
+const connectorEvents = [];
+
+function recordConnectorEvent(source, status, note) {
+  connectorEvents.push({
+    source,
+    status,
+    note,
+    seen_at: isoNow
+  });
+}
+
+function slugify(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/https?:\/\//g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 72) || "item";
+}
+
+function decodeXml(value) {
+  return String(value || "")
+    .replaceAll("&amp;", "&")
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">")
+    .replaceAll("&quot;", '"')
+    .replaceAll("&#39;", "'")
+    .replaceAll("&apos;", "'");
+}
+
+function stripTags(value) {
+  return decodeXml(String(value || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim());
+}
+
+function getTag(block, tag) {
+  const match = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
+  return match ? stripTags(match[1]) : "";
+}
+
+function getCdataTag(block, tag) {
+  const match = block.match(new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]><\\/${tag}>`, "i"));
+  if (match) return stripTags(match[1]);
+  return getTag(block, tag);
+}
+
+function parseRssItems(xml) {
+  const blocks = String(xml || "").match(/<item\b[\s\S]*?<\/item>/gi) || [];
+  return blocks.map((block) => ({
+    title: getCdataTag(block, "title"),
+    link: getTag(block, "link"),
+    pubDate: getTag(block, "pubDate"),
+    source: getCdataTag(block, "source") || getTag(block, "dc:creator") || "Public RSS"
+  }));
+}
+
+function scoreFromRecency(createdAt, base = 52) {
+  const ageHours = Math.max(0, (now.getTime() - new Date(createdAt).getTime()) / 36e5);
+  if (ageHours <= 6) return base + 34;
+  if (ageHours <= 24) return base + 26;
+  if (ageHours <= 72) return base + 14;
+  if (ageHours <= 168) return base + 6;
+  return base;
+}
+
 function scoreFromReddit(post) {
   const score = Number(post.score || 0);
   const comments = Number(post.num_comments || 0);
@@ -80,6 +144,25 @@ async function fetchJson(url, options = {}) {
     timeout: (options.timeoutMs || 8000) + 2000
   });
   return JSON.parse(stdout);
+}
+
+async function fetchText(url, options = {}) {
+  const maxTime = Math.max(2, Math.ceil((options.timeoutMs || 8000) / 1000));
+  const { stdout } = await execFileAsync("curl", [
+    "-L",
+    "--silent",
+    "--show-error",
+    "--fail",
+    "--max-time",
+    String(maxTime),
+    "-A",
+    "DailyActiveTraderLeadsBot/0.1 public-signal-monitor",
+    url
+  ], {
+    maxBuffer: 8 * 1024 * 1024,
+    timeout: (options.timeoutMs || 8000) + 2000
+  });
+  return stdout;
 }
 
 async function loadCryptoMarkets() {
@@ -160,25 +243,10 @@ async function loadRedditSignals() {
   for (const topic of topics) {
     for (const query of topic.queries.slice(0, 2)) {
       tasks.push(
-        searchReddit(topic, query).catch((error) => [{
-          lead_id: `ERR-${feedDate}-reddit-${topic.id}-${query.replace(/\W+/g, "-").toLowerCase()}`,
-          feed_date: feedDate,
-          last_seen_at: isoNow,
-          freshness_tier: "hot_24h",
-          lead_type: "Connector Status",
-          target_product: topic.product,
-          market: "Global",
-          language: "Unknown",
-          source_type: "Reddit public search",
-          source_url: "https://www.reddit.com/dev/api/",
-          public_author: "",
-          activity_signal: `Reddit search unavailable for "${query}": ${error.message}`,
-          intent_signal: "Connector needs retry or API credentials",
-          activity_score: 0,
-          compliance_status: "system_status",
-          recommended_offer: "Retry on next scheduled run",
-          next_action: "No client delivery from failed connector"
-        }])
+        searchReddit(topic, query).catch((error) => {
+          recordConnectorEvent("Reddit public search", "blocked_or_unavailable", `${query}: ${error.message}`);
+          return [];
+        })
       );
     }
   }
@@ -221,6 +289,53 @@ async function loadRedditSignals() {
   }).sort((a, b) => Number(b.activity_score) - Number(a.activity_score)).slice(0, 100);
 }
 
+async function loadGoogleNewsSignals() {
+  const tasks = [];
+  for (const topic of topics) {
+    for (const query of topic.queries) {
+      const url = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-US&gl=US&ceid=US:en`;
+      tasks.push(
+        fetchText(url, { timeoutMs: 8000 })
+          .then((xml) => parseRssItems(xml).slice(0, 8).map((item) => {
+            const createdAt = item.pubDate ? new Date(item.pubDate).toISOString() : isoNow;
+            return {
+              lead_id: `RSS-${feedDate}-${topic.id}-${slugify(item.title || item.link)}`,
+              feed_date: feedDate,
+              last_seen_at: createdAt,
+              freshness_tier: freshnessTier(createdAt),
+              lead_type: "Public News Intent Signal",
+              target_product: topic.product,
+              market: "Global",
+              language: "English",
+              source_type: "Google News RSS public search",
+              source_url: item.link,
+              public_author: item.source,
+              activity_signal: item.title,
+              intent_signal: `Matched public news query: ${query}`,
+              activity_score: Math.min(100, scoreFromRecency(createdAt, 48) + (/(broker|affiliate|ib|mt4|mt5|futures|gold|oil|crypto|nasdaq|trading)/i.test(item.title) ? 8 : 0)),
+              compliance_status: "public_news_signal_no_contact_data",
+              recommended_offer: topic.offer,
+              next_action: "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
+            };
+          }))
+          .catch((error) => {
+            recordConnectorEvent("Google News RSS", "blocked_or_unavailable", `${query}: ${error.message}`);
+            return [];
+          })
+      );
+    }
+  }
+  const batches = await Promise.all(tasks);
+  const rows = batches.flat();
+  const seen = new Set();
+  return rows.filter((row) => {
+    const key = `${row.source_url}|${row.activity_signal}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return Boolean(row.activity_signal);
+  }).sort((a, b) => Number(b.activity_score) - Number(a.activity_score)).slice(0, 120);
+}
+
 function connectorStatus() {
   return [
     {
@@ -231,9 +346,15 @@ function connectorStatus() {
     },
     {
       source: "Reddit public search",
-      status: "active_public_best_effort",
+      status: connectorEvents.some((event) => event.source === "Reddit public search") ? "blocked_or_limited" : "active_public_best_effort",
       cadence: "hourly",
       note: "Public topic signals only; respect API limits and community rules."
+    },
+    {
+      source: "Google News RSS",
+      status: connectorEvents.some((event) => event.source === "Google News RSS") ? "partial_or_limited" : "active_public",
+      cadence: "hourly",
+      note: "Public news/topic intent signals, no personal contact data."
     },
     {
       source: "X API",
@@ -257,11 +378,12 @@ function connectorStatus() {
 }
 
 async function main() {
-  const [marketRows, redditRows] = await Promise.all([
+  const [marketRows, googleNewsRows, redditRows] = await Promise.all([
     loadCryptoMarkets(),
+    loadGoogleNewsSignals(),
     loadRedditSignals()
   ]);
-  const rows = [...marketRows, ...redditRows].sort((a, b) => Number(b.activity_score) - Number(a.activity_score));
+  const rows = [...marketRows, ...googleNewsRows, ...redditRows].sort((a, b) => Number(b.activity_score) - Number(a.activity_score));
 
   const feed = {
     generated_at: isoNow,
@@ -270,6 +392,7 @@ async function main() {
     legal_boundary: "Public market and social signals only. No private group scraping and no contact-data enrichment without vendor keys and lawful basis.",
     row_count: rows.length,
     connectors: connectorStatus(),
+    connector_events: connectorEvents,
     rows
   };
 
