@@ -544,6 +544,84 @@
       font-weight: 800;
     }
 
+    .social-board {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(320px, .65fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .source-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .source-card {
+      min-height: 142px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .source-card h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 8px;
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: #e3f3f2;
+      font-size: 11px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .status-pill.key {
+      color: #7a4b12;
+      background: #fff0d3;
+    }
+
+    .status-pill.review {
+      color: #744140;
+      background: #fde5e2;
+    }
+
+    .topic-table {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .topic-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .topic-row strong {
+      color: var(--navy);
+    }
+
+    .topic-row span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     .row {
       display: grid;
       grid-template-columns: 1fr 1fr .8fr;
@@ -777,7 +855,9 @@
       .grid.four,
       .pricing,
       .pipeline,
-      .live-grid {
+      .live-grid,
+      .social-board,
+      .source-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
@@ -818,7 +898,10 @@
       .pipeline,
       .field-grid,
       .live-grid,
-      .market-widgets {
+      .market-widgets,
+      .social-board,
+      .source-grid,
+      .topic-row {
         grid-template-columns: 1fr;
       }
 
@@ -1171,6 +1254,73 @@
       </div>
     </section>
 
+    <section class="section alt" id="social-intent">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="socialTitle">Social intent monitor for finance traffic.</h2>
+            <p data-i18n="socialCopy">Track public finance conversations, creators and communities across major social platforms, then convert the signals into daily trader, affiliate and IB lead packages.</p>
+          </div>
+          <p class="muted" data-i18n="socialSide">Use official APIs, approved data providers and public opt-in sources. Do not scrape private groups, bypass platform controls or resell personal data without a lawful basis.</p>
+        </div>
+        <div class="social-board">
+          <div class="source-grid">
+            <article class="source-card">
+              <h3>X / Twitter <span class="status-pill key">API key</span></h3>
+              <p class="muted">Filtered Stream and search rules for forex, gold, oil, crypto futures, broker keywords and trading influencers.</p>
+            </article>
+            <article class="source-card">
+              <h3>Reddit <span class="status-pill key">API key</span></h3>
+              <p class="muted">Subreddit and keyword monitoring for trading, stocks, crypto, options, forex and regional investing communities.</p>
+            </article>
+            <article class="source-card">
+              <h3>YouTube <span class="status-pill key">API key</span></h3>
+              <p class="muted">Search finance videos, channels and creators by product interest, region, language and upload recency.</p>
+            </article>
+            <article class="source-card">
+              <h3>TikTok <span class="status-pill review">Eligibility</span></h3>
+              <p class="muted">Research API access for public video/account data where eligible; otherwise use approved creator discovery providers.</p>
+            </article>
+            <article class="source-card">
+              <h3>Telegram / Discord <span class="status-pill review">Consent</span></h3>
+              <p class="muted">Track owned, partner or opted-in communities; identify active admins and IB partners through compliant research.</p>
+            </article>
+            <article class="source-card">
+              <h3>TradingView / Stocktwits <span class="status-pill">Public</span></h3>
+              <p class="muted">Monitor authors, symbol discussions and market narratives for FX, equities, crypto, metals and energy.</p>
+            </article>
+          </div>
+          <article class="card">
+            <div class="icon">SOC</div>
+            <h3 data-i18n="topicsTitle">Tracked trading topics</h3>
+            <p data-i18n="topicsCopy">These topic clusters turn social activity into product-specific lead feeds for brokers.</p>
+            <div class="topic-table">
+              <div class="topic-row">
+                <div><strong>FX / MT4 / MT5</strong><span>EURUSD, GBPUSD, USDJPY, broker comparison, low spread</span></div>
+                <span class="status-pill">FX feed</span>
+              </div>
+              <div class="topic-row">
+                <div><strong>Gold / Silver / Oil</strong><span>XAUUSD, XAGUSD, WTI, Brent, CPI, Fed, geopolitics</span></div>
+                <span class="status-pill">CFD feed</span>
+              </div>
+              <div class="topic-row">
+                <div><strong>Crypto Futures</strong><span>BTC, ETH, SOL, liquidation, funding, exchange promo</span></div>
+                <span class="status-pill">Crypto feed</span>
+              </div>
+              <div class="topic-row">
+                <div><strong>Stocks / Options</strong><span>Nasdaq, NVIDIA, Tesla, earnings, options flow, stock app</span></div>
+                <span class="status-pill">Stock feed</span>
+              </div>
+              <div class="topic-row">
+                <div><strong>Affiliate / IB / KOL</strong><span>Trading educator, signal group, newsletter, webinar, course</span></div>
+                <span class="status-pill">Partner feed</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="wrap split">
         <div>
@@ -1410,6 +1560,11 @@
         signalsTitle: "Live market signals already connected.",
         signalsCopy: "Market data does not provide personal contact details, but it makes the daily lead feed more valuable by deciding which trader segment to package today.",
         signalsSide: "Connected now: TradingView FX, stocks, metals and energy widgets plus CoinGecko public crypto market feed. Contact-data APIs need private keys and should run on a backend.",
+        socialTitle: "Social intent monitor for finance traffic.",
+        socialCopy: "Track public finance conversations, creators and communities across major social platforms, then convert the signals into daily trader, affiliate and IB lead packages.",
+        socialSide: "Use official APIs, approved data providers and public opt-in sources. Do not scrape private groups, bypass platform controls or resell personal data without a lawful basis.",
+        topicsTitle: "Tracked trading topics",
+        topicsCopy: "These topic clusters turn social activity into product-specific lead feeds for brokers.",
         pricingTitle: "Packages you can sell immediately.",
         pricingCopy: "Use the sample pack as the foot in the door, then close monthly delivery for specific countries and product categories.",
         priceOneTitle: "Today Sample",
@@ -1465,6 +1620,11 @@
         signalsTitle: "Señales de mercado conectadas.",
         signalsCopy: "Los datos de mercado no dan contactos personales, pero hacen más valioso el feed diario al decidir qué segmento empaquetar hoy.",
         signalsSide: "Conectado: TradingView para FX, acciones, metales y energía, más CoinGecko para cripto. Las APIs de contacto necesitan claves privadas y backend.",
+        socialTitle: "Monitor de intención social para tráfico financiero.",
+        socialCopy: "Sigue conversaciones públicas, creadores y comunidades financieras en redes principales y conviértelas en feeds diarios de traders, afiliados e IBs.",
+        socialSide: "Usa APIs oficiales, proveedores aprobados y fuentes públicas con consentimiento. No raspes grupos privados ni revendas datos personales sin base legal.",
+        topicsTitle: "Temas de trading monitoreados",
+        topicsCopy: "Estos clusters convierten actividad social en feeds por producto para brokers.",
         pricingTitle: "Paquetes que puedes vender ya.",
         pricingCopy: "Usa la muestra para abrir la puerta y luego cierra entregas mensuales por país y categoría.",
         priceOneTitle: "Muestra de Hoy",
@@ -1520,6 +1680,11 @@
         signalsTitle: "Sinais de mercado conectados.",
         signalsCopy: "Dados de mercado não trazem contatos pessoais, mas tornam o feed diário mais valioso ao definir qual segmento empacotar hoje.",
         signalsSide: "Conectado: TradingView para FX, ações, metais e energia, mais CoinGecko para cripto. APIs de contato precisam de chaves privadas e backend.",
+        socialTitle: "Monitor de intenção social para tráfego financeiro.",
+        socialCopy: "Acompanhe conversas públicas, criadores e comunidades financeiras nas principais redes e converta sinais em feeds diários de traders, afiliados e IBs.",
+        socialSide: "Use APIs oficiais, provedores aprovados e fontes públicas com opt-in. Não raspe grupos privados nem revenda dados pessoais sem base legal.",
+        topicsTitle: "Temas de trading monitorados",
+        topicsCopy: "Esses clusters transformam atividade social em feeds por produto para brokers.",
         pricingTitle: "Pacotes para vender imediatamente.",
         pricingCopy: "Use a amostra para abrir a conversa e depois feche entregas mensais por país e categoria.",
         priceOneTitle: "Amostra de Hoje",
@@ -1575,6 +1740,11 @@
         signalsTitle: "إشارات سوق مباشرة متصلة.",
         signalsCopy: "بيانات السوق لا تعطي بيانات تواصل شخصية، لكنها تحدد أي شريحة متداولين يجب تجهيزها اليوم.",
         signalsSide: "متصل الآن: TradingView للفوركس والأسهم والمعادن والطاقة، وCoinGecko للكريبتو. APIs بيانات التواصل تحتاج مفاتيح خاصة وخادما خلفيا.",
+        socialTitle: "مراقبة نية اجتماعية لحركة التمويل.",
+        socialCopy: "راقب المحادثات العامة وصناع المحتوى والمجتمعات المالية عبر المنصات الرئيسية، ثم حول الإشارات إلى حزم يومية للمتداولين والشركاء وIB.",
+        socialSide: "استخدم APIs رسمية ومزودي بيانات معتمدين ومصادر عامة بموافقة. لا تجمع من مجموعات خاصة أو تعيد بيع بيانات شخصية بلا أساس قانوني.",
+        topicsTitle: "موضوعات تداول تتم مراقبتها",
+        topicsCopy: "تحول هذه المجموعات النشاط الاجتماعي إلى تدفقات عملاء حسب المنتج للوسطاء.",
         pricingTitle: "باقات يمكن بيعها فورا.",
         pricingCopy: "ابدأ بالعينة ثم أغلق تسليما شهريا حسب البلد وفئة المنتج.",
         priceOneTitle: "عينة اليوم",
@@ -1630,6 +1800,11 @@
         signalsTitle: "已接入实时市场信号。",
         signalsCopy: "市场数据本身不提供个人联系方式，但能决定今天该打包哪类交易客户，从而提升每日 feed 的价值。",
         signalsSide: "当前已接入 TradingView 外汇、股票、贵金属、能源组件，以及 CoinGecko 加密货币公开行情。联系人数据 API 需要私钥和后端。",
+        socialTitle: "金融社交流量意向监控。",
+        socialCopy: "监控主流社交平台上的公开金融讨论、创作者和社群，把这些信号转成每日交易者、Affiliate 和 IB 客户包。",
+        socialSide: "使用官方 API、合规数据供应商和公开授权来源。不要抓取私密群组、绕过平台限制，或在缺少合法依据时转售个人数据。",
+        topicsTitle: "监控的交易话题",
+        topicsCopy: "这些话题簇会把社交活跃转成 broker 可购买的产品化线索 feed。",
         pricingTitle: "可以马上销售的套餐。",
         pricingCopy: "先用样例包打开客户，再按国家和产品品类成交月度交付。",
         priceOneTitle: "今日样例",

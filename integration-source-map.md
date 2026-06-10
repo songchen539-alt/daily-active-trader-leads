@@ -152,6 +152,48 @@ Suggested sources: TradingView widgets for public display, Alpha Vantage or Twel
 
 These are valuable but need careful terms-of-service and compliance review.
 
+### X / Twitter API
+
+Use: near real-time public post monitoring for FX, crypto, stocks, gold, oil, broker keywords, KOL activity and regional finance conversations.
+
+Priority: high.
+
+Integration type: API key, paid access depending on volume.
+
+Official capability: Filtered Stream endpoints can receive near real-time posts matching filter rules.
+
+Official docs: https://docs.x.com/x-api/posts/filtered-stream/introduction
+
+### YouTube Data API
+
+Use: find finance videos, trading educators, channels, webinars and KOLs by keyword, region, language and recency.
+
+Priority: high for affiliate and IB sourcing.
+
+Integration type: Google Cloud API key and quota.
+
+Official docs: https://developers.google.com/youtube/v3/docs/search/list
+
+### Reddit API
+
+Use: monitor public finance, stocks, crypto, options, forex and trading subreddits for topic heat and community discovery.
+
+Priority: medium-high.
+
+Integration type: Reddit developer app/API credentials or approved provider.
+
+Compliance note: respect Reddit API rules, rate limits and community restrictions.
+
+### TikTok Research API / Approved Creator Providers
+
+Use: public finance creator and content discovery where eligible.
+
+Priority: high for retail trader traffic but access is restricted.
+
+Integration type: eligibility-based Research API or approved third-party creator discovery provider.
+
+Official docs: https://developers.tiktok.com/doc/research-api-get-started
+
 ### TradingView Community
 
 Use: identify active authors, scripts, symbols and topics.

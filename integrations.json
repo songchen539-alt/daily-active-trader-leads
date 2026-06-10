@@ -84,4 +84,49 @@
       "url": "https://www.tradingview.com/widget/"
     }
   ]
+  ,
+  "social_intent_sources": [
+    {
+      "name": "X / Twitter API",
+      "status": "needs_api_key",
+      "role": "near real-time public finance posts via filtered stream and search",
+      "priority": 1,
+      "url": "https://docs.x.com/x-api/posts/filtered-stream/introduction"
+    },
+    {
+      "name": "YouTube Data API",
+      "status": "needs_google_api_key",
+      "role": "finance video, channel and creator discovery",
+      "priority": 2,
+      "url": "https://developers.google.com/youtube/v3/docs/search/list"
+    },
+    {
+      "name": "Reddit API",
+      "status": "needs_developer_credentials_or_provider",
+      "role": "public subreddit and keyword monitoring for finance communities",
+      "priority": 3,
+      "url": "https://www.reddit.com/dev/api/"
+    },
+    {
+      "name": "TikTok Research API",
+      "status": "eligibility_required",
+      "role": "public TikTok video and account research where eligible",
+      "priority": 4,
+      "url": "https://developers.tiktok.com/doc/research-api-get-started"
+    },
+    {
+      "name": "Telegram / Discord",
+      "status": "owned_or_opt_in_communities_only",
+      "role": "partner communities, IB groups, KOL channels and opted-in social traffic",
+      "priority": 5,
+      "url": "https://core.telegram.org/bots/api"
+    },
+    {
+      "name": "TradingView / Stocktwits",
+      "status": "public_research_or_partner_provider",
+      "role": "symbol narratives, active authors and trading topic discovery",
+      "priority": 6,
+      "url": "https://www.tradingview.com/widget/"
+    }
+  ]
 }
