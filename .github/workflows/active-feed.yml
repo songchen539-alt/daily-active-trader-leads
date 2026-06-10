@@ -34,6 +34,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/latest-active-feed.json data/latest-active-feed.csv data/client-opportunities.json data/client-opportunities.csv data/client-opportunities.html data/public-contact-prospects.json data/public-contact-prospects.csv data/contactable-prospects.json data/contactable-prospects.csv data/contactable-prospects.html
+          git add data/latest-active-feed.json data/latest-active-feed.csv data/client-opportunities.json data/client-opportunities.csv data/client-opportunities.html data/public-contact-prospects.json data/public-contact-prospects.csv data/contactable-prospects.json data/contactable-prospects.csv data/contactable-prospects.html data/social-community-entries.json data/social-community-entries.csv data/social-community-entries.html
           git diff --cached --quiet || git commit -m "Update active lead feed"
           git push

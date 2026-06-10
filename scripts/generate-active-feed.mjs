@@ -137,6 +137,50 @@ function extractWhatsAppLinks(html) {
   return [...new Set(links)].slice(0, 8);
 }
 
+function classifyCommunityUrl(url) {
+  const text = String(url || "");
+  if (/t\.me|telegram\.me/i.test(text)) return "Telegram";
+  if (/discord\.gg|discord\.com\/invite/i.test(text)) return "Discord";
+  if (/youtube\.com/i.test(text)) return "YouTube";
+  if (/(^|\/\/)(x\.com|twitter\.com)\//i.test(text)) return "X / Twitter";
+  if (/tiktok\.com/i.test(text)) return "TikTok";
+  if (/tradingview\.com/i.test(text)) return "TradingView";
+  if (/stocktwits\.com/i.test(text)) return "Stocktwits";
+  if (/substack\.com/i.test(text)) return "Substack";
+  if (/wa\.me|api\.whatsapp\.com/i.test(text)) return "WhatsApp";
+  if (/linkedin\.com/i.test(text)) return "LinkedIn";
+  return "Website";
+}
+
+function socialHandleFromUrl(url) {
+  try {
+    const parsed = new URL(url);
+    const path = parsed.pathname.replace(/^\/+|\/+$/g, "");
+    if (!path) return parsed.hostname.replace(/^www\./, "");
+    return path.split("/").slice(0, 2).join("/");
+  } catch {
+    return "";
+  }
+}
+
+function communityUseCase(platform, productInterest) {
+  if (platform === "Telegram" || platform === "Discord" || platform === "WhatsApp") {
+    return "Approach as trading community / IB partnership channel.";
+  }
+  if (platform === "YouTube" || platform === "TikTok" || platform === "X / Twitter") {
+    return "Approach as finance creator / sponsored content / affiliate campaign channel.";
+  }
+  if (platform === "TradingView" || platform === "Stocktwits") {
+    return "Approach as market-content or trader-community signal source.";
+  }
+  if (platform === "Substack") {
+    return "Approach as newsletter sponsorship or affiliate campaign channel.";
+  }
+  return /Crypto/i.test(productInterest || "")
+    ? "Review for crypto exchange affiliate or media partnership."
+    : "Review for broker affiliate, IB or media partnership.";
+}
+
 function extractContactLinks(html, baseUrl) {
   const links = [];
   const regex = /href=["']([^"']+)["']/gi;
@@ -972,6 +1016,114 @@ async function main() {
     <table>
       <thead><tr><th>Priority</th><th>Product</th><th>Prospect</th><th>Contact route</th><th>Status</th><th>Offer</th></tr></thead>
       <tbody>${contactRowsHtml}</tbody>
+    </table>
+  </main>
+</body>
+</html>`);
+
+  const communityEntries = [];
+  for (const row of contactProspects) {
+    const urls = [
+      ...(row.public_social_links || "").split(";").map((value) => value.trim()),
+      ...(row.whatsapp_url || "").split(";").map((value) => value.trim())
+    ].filter(Boolean);
+    for (const url of urls) {
+      const platform = classifyCommunityUrl(url);
+      if (!["Telegram", "Discord", "YouTube", "X / Twitter", "TikTok", "TradingView", "Stocktwits", "Substack", "WhatsApp"].includes(platform)) continue;
+      communityEntries.push({
+        entry_id: `COMM-${feedDate}-${slugify(`${row.domain}-${platform}-${url}`)}`,
+        feed_date: feedDate,
+        platform,
+        community_or_profile: row.name_or_profile,
+        handle_or_path: socialHandleFromUrl(url),
+        url,
+        product_interest: row.product_interest,
+        source_domain: row.domain,
+        source_url: row.source_url,
+        public_email: row.public_email,
+        contact_url: row.contact_url,
+        priority: platform === "Telegram" || platform === "Discord" || platform === "YouTube" ? "High" : "Medium",
+        broker_use_case: communityUseCase(platform, row.product_interest),
+        recommended_offer: row.recommended_offer,
+        compliance_note: "Public community/profile entry only. Do not scrape members or followers. Contact owner/channel through public business routes."
+      });
+    }
+  }
+  const communitySeen = new Set();
+  const uniqueCommunityEntries = communityEntries.filter((entry) => {
+    const key = `${entry.platform}|${entry.url}`;
+    if (communitySeen.has(key)) return false;
+    communitySeen.add(key);
+    return true;
+  }).sort((a, b) => {
+    const rank = { High: 0, Medium: 1, Review: 2 };
+    return (rank[a.priority] ?? 9) - (rank[b.priority] ?? 9) || a.platform.localeCompare(b.platform);
+  });
+
+  const communityHeaders = [
+    "entry_id",
+    "feed_date",
+    "priority",
+    "platform",
+    "community_or_profile",
+    "handle_or_path",
+    "url",
+    "product_interest",
+    "source_domain",
+    "source_url",
+    "public_email",
+    "contact_url",
+    "broker_use_case",
+    "recommended_offer",
+    "compliance_note"
+  ];
+  const communityCsv = [
+    communityHeaders.join(","),
+    ...uniqueCommunityEntries.map((row) => communityHeaders.map((header) => csvEscape(row[header])).join(","))
+  ].join("\n");
+  await writeFile("data/social-community-entries.csv", `${communityCsv}\n`);
+  await writeFile("data/social-community-entries.json", JSON.stringify({
+    generated_at: isoNow,
+    feed_date: feedDate,
+    purpose: "Public social community/profile entries for broker KOL, IB, affiliate and media partnership discovery. No member/follower scraping.",
+    row_count: uniqueCommunityEntries.length,
+    entries: uniqueCommunityEntries
+  }, null, 2));
+
+  const communityRowsHtml = uniqueCommunityEntries.map((row) => `
+    <tr>
+      <td>${row.priority}</td>
+      <td>${row.platform}</td>
+      <td>${row.community_or_profile}</td>
+      <td><a href="${row.url}">${row.handle_or_path || row.url}</a></td>
+      <td>${row.product_interest}</td>
+      <td>${row.broker_use_case}</td>
+    </tr>
+  `).join("");
+  await writeFile("data/social-community-entries.html", `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Social Community Entries</title>
+  <style>
+    body{font-family:Inter,system-ui,sans-serif;margin:0;color:#142333;background:#f4f7fa}
+    main{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:42px 0}
+    h1{font-size:38px;margin:0 0 8px}
+    p{color:#62707f}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #dbe3ea}
+    th,td{text-align:left;padding:12px;border-bottom:1px solid #dbe3ea;vertical-align:top;font-size:14px}
+    th{background:#edf4f7;color:#142333}
+    a{color:#0f8b8d}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Social Community Entries</h1>
+    <p>Generated at ${isoNow}. Public social profiles, channels and community entries for KOL/IB/affiliate partnership discovery. No follower or member scraping.</p>
+    <table>
+      <thead><tr><th>Priority</th><th>Platform</th><th>Profile</th><th>Entry</th><th>Product</th><th>Broker use case</th></tr></thead>
+      <tbody>${communityRowsHtml}</tbody>
     </table>
   </main>
 </body>
