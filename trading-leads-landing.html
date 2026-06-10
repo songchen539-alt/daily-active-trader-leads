@@ -1365,6 +1365,29 @@
       </div>
     </section>
 
+    <section class="section" id="feed-status">
+      <div class="wrap split">
+        <div>
+          <h2 data-i18n="feedStatusTitle">24/7 active feed generation is enabled.</h2>
+          <p class="muted" data-i18n="feedStatusCopy">The system now generates a fresh public signal feed every hour through GitHub Actions. Contact-data enrichment turns on after vendor API keys are added as secrets.</p>
+          <ul class="list">
+            <li><span class="check">✓</span><span data-i18n="feedPointOne">Hourly market and social signal generation.</span></li>
+            <li><span class="check">✓</span><span data-i18n="feedPointTwo">JSON and CSV outputs for review, delivery or CRM import.</span></li>
+            <li><span class="check">✓</span><span data-i18n="feedPointThree">Ready for X, YouTube, Apollo, Wiza, Lusha and ContactOut API keys.</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="icon">24/7</div>
+          <h3 data-i18n="feedFilesTitle">Latest feed files</h3>
+          <p data-i18n="feedFilesCopy">Use these files as the first operational feed. They contain source, activity signal, score, compliance status and next action.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="data/latest-active-feed.csv" data-i18n="feedCsv">Download CSV</a>
+            <a class="btn btn-secondary" href="data/latest-active-feed.json" data-i18n="feedJson">View JSON</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="wrap split">
         <div>
@@ -1685,6 +1708,15 @@
         socialSide: "Use official APIs, approved data providers and public opt-in sources. Do not scrape private groups, bypass platform controls or resell personal data without a lawful basis.",
         topicsTitle: "Tracked trading topics",
         topicsCopy: "These topic clusters turn social activity into product-specific lead feeds for brokers.",
+        feedStatusTitle: "24/7 active feed generation is enabled.",
+        feedStatusCopy: "The system now generates a fresh public signal feed every hour through GitHub Actions. Contact-data enrichment turns on after vendor API keys are added as secrets.",
+        feedPointOne: "Hourly market and social signal generation.",
+        feedPointTwo: "JSON and CSV outputs for review, delivery or CRM import.",
+        feedPointThree: "Ready for X, YouTube, Apollo, Wiza, Lusha and ContactOut API keys.",
+        feedFilesTitle: "Latest feed files",
+        feedFilesCopy: "Use these files as the first operational feed. They contain source, activity signal, score, compliance status and next action.",
+        feedCsv: "Download CSV",
+        feedJson: "View JSON",
         pricingTitle: "Packages you can sell immediately.",
         pricingCopy: "Use the sample pack as the foot in the door, then close monthly delivery for specific countries and product categories.",
         priceOneTitle: "Today Sample",
@@ -1758,6 +1790,15 @@
         socialSide: "Usa APIs oficiales, proveedores aprobados y fuentes públicas con consentimiento. No raspes grupos privados ni revendas datos personales sin base legal.",
         topicsTitle: "Temas de trading monitoreados",
         topicsCopy: "Estos clusters convierten actividad social en feeds por producto para brokers.",
+        feedStatusTitle: "Generación 24/7 activada.",
+        feedStatusCopy: "El sistema genera cada hora un feed nuevo de señales públicas con GitHub Actions. El enriquecimiento de contactos se activa al añadir API keys como secrets.",
+        feedPointOne: "Generación horaria de señales de mercado y sociales.",
+        feedPointTwo: "Salidas JSON y CSV para revisión, entrega o CRM.",
+        feedPointThree: "Listo para claves de X, YouTube, Apollo, Wiza, Lusha y ContactOut.",
+        feedFilesTitle: "Archivos más recientes",
+        feedFilesCopy: "Usa estos archivos como primer feed operativo con fuente, señal, score, cumplimiento y próxima acción.",
+        feedCsv: "Descargar CSV",
+        feedJson: "Ver JSON",
         pricingTitle: "Paquetes que puedes vender ya.",
         pricingCopy: "Usa la muestra para abrir la puerta y luego cierra entregas mensuales por país y categoría.",
         priceOneTitle: "Muestra de Hoy",
@@ -1831,6 +1872,15 @@
         socialSide: "Use APIs oficiais, provedores aprovados e fontes públicas com opt-in. Não raspe grupos privados nem revenda dados pessoais sem base legal.",
         topicsTitle: "Temas de trading monitorados",
         topicsCopy: "Esses clusters transformam atividade social em feeds por produto para brokers.",
+        feedStatusTitle: "Geração 24/7 ativada.",
+        feedStatusCopy: "O sistema agora gera a cada hora um feed novo de sinais públicos via GitHub Actions. Enriquecimento de contatos entra após adicionar API keys como secrets.",
+        feedPointOne: "Geração horária de sinais de mercado e sociais.",
+        feedPointTwo: "Saídas JSON e CSV para revisão, entrega ou CRM.",
+        feedPointThree: "Pronto para chaves de X, YouTube, Apollo, Wiza, Lusha e ContactOut.",
+        feedFilesTitle: "Arquivos mais recentes",
+        feedFilesCopy: "Use estes arquivos como primeiro feed operacional com fonte, sinal, score, compliance e próxima ação.",
+        feedCsv: "Baixar CSV",
+        feedJson: "Ver JSON",
         pricingTitle: "Pacotes para vender imediatamente.",
         pricingCopy: "Use a amostra para abrir a conversa e depois feche entregas mensais por país e categoria.",
         priceOneTitle: "Amostra de Hoje",
@@ -1904,6 +1954,15 @@
         socialSide: "استخدم APIs رسمية ومزودي بيانات معتمدين ومصادر عامة بموافقة. لا تجمع من مجموعات خاصة أو تعيد بيع بيانات شخصية بلا أساس قانوني.",
         topicsTitle: "موضوعات تداول تتم مراقبتها",
         topicsCopy: "تحول هذه المجموعات النشاط الاجتماعي إلى تدفقات عملاء حسب المنتج للوسطاء.",
+        feedStatusTitle: "تم تفعيل توليد feed على مدار الساعة.",
+        feedStatusCopy: "ينشئ النظام الآن feed جديدا كل ساعة عبر GitHub Actions. يتم تفعيل إثراء بيانات التواصل بعد إضافة مفاتيح API كأسرار.",
+        feedPointOne: "توليد إشارات سوق واجتماعية كل ساعة.",
+        feedPointTwo: "ملفات JSON وCSV للمراجعة أو التسليم أو CRM.",
+        feedPointThree: "جاهز لمفاتيح X وYouTube وApollo وWiza وLusha وContactOut.",
+        feedFilesTitle: "أحدث ملفات feed",
+        feedFilesCopy: "استخدم هذه الملفات كأول feed تشغيلي يحتوي على المصدر والإشارة والدرجة والامتثال والخطوة التالية.",
+        feedCsv: "تنزيل CSV",
+        feedJson: "عرض JSON",
         pricingTitle: "باقات يمكن بيعها فورا.",
         pricingCopy: "ابدأ بالعينة ثم أغلق تسليما شهريا حسب البلد وفئة المنتج.",
         priceOneTitle: "عينة اليوم",
@@ -1977,6 +2036,15 @@
         socialSide: "使用官方 API、合规数据供应商和公开授权来源。不要抓取私密群组、绕过平台限制，或在缺少合法依据时转售个人数据。",
         topicsTitle: "监控的交易话题",
         topicsCopy: "这些话题簇会把社交活跃转成 broker 可购买的产品化线索 feed。",
+        feedStatusTitle: "已启用 24/7 活跃 feed 生成。",
+        feedStatusCopy: "系统现在会通过 GitHub Actions 每小时生成一份新的公开信号 feed。联系人数据增强会在添加供应商 API key 后开启。",
+        feedPointOne: "每小时生成市场和社交信号。",
+        feedPointTwo: "输出 JSON 和 CSV，可用于审核、交付或导入 CRM。",
+        feedPointThree: "已预留 X、YouTube、Apollo、Wiza、Lusha、ContactOut API key 接口。",
+        feedFilesTitle: "最新 feed 文件",
+        feedFilesCopy: "这些文件可作为第一版运营 feed，包含来源、活跃信号、评分、合规状态和下一步动作。",
+        feedCsv: "下载 CSV",
+        feedJson: "查看 JSON",
         pricingTitle: "可以马上销售的套餐。",
         pricingCopy: "先用样例包打开客户，再按国家和产品品类成交月度交付。",
         priceOneTitle: "今日样例",
