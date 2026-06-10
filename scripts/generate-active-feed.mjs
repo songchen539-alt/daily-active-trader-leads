@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 
@@ -73,6 +73,54 @@ function decodeXml(value) {
 
 function stripTags(value) {
   return decodeXml(String(value || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim());
+}
+
+function htmlTitle(html) {
+  const match = String(html || "").match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  return match ? stripTags(match[1]).slice(0, 160) : "";
+}
+
+function extractEmails(text) {
+  const matches = String(text || "").match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
+  const blocked = new Set(["example@example.com", "name@example.com", "email@example.com"]);
+  return [...new Set(matches.map((email) => email.toLowerCase()))]
+    .filter((email) => !blocked.has(email))
+    .filter((email) => !/\.(png|jpg|jpeg|gif|webp|svg)$/i.test(email))
+    .slice(0, 10);
+}
+
+function extractSocialLinks(html) {
+  const links = [];
+  const regex = /href=["']([^"']+)["']/gi;
+  let match;
+  while ((match = regex.exec(String(html || "")))) {
+    const href = decodeXml(match[1]);
+    if (/^(https?:)?\/\/(www\.)?(youtube\.com\/(channel|c|@)|x\.com\/[^/]+\/?$|twitter\.com\/[^/]+\/?$|tiktok\.com\/@|telegram\.me\/[^/]+|t\.me\/[^/]+|discord\.gg\/[^/]+|linkedin\.com\/(in|company)\/|stocktwits\.com\/[^/]+\/?$|substack\.com\/@)/i.test(href)) {
+      links.push(href.startsWith("//") ? `https:${href}` : href);
+    }
+    if (/^mailto:/i.test(href) && /@/.test(href)) links.push(href);
+  }
+  return [...new Set(links)].slice(0, 20);
+}
+
+function extractContactLinks(html, baseUrl) {
+  const links = [];
+  const regex = /href=["']([^"']+)["']/gi;
+  let match;
+  while ((match = regex.exec(String(html || "")))) {
+    const href = decodeXml(match[1]);
+    if (/^mailto:/i.test(href)) links.push(href);
+    try {
+      const url = new URL(href, baseUrl);
+      const path = url.pathname.toLowerCase();
+      if (/(^|\/)(contact|contact-us|advertise|advertising-info|sponsor|sponsorship|affiliate|affiliates|partner|partners|partner-program|ib|introducing-broker|media-kit)(\/|$)/i.test(path)) {
+        links.push(url.toString());
+      }
+    } catch {
+      // Ignore malformed or non-URL hrefs.
+    }
+  }
+  return [...new Set(links)].slice(0, 8);
 }
 
 function getTag(block, tag) {
@@ -244,6 +292,71 @@ async function fetchText(url, options = {}) {
     timeout: (options.timeoutMs || 8000) + 2000
   });
   return stdout;
+}
+
+async function loadPublicContactSeeds() {
+  try {
+    const text = await readFile("config/public-contact-seeds.json", "utf8");
+    const parsed = JSON.parse(text);
+    return Array.isArray(parsed.seeds) ? parsed.seeds : [];
+  } catch (error) {
+    recordConnectorEvent("Public contact seeds", "missing_or_invalid", error.message);
+    return [];
+  }
+}
+
+async function loadPublicContactProspects() {
+  const seeds = await loadPublicContactSeeds();
+  const tasks = seeds.map(async (seed) => {
+    try {
+      const html = await fetchText(seed.url, { timeoutMs: 10000 });
+      const emails = extractEmails(html);
+      const socialLinks = extractSocialLinks(html);
+      const contactLinks = extractContactLinks(html, seed.url);
+      const title = htmlTitle(html) || seed.url;
+      const contactStatus = emails.length
+        ? "public_business_email_found"
+        : contactLinks.length
+          ? "public_contact_page_found"
+          : socialLinks.length
+            ? "public_social_profile_found"
+            : "no_direct_contact_found";
+      return {
+        prospect_id: `PUB-${feedDate}-${slugify(seed.url)}`,
+        feed_date: feedDate,
+        last_seen_at: isoNow,
+        freshness_tier: "hot_24h",
+        lead_type: seed.lead_type || "Public B2B Source",
+        product_interest: seed.product_interest || "Multi-asset",
+        market: seed.market || "Global",
+        language: seed.language || "Unknown",
+        name_or_profile: title,
+        source_url: seed.url,
+        public_email: emails.join("; "),
+        contact_url: contactLinks.join("; "),
+        public_social_links: socialLinks.filter((link) => !/^mailto:/i.test(link)).slice(0, 5).join("; "),
+        contact_status: contactStatus,
+        activity_signal: `Public page reviewed: ${title}`,
+        activity_score: Math.min(100, 35 + emails.length * 25 + contactLinks.length * 15 + socialLinks.length * 5),
+        compliance_status: "public_page_contact_review_required",
+        recommended_offer: seed.product_interest === "Crypto Futures" ? "Crypto exchange affiliate/partner outreach" : seed.product_interest === "FX" ? "FX broker affiliate/IB outreach" : "Trading platform partnership outreach",
+        next_action: emails.length
+          ? "Manually verify business relevance, then send compliant one-to-one B2B outreach."
+          : "Review page for creator/community fit; do not treat as a contact record without a public business channel."
+      };
+    } catch (error) {
+      recordConnectorEvent("Public contact prospecting", "blocked_or_unavailable", `${seed.url}: ${error.message}`);
+      return null;
+    }
+  });
+  const rows = (await Promise.all(tasks)).filter(Boolean);
+  const seen = new Set();
+  return rows.filter((row) => {
+    const key = `${row.source_url}|${row.public_email}|${row.public_social_links}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return row.contact_status !== "no_direct_contact_found";
+  }).sort((a, b) => Number(b.activity_score) - Number(a.activity_score));
 }
 
 async function loadCryptoMarkets() {
@@ -438,6 +551,12 @@ function connectorStatus() {
       note: "Public news/topic intent signals, no personal contact data."
     },
     {
+      source: "Public contact prospecting",
+      status: connectorEvents.some((event) => event.source === "Public contact prospecting") ? "partial_or_limited" : "active_public_best_effort",
+      cadence: "hourly",
+      note: "Public business emails and social links from configured seed pages only; manual review required before outreach."
+    },
+    {
       source: "X API",
       status: process.env.X_BEARER_TOKEN ? "ready_with_secret" : "waiting_for_secret",
       cadence: "near_real_time_when_enabled",
@@ -459,10 +578,11 @@ function connectorStatus() {
 }
 
 async function main() {
-  const [marketRows, googleNewsRows, redditRows] = await Promise.all([
+  const [marketRows, googleNewsRows, redditRows, contactProspects] = await Promise.all([
     loadCryptoMarkets(),
     loadGoogleNewsSignals(),
-    loadRedditSignals()
+    loadRedditSignals(),
+    loadPublicContactProspects()
   ]);
   const rows = [...marketRows, ...googleNewsRows, ...redditRows].sort((a, b) => Number(b.activity_score) - Number(a.activity_score));
 
@@ -579,6 +699,40 @@ async function main() {
 </body>
 </html>`;
   await writeFile("data/client-opportunities.html", reportHtml);
+
+  const contactHeaders = [
+    "prospect_id",
+    "feed_date",
+    "last_seen_at",
+    "freshness_tier",
+    "lead_type",
+    "product_interest",
+    "market",
+    "language",
+    "name_or_profile",
+    "source_url",
+    "public_email",
+    "contact_url",
+    "public_social_links",
+    "contact_status",
+    "activity_signal",
+    "activity_score",
+    "compliance_status",
+    "recommended_offer",
+    "next_action"
+  ];
+  const contactCsv = [
+    contactHeaders.join(","),
+    ...contactProspects.map((row) => contactHeaders.map((header) => csvEscape(row[header])).join(","))
+  ].join("\n");
+  await writeFile("data/public-contact-prospects.csv", `${contactCsv}\n`);
+  await writeFile("data/public-contact-prospects.json", JSON.stringify({
+    generated_at: isoNow,
+    feed_date: feedDate,
+    purpose: "Public B2B/channel prospect discovery. Manual compliance review required. Not a retail trader phone/email list.",
+    row_count: contactProspects.length,
+    prospects: contactProspects
+  }, null, 2));
 
   console.log(`Generated ${rows.length} active feed rows at ${isoNow}`);
 }
