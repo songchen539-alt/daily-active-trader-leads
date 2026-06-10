@@ -4,9 +4,9 @@
 
 ### TradingView Widgets
 
-Use: live FX, stock, gold and crypto market overview, FX ticker tape and US stock hotlists.
+Use: live FX, stock, crypto, gold, silver, WTI crude, Brent crude and natural gas market overview, FX ticker tape, US stock hotlists and commodities symbol overview.
 
-Why it matters: brokers can see the platform is driven by current market context. This supports daily campaign packaging such as FX volatility, gold moves, crypto futures interest and stock trading demand.
+Why it matters: brokers can see the platform is driven by current market context. This supports daily campaign packaging such as FX volatility, gold/silver moves, crude oil volatility, crypto futures interest and stock trading demand.
 
 Status: connected directly in `index.html`.
 
@@ -94,7 +94,7 @@ Best role: orchestration layer for Apollo, Wiza, Lusha, ContactOut and email ver
 
 ### Alpha Vantage
 
-Use: stocks, ETFs, FX, commodities, crypto and technical indicators.
+Use: stocks, ETFs, FX, commodities, crypto and technical indicators, including gold/silver/oil-related feeds depending on plan and endpoint.
 
 Priority: high for API-level FX and stock data after the public widget MVP.
 
@@ -104,7 +104,7 @@ Official docs: https://www.alphavantage.co/documentation/
 
 ### Twelve Data
 
-Use: real-time and historical stocks, forex, ETFs, indices and crypto market data.
+Use: real-time and historical stocks, forex, ETFs, indices, commodities and crypto market data.
 
 Priority: high if you need one API covering both FX and stocks.
 
@@ -114,7 +114,7 @@ Official site/docs: https://twelvedata.com/
 
 ### Polygon.io
 
-Use: US stocks, options, indices, forex and crypto market data.
+Use: US stocks, options, indices, forex and crypto market data. Use alongside a commodities source for gold/silver/oil if needed.
 
 Priority: high for serious stock/option broker campaigns.
 
@@ -139,6 +139,14 @@ Priority: later-stage.
 Important: this is not personal trader contact data. Use it for market signals, content, tools and campaign triggers.
 
 Official docs/catalog: https://www.nasdaq.com/solutions/data/market-data-catalog
+
+### Metals / Energy Data Add-Ons
+
+Use: gold, silver, crude oil, natural gas and commodity CFD campaign triggers.
+
+Priority: high for FX/CFD brokers.
+
+Suggested sources: TradingView widgets for public display, Alpha Vantage or Twelve Data for API-level data, Nasdaq Data Link or exchange/vendor feeds for higher-end commodity datasets.
 
 ## Social / Intent Sources
 

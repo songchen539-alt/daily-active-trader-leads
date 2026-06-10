@@ -5,7 +5,7 @@
       "type": "market_signal_widget",
       "status": "connected",
       "requires_api_key": false,
-      "coverage": "FX ticker, FX/gold overview, US stock hotlists, stock overview, crypto overview",
+      "coverage": "FX ticker, FX/metals overview, US stock hotlists, stock overview, crypto overview, gold, silver, WTI crude, Brent crude, natural gas",
       "url": "https://www.tradingview.com/widget/"
     },
     {
@@ -76,6 +76,12 @@
       "status": "needs_commercial_access",
       "role": "equities, indexes, options and market data signals",
       "url": "https://www.nasdaq.com/solutions/data/market-data-catalog"
+    },
+    {
+      "name": "Metals and Energy Data Add-Ons",
+      "status": "partially_connected_via_tradingview_widgets",
+      "role": "gold, silver, crude oil, Brent, WTI and natural gas CFD campaign triggers",
+      "url": "https://www.tradingview.com/widget/"
     }
   ]
 }
