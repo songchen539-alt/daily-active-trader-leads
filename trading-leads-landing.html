@@ -656,6 +656,46 @@
       gap: 16px;
     }
 
+    .payment-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(320px, .65fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .coin-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .coin-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .coin-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--navy);
+    }
+
+    .wallet {
+      display: block;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      margin-top: 8px;
+      padding: 9px;
+      border-radius: 8px;
+      color: #3d4c5a;
+      background: #f2f6f8;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 12px;
+    }
+
     .price-card {
       display: flex;
       flex-direction: column;
@@ -857,7 +897,8 @@
       .pipeline,
       .live-grid,
       .social-board,
-      .source-grid {
+      .source-grid,
+      .payment-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
@@ -901,6 +942,8 @@
       .market-widgets,
       .social-board,
       .source-grid,
+      .payment-grid,
+      .coin-grid,
       .topic-row {
         grid-template-columns: 1fr;
       }
@@ -939,6 +982,7 @@
         <a href="#sources" data-i18n="navSources">Sources</a>
         <a href="#pipeline">Pipeline</a>
         <a href="#pricing" data-i18n="navPricing">Pricing</a>
+        <a href="#crypto-payments" data-i18n="navPayments">Payments</a>
         <a href="#compliance" data-i18n="navCompliance">Compliance</a>
       </div>
       <select class="language-select" id="languageSelect" aria-label="Language">
@@ -1418,6 +1462,81 @@
       </div>
     </section>
 
+    <section class="section alt" id="crypto-payments">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="paymentTitle">Crypto payments accepted.</h2>
+            <p data-i18n="paymentCopy">Clients can pay for sample packs, monthly lead feeds and performance retainers with stablecoins or major crypto assets.</p>
+          </div>
+          <p class="muted" data-i18n="paymentSide">For live collection, replace the placeholder wallets below with your own addresses or connect a payment provider such as Coinbase Commerce, NOWPayments or CoinPayments.</p>
+        </div>
+        <div class="payment-grid">
+          <div class="card">
+            <div class="icon">PAY</div>
+            <h3 data-i18n="paymentMethodsTitle">Supported payment rails</h3>
+            <p data-i18n="paymentMethodsCopy">Recommended default: USDT TRC20 or USDC ERC20 for international broker clients. Confirm network before sending funds.</p>
+            <div class="coin-grid">
+              <div class="coin-card">
+                <strong>USDT</strong>
+                <span>TRC20 / ERC20</span>
+                <code class="wallet">REPLACE_WITH_YOUR_USDT_WALLET</code>
+              </div>
+              <div class="coin-card">
+                <strong>USDC</strong>
+                <span>ERC20 / Polygon</span>
+                <code class="wallet">REPLACE_WITH_YOUR_USDC_WALLET</code>
+              </div>
+              <div class="coin-card">
+                <strong>BTC</strong>
+                <span>Bitcoin network</span>
+                <code class="wallet">REPLACE_WITH_YOUR_BTC_WALLET</code>
+              </div>
+              <div class="coin-card">
+                <strong>ETH</strong>
+                <span>Ethereum network</span>
+                <code class="wallet">REPLACE_WITH_YOUR_ETH_WALLET</code>
+              </div>
+            </div>
+          </div>
+          <div class="form-panel">
+            <h2 data-i18n="invoiceTitle">Request crypto invoice</h2>
+            <p data-i18n="invoiceCopy">Select a package, preferred coin and billing email. After payment, submit the transaction hash for matching.</p>
+            <form id="paymentForm">
+              <div class="field-grid">
+                <label><span data-i18n="invoicePackage">Package</span>
+                  <select name="package" required>
+                    <option value="">Select</option>
+                    <option>Today Sample - $99</option>
+                    <option>Daily Trader Feed - $2k-8k/mo</option>
+                    <option>Active Affiliate / IB - $3k-10k/mo</option>
+                    <option>Performance / Custom</option>
+                  </select>
+                </label>
+                <label><span data-i18n="invoiceCoin">Coin</span>
+                  <select name="coin" required>
+                    <option value="">Select</option>
+                    <option>USDT TRC20</option>
+                    <option>USDT ERC20</option>
+                    <option>USDC ERC20</option>
+                    <option>BTC</option>
+                    <option>ETH</option>
+                  </select>
+                </label>
+              </div>
+              <label><span data-i18n="invoiceEmail">Billing email</span>
+                <input name="billingEmail" type="email" placeholder="billing@company.com" required>
+              </label>
+              <label><span data-i18n="invoiceTxid">TxID / transaction hash</span>
+                <input name="txid" placeholder="Submit after payment">
+              </label>
+              <button class="btn btn-primary" type="submit" data-i18n="invoiceButton">Prepare crypto invoice</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section alt" id="compliance">
       <div class="wrap split">
         <div>
@@ -1536,6 +1655,7 @@
         navProducts: "Products",
         navSources: "Sources",
         navPricing: "Pricing",
+        navPayments: "Payments",
         navCompliance: "Compliance",
         navCta: "Request sample leads",
         eyebrow: "Overseas broker growth platform",
@@ -1575,6 +1695,18 @@
         priceThreeCopy: "Daily or weekly active KOL, educator, affiliate, IB and community owner feed.",
         priceFourTitle: "Performance",
         priceFourCopy: "Signup, KYC, first-deposit or revenue-share campaigns after tracking is in place.",
+        paymentTitle: "Crypto payments accepted.",
+        paymentCopy: "Clients can pay for sample packs, monthly lead feeds and performance retainers with stablecoins or major crypto assets.",
+        paymentSide: "For live collection, replace the placeholder wallets below with your own addresses or connect a payment provider such as Coinbase Commerce, NOWPayments or CoinPayments.",
+        paymentMethodsTitle: "Supported payment rails",
+        paymentMethodsCopy: "Recommended default: USDT TRC20 or USDC ERC20 for international broker clients. Confirm network before sending funds.",
+        invoiceTitle: "Request crypto invoice",
+        invoiceCopy: "Select a package, preferred coin and billing email. After payment, submit the transaction hash for matching.",
+        invoicePackage: "Package",
+        invoiceCoin: "Coin",
+        invoiceEmail: "Billing email",
+        invoiceTxid: "TxID / transaction hash",
+        invoiceButton: "Prepare crypto invoice",
         complianceTitle: "Compliance is part of the product.",
         complianceCopy: "The front-end positioning should never sound like scraped personal data resale. Sell compliant acquisition, prospecting intelligence and tracked growth.",
         complianceNotice: "Important: this platform should not provide investment advice, profit promises, fake testimonials or high-leverage inducements. Clients must confirm their own regulatory permissions for each target market.",
@@ -1596,6 +1728,7 @@
         navProducts: "Productos",
         navSources: "Fuentes",
         navPricing: "Precios",
+        navPayments: "Pagos",
         navCompliance: "Cumplimiento",
         navCta: "Solicitar leads",
         eyebrow: "Plataforma global de crecimiento para brokers",
@@ -1635,6 +1768,18 @@
         priceThreeCopy: "Feed diario o semanal de KOLs, educadores, afiliados, IBs y comunidades.",
         priceFourTitle: "Performance",
         priceFourCopy: "Campañas por registro, KYC, primer depósito o revenue share con tracking.",
+        paymentTitle: "Pagos en cripto aceptados.",
+        paymentCopy: "Los clientes pueden pagar muestras, feeds mensuales y retainers con stablecoins o cripto principales.",
+        paymentSide: "Para cobrar en vivo, reemplaza las wallets de ejemplo o conecta Coinbase Commerce, NOWPayments o CoinPayments.",
+        paymentMethodsTitle: "Métodos soportados",
+        paymentMethodsCopy: "Recomendado: USDT TRC20 o USDC ERC20 para clientes internacionales. Confirma la red antes de enviar fondos.",
+        invoiceTitle: "Solicitar factura cripto",
+        invoiceCopy: "Selecciona paquete, moneda y email de facturación. Después del pago, envía el hash de transacción.",
+        invoicePackage: "Paquete",
+        invoiceCoin: "Moneda",
+        invoiceEmail: "Email de facturación",
+        invoiceTxid: "TxID / hash",
+        invoiceButton: "Preparar factura cripto",
         complianceTitle: "El cumplimiento es parte del producto.",
         complianceCopy: "El posicionamiento no debe sonar a reventa de datos scrapeados. Vende adquisición compliant, inteligencia de prospección y crecimiento medible.",
         complianceNotice: "Importante: la plataforma no debe dar consejos de inversión, promesas de ganancias, testimonios falsos ni inducir alto apalancamiento. Cada cliente debe confirmar sus permisos regulatorios.",
@@ -1656,6 +1801,7 @@
         navProducts: "Produtos",
         navSources: "Fontes",
         navPricing: "Preços",
+        navPayments: "Pagamentos",
         navCompliance: "Compliance",
         navCta: "Solicitar leads",
         eyebrow: "Plataforma global de crescimento para brokers",
@@ -1695,6 +1841,18 @@
         priceThreeCopy: "Feed diário ou semanal de KOLs, educadores, afiliados, IBs e comunidades.",
         priceFourTitle: "Performance",
         priceFourCopy: "Campanhas por signup, KYC, primeiro depósito ou revenue share com tracking.",
+        paymentTitle: "Pagamentos em cripto aceitos.",
+        paymentCopy: "Clientes podem pagar amostras, feeds mensais e retainers com stablecoins ou criptoativos principais.",
+        paymentSide: "Para cobrança real, substitua as carteiras de exemplo ou conecte Coinbase Commerce, NOWPayments ou CoinPayments.",
+        paymentMethodsTitle: "Redes suportadas",
+        paymentMethodsCopy: "Recomendado: USDT TRC20 ou USDC ERC20 para clientes internacionais. Confirme a rede antes de enviar.",
+        invoiceTitle: "Solicitar fatura cripto",
+        invoiceCopy: "Selecione pacote, moeda e email. Após o pagamento, envie o hash da transação.",
+        invoicePackage: "Pacote",
+        invoiceCoin: "Moeda",
+        invoiceEmail: "Email de cobrança",
+        invoiceTxid: "TxID / hash",
+        invoiceButton: "Preparar fatura cripto",
         complianceTitle: "Compliance faz parte do produto.",
         complianceCopy: "A mensagem não deve parecer revenda de dados raspados. Venda aquisição compliant, inteligência de prospecção e crescimento rastreável.",
         complianceNotice: "Importante: a plataforma não deve oferecer conselho de investimento, prometer lucros, usar depoimentos falsos ou induzir alta alavancagem. Cada cliente confirma suas permissões regulatórias.",
@@ -1716,6 +1874,7 @@
         navProducts: "المنتجات",
         navSources: "المصادر",
         navPricing: "الأسعار",
+        navPayments: "الدفع",
         navCompliance: "الامتثال",
         navCta: "طلب عينة",
         eyebrow: "منصة نمو عالمية للوسطاء",
@@ -1755,6 +1914,18 @@
         priceThreeCopy: "تدفق يومي أو أسبوعي للمؤثرين والمدربين والشركاء وIB والمجتمعات.",
         priceFourTitle: "الأداء",
         priceFourCopy: "حملات تسجيل وKYC وإيداع أول أو مشاركة إيراد بعد تفعيل التتبع.",
+        paymentTitle: "نقبل الدفع بالعملات الرقمية.",
+        paymentCopy: "يمكن للعملاء دفع العينات والتدفقات الشهرية والاشتراكات باستخدام العملات المستقرة أو العملات الرقمية الرئيسية.",
+        paymentSide: "للتحصيل الفعلي، استبدل عناوين المحافظ أدناه بمحافظك أو اربط مزودا مثل Coinbase Commerce أو NOWPayments أو CoinPayments.",
+        paymentMethodsTitle: "شبكات الدفع المدعومة",
+        paymentMethodsCopy: "المفضل للعملاء الدوليين: USDT TRC20 أو USDC ERC20. تأكد من الشبكة قبل الإرسال.",
+        invoiceTitle: "طلب فاتورة كريبتو",
+        invoiceCopy: "اختر الباقة والعملة وبريد الفوترة. بعد الدفع أرسل hash المعاملة للمطابقة.",
+        invoicePackage: "الباقة",
+        invoiceCoin: "العملة",
+        invoiceEmail: "بريد الفوترة",
+        invoiceTxid: "TxID / hash المعاملة",
+        invoiceButton: "تجهيز فاتورة كريبتو",
         complianceTitle: "الامتثال جزء من المنتج.",
         complianceCopy: "يجب ألا تبدو الرسالة كإعادة بيع بيانات مسروقة. بع اكتسابا متوافقا وذكاء بحث ونموا قابلا للتتبع.",
         complianceNotice: "مهم: لا تقدم المنصة نصائح استثمارية أو وعود ربح أو شهادات مزيفة أو تحفيزا على رافعة عالية. يجب على كل عميل تأكيد صلاحياته التنظيمية.",
@@ -1776,6 +1947,7 @@
         navProducts: "产品",
         navSources: "来源",
         navPricing: "价格",
+        navPayments: "付款",
         navCompliance: "合规",
         navCta: "申请样例线索",
         eyebrow: "面向海外 broker 的增长平台",
@@ -1815,6 +1987,18 @@
         priceThreeCopy: "每日或每周交付活跃 KOL、教育者、Affiliate、IB 和社群主 feed。",
         priceFourTitle: "效果付费",
         priceFourCopy: "在追踪打通后，按注册、KYC、首次入金或 revenue share 合作。",
+        paymentTitle: "支持加密货币付款。",
+        paymentCopy: "客户可以用稳定币或主流加密资产支付样例包、月度线索 feed 和效果服务预付款。",
+        paymentSide: "正式收款时，请把下面的钱包占位符换成你的地址，或接入 Coinbase Commerce、NOWPayments、CoinPayments 等支付商。",
+        paymentMethodsTitle: "支持的付款网络",
+        paymentMethodsCopy: "建议默认使用 USDT TRC20 或 USDC ERC20，适合国际 broker 客户。付款前必须确认网络。",
+        invoiceTitle: "申请加密货币账单",
+        invoiceCopy: "选择套餐、币种和账单邮箱。付款后提交交易哈希用于匹配。",
+        invoicePackage: "套餐",
+        invoiceCoin: "币种",
+        invoiceEmail: "账单邮箱",
+        invoiceTxid: "TxID / 交易哈希",
+        invoiceButton: "生成加密货币账单",
         complianceTitle: "合规是产品的一部分。",
         complianceCopy: "前台定位不能像是在转售爬取来的个人数据，而应销售合规获客、潜客情报和可追踪增长。",
         complianceNotice: "重要：平台不应提供投资建议、收益承诺、虚假见证或诱导高杠杆。客户必须确认自己在目标市场的监管许可。",
@@ -1868,6 +2052,7 @@
     });
 
     const form = document.querySelector("#leadForm");
+    const paymentForm = document.querySelector("#paymentForm");
     const toast = document.querySelector("#toast");
     const cryptoSignals = document.querySelector("#cryptoSignals");
 
@@ -1923,6 +2108,28 @@
         window.sampleLeadRequests.push({ ...data, createdAt: new Date().toISOString() });
       }
       form.reset();
+    });
+
+    paymentForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(paymentForm).entries());
+      const summary = data.txid
+        ? `Payment record received for ${data.package} via ${data.coin}. TxID: ${data.txid}.`
+        : `Crypto invoice prepared for ${data.package} via ${data.coin}. Send wallet details before collecting live payments.`;
+
+      toast.textContent = summary;
+      toast.classList.add("show");
+      window.setTimeout(() => toast.classList.remove("show"), 6200);
+
+      try {
+        const existing = JSON.parse(window.localStorage.getItem("cryptoInvoiceRequests") || "[]");
+        existing.push({ ...data, createdAt: new Date().toISOString() });
+        window.localStorage.setItem("cryptoInvoiceRequests", JSON.stringify(existing));
+      } catch (error) {
+        window.cryptoInvoiceRequests = window.cryptoInvoiceRequests || [];
+        window.cryptoInvoiceRequests.push({ ...data, createdAt: new Date().toISOString() });
+      }
+      paymentForm.reset();
     });
 
     loadCryptoSignals();

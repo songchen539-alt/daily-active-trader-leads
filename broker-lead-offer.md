@@ -175,3 +175,25 @@ Ask every potential client:
 6. One list of 100 affiliate/IB/KOL prospects.
 
 The fastest path is not a full platform. The fastest path is selling curated lead packs manually, proving demand, then automating the data pipeline after payment.
+
+## Crypto Payment Setup
+
+The public site now supports a crypto invoice request flow.
+
+Recommended first payment methods:
+
+- USDT TRC20 for low-fee international payments
+- USDC ERC20 or Polygon for stablecoin settlement
+- BTC for clients that prefer Bitcoin treasury payment
+- ETH for EVM-native clients
+
+Before collecting live payments:
+
+- replace wallet placeholders in `index.html`
+- confirm the exact network for each asset
+- add a manual invoice number to every payment request
+- require clients to submit TxID / transaction hash after payment
+- reconcile payment before delivering lead files
+- consider Coinbase Commerce, NOWPayments or CoinPayments if you want hosted checkout, exchange-rate locking and invoice links
+
+Never publish a wallet address unless you have verified it belongs to you and supports the displayed network.

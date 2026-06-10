@@ -1,0 +1,40 @@
+{
+  "mode": "manual_crypto_invoice",
+  "accepted_assets": [
+    {
+      "asset": "USDT",
+      "networks": ["TRC20", "ERC20"],
+      "wallet_placeholder": "REPLACE_WITH_YOUR_USDT_WALLET",
+      "recommended": true
+    },
+    {
+      "asset": "USDC",
+      "networks": ["ERC20", "Polygon"],
+      "wallet_placeholder": "REPLACE_WITH_YOUR_USDC_WALLET",
+      "recommended": true
+    },
+    {
+      "asset": "BTC",
+      "networks": ["Bitcoin"],
+      "wallet_placeholder": "REPLACE_WITH_YOUR_BTC_WALLET",
+      "recommended": false
+    },
+    {
+      "asset": "ETH",
+      "networks": ["Ethereum"],
+      "wallet_placeholder": "REPLACE_WITH_YOUR_ETH_WALLET",
+      "recommended": false
+    }
+  ],
+  "provider_options": [
+    "Coinbase Commerce",
+    "NOWPayments",
+    "CoinPayments"
+  ],
+  "required_before_live": [
+    "verified_wallet_addresses",
+    "invoice_numbering",
+    "payment_reconciliation_process",
+    "terms_and_refund_policy"
+  ]
+}
