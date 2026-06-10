@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
+import { resolveMx } from "node:dns/promises";
 
 const execFileAsync = promisify(execFile);
 
@@ -109,7 +110,7 @@ function extractContactLinks(html, baseUrl) {
   let match;
   while ((match = regex.exec(String(html || "")))) {
     const href = decodeXml(match[1]);
-    if (/^mailto:/i.test(href)) links.push(href);
+    if (/^mailto:/i.test(href) && /@/.test(href)) links.push(href);
     try {
       const url = new URL(href, baseUrl);
       const path = url.pathname.toLowerCase();
@@ -121,6 +122,42 @@ function extractContactLinks(html, baseUrl) {
     }
   }
   return [...new Set(links)].slice(0, 8);
+}
+
+function hostnameFromUrl(url) {
+  try {
+    const hostname = new URL(url).hostname.toLowerCase().replace(/^www\./, "");
+    return hostname;
+  } catch {
+    return "";
+  }
+}
+
+async function mxStatus(domain) {
+  if (!domain) return "unknown";
+  try {
+    const records = await resolveMx(domain);
+    return records.length ? "mx_found" : "mx_not_found";
+  } catch {
+    return "mx_not_found";
+  }
+}
+
+function guessedEmailsForDomain(domain, productInterest) {
+  if (!domain) return [];
+  const rolePrefixes = [
+    "partnerships",
+    "partners",
+    "affiliate",
+    "affiliates",
+    "advertising",
+    "ads",
+    "media",
+    "business",
+    "contact"
+  ];
+  if (/FX|Metals/i.test(productInterest || "")) rolePrefixes.unshift("ib");
+  return [...new Set(rolePrefixes.map((prefix) => `${prefix}@${domain}`))].slice(0, 8);
 }
 
 function getTag(block, tag) {
@@ -314,6 +351,9 @@ async function loadPublicContactProspects() {
       const socialLinks = extractSocialLinks(html);
       const contactLinks = extractContactLinks(html, seed.url);
       const title = htmlTitle(html) || seed.url;
+      const domain = hostnameFromUrl(seed.url);
+      const domainMxStatus = await mxStatus(domain);
+      const guessedEmails = emails.length ? [] : guessedEmailsForDomain(domain, seed.product_interest);
       const contactStatus = emails.length
         ? "public_business_email_found"
         : contactLinks.length
@@ -331,13 +371,23 @@ async function loadPublicContactProspects() {
         market: seed.market || "Global",
         language: seed.language || "Unknown",
         name_or_profile: title,
+        domain,
+        mx_status: domainMxStatus,
         source_url: seed.url,
         public_email: emails.join("; "),
+        guessed_email_candidates: guessedEmails.join("; "),
+        deliverability_status: emails.length
+          ? "public_email_unverified"
+          : guessedEmails.length && domainMxStatus === "mx_found"
+            ? "candidate_pattern_mx_found"
+            : guessedEmails.length
+              ? "candidate_pattern_unverified"
+              : "no_email_candidate",
         contact_url: contactLinks.join("; "),
         public_social_links: socialLinks.filter((link) => !/^mailto:/i.test(link)).slice(0, 5).join("; "),
         contact_status: contactStatus,
         activity_signal: `Public page reviewed: ${title}`,
-        activity_score: Math.min(100, 35 + emails.length * 25 + contactLinks.length * 15 + socialLinks.length * 5),
+        activity_score: Math.min(100, 35 + emails.length * 25 + (domainMxStatus === "mx_found" ? 8 : 0) + contactLinks.length * 15 + socialLinks.length * 5),
         compliance_status: "public_page_contact_review_required",
         recommended_offer: seed.product_interest === "Crypto Futures" ? "Crypto exchange affiliate/partner outreach" : seed.product_interest === "FX" ? "FX broker affiliate/IB outreach" : "Trading platform partnership outreach",
         next_action: emails.length
@@ -710,8 +760,12 @@ async function main() {
     "market",
     "language",
     "name_or_profile",
+    "domain",
+    "mx_status",
     "source_url",
     "public_email",
+    "guessed_email_candidates",
+    "deliverability_status",
     "contact_url",
     "public_social_links",
     "contact_status",
@@ -733,6 +787,102 @@ async function main() {
     row_count: contactProspects.length,
     prospects: contactProspects
   }, null, 2));
+
+  const contactableProspects = contactProspects
+    .filter((row) => row.public_email || row.contact_url || row.public_social_links || row.guessed_email_candidates)
+    .map((row, index) => ({
+      prospect_id: `CONTACT-${feedDate}-${String(index + 1).padStart(3, "0")}`,
+      priority: row.public_email ? "High" : row.contact_url ? "Medium" : "Review",
+      lead_type: row.lead_type,
+      product_interest: row.product_interest,
+      name_or_profile: row.name_or_profile,
+      domain: row.domain,
+      mx_status: row.mx_status,
+      public_email: row.public_email,
+      guessed_email_candidates: row.guessed_email_candidates,
+      deliverability_status: row.deliverability_status,
+      contact_url: row.contact_url,
+      public_social_links: row.public_social_links,
+      source_url: row.source_url,
+      activity_score: row.activity_score,
+      compliance_note: row.public_email
+        ? "Publicly displayed business email. Verify relevance before one-to-one B2B outreach."
+        : row.guessed_email_candidates
+          ? "Candidate role emails only. Not verified. Use only after manual verification and lawful basis review."
+          : "Public contact or social channel. Manual review required before outreach.",
+      recommended_offer: row.recommended_offer,
+      next_action: row.next_action
+    }));
+
+  const contactableHeaders = [
+    "prospect_id",
+    "priority",
+    "lead_type",
+    "product_interest",
+    "name_or_profile",
+    "domain",
+    "mx_status",
+    "public_email",
+    "guessed_email_candidates",
+    "deliverability_status",
+    "contact_url",
+    "public_social_links",
+    "source_url",
+    "activity_score",
+    "compliance_note",
+    "recommended_offer",
+    "next_action"
+  ];
+  const contactableCsv = [
+    contactableHeaders.join(","),
+    ...contactableProspects.map((row) => contactableHeaders.map((header) => csvEscape(row[header])).join(","))
+  ].join("\n");
+  await writeFile("data/contactable-prospects.csv", `${contactableCsv}\n`);
+  await writeFile("data/contactable-prospects.json", JSON.stringify({
+    generated_at: isoNow,
+    feed_date: feedDate,
+    purpose: "Customer-facing B2B/channel contact prospects. Not retail trader personal data.",
+    row_count: contactableProspects.length,
+    prospects: contactableProspects
+  }, null, 2));
+
+  const contactRowsHtml = contactableProspects.map((row) => `
+    <tr>
+      <td>${row.priority}</td>
+      <td>${row.product_interest}</td>
+      <td>${row.name_or_profile}</td>
+      <td>${row.public_email || row.guessed_email_candidates || row.contact_url || row.public_social_links}</td>
+      <td>${row.deliverability_status}</td>
+      <td>${row.recommended_offer}</td>
+    </tr>
+  `).join("");
+  await writeFile("data/contactable-prospects.html", `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contactable Trading Prospects</title>
+  <style>
+    body{font-family:Inter,system-ui,sans-serif;margin:0;color:#142333;background:#f4f7fa}
+    main{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:42px 0}
+    h1{font-size:38px;margin:0 0 8px}
+    p{color:#62707f}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #dbe3ea}
+    th,td{text-align:left;padding:12px;border-bottom:1px solid #dbe3ea;vertical-align:top;font-size:14px}
+    th{background:#edf4f7;color:#142333}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Contactable Trading Prospects</h1>
+    <p>Generated at ${isoNow}. Public B2B/channel prospects for broker affiliate, media, IB and partnership outreach. Manual compliance review required.</p>
+    <table>
+      <thead><tr><th>Priority</th><th>Product</th><th>Prospect</th><th>Contact route</th><th>Status</th><th>Offer</th></tr></thead>
+      <tbody>${contactRowsHtml}</tbody>
+    </table>
+  </main>
+</body>
+</html>`);
 
   console.log(`Generated ${rows.length} active feed rows at ${isoNow}`);
 }
