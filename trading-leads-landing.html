@@ -473,6 +473,58 @@
       box-shadow: var(--shadow);
     }
 
+    .live-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(320px, .75fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .widget-box {
+      min-height: 500px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(18, 35, 51, .05);
+    }
+
+    .signal-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .signal-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .signal-item strong {
+      color: var(--navy);
+    }
+
+    .signal-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .change.up {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .change.down {
+      color: #c84c45;
+      font-weight: 800;
+    }
+
     .row {
       display: grid;
       grid-template-columns: 1fr 1fr .8fr;
@@ -705,7 +757,8 @@
       .grid.three,
       .grid.four,
       .pricing,
-      .pipeline {
+      .pipeline,
+      .live-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
@@ -740,7 +793,8 @@
       .grid.four,
       .pricing,
       .pipeline,
-      .field-grid {
+      .field-grid,
+      .live-grid {
         grid-template-columns: 1fr;
       }
 
@@ -901,6 +955,76 @@
           <article class="card">
             <h3>CRM Automation</h3>
             <p>Email, WhatsApp, Telegram and sales handoff workflows designed for regional language, product interest and compliance status.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="live-signals">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Live market signals already connected.</h2>
+            <p>Market data does not provide personal contact details, but it makes the daily lead feed more valuable by deciding which trader segment to package today.</p>
+          </div>
+          <p class="muted">Connected now: TradingView market overview widget and CoinGecko public crypto market feed. Contact-data APIs need private keys and should run on a backend.</p>
+        </div>
+        <div class="live-grid">
+          <div class="widget-box">
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+              {
+                "colorTheme": "light",
+                "dateRange": "12M",
+                "showChart": true,
+                "locale": "en",
+                "largeChartUrl": "",
+                "isTransparent": false,
+                "showSymbolLogo": true,
+                "showFloatingTooltip": false,
+                "width": "100%",
+                "height": "500",
+                "tabs": [
+                  {
+                    "title": "FX",
+                    "symbols": [
+                      { "s": "FX:EURUSD", "d": "EUR/USD" },
+                      { "s": "FX:GBPUSD", "d": "GBP/USD" },
+                      { "s": "FX:USDJPY", "d": "USD/JPY" },
+                      { "s": "FX:XAUUSD", "d": "Gold" }
+                    ]
+                  },
+                  {
+                    "title": "Stocks",
+                    "symbols": [
+                      { "s": "NASDAQ:NVDA", "d": "NVIDIA" },
+                      { "s": "NASDAQ:TSLA", "d": "Tesla" },
+                      { "s": "NASDAQ:AAPL", "d": "Apple" },
+                      { "s": "NASDAQ:QQQ", "d": "Nasdaq 100 ETF" }
+                    ]
+                  },
+                  {
+                    "title": "Crypto",
+                    "symbols": [
+                      { "s": "BINANCE:BTCUSDT", "d": "Bitcoin" },
+                      { "s": "BINANCE:ETHUSDT", "d": "Ethereum" },
+                      { "s": "BINANCE:SOLUSDT", "d": "Solana" },
+                      { "s": "CRYPTOCAP:TOTAL", "d": "Crypto Market Cap" }
+                    ]
+                  }
+                ]
+              }
+              </script>
+            </div>
+          </div>
+          <article class="card">
+            <div class="icon">LIVE</div>
+            <h3>Crypto activity feed</h3>
+            <p>CoinGecko public data is pulled in-browser for a lightweight first integration. Use it to trigger crypto futures, spot exchange and wallet-user campaigns.</p>
+            <div class="signal-list" id="cryptoSignals">
+              <div class="signal-item"><strong>Loading market feed</strong><span>CoinGecko</span></div>
+            </div>
           </article>
         </div>
       </div>
@@ -1117,6 +1241,38 @@
   <script>
     const form = document.querySelector("#leadForm");
     const toast = document.querySelector("#toast");
+    const cryptoSignals = document.querySelector("#cryptoSignals");
+
+    async function loadCryptoSignals() {
+      if (!cryptoSignals) return;
+      try {
+        const endpoint = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,ripple,binancecoin&order=market_cap_desc&per_page=5&page=1&sparkline=false&price_change_percentage=24h";
+        const response = await fetch(endpoint, { headers: { accept: "application/json" } });
+        if (!response.ok) throw new Error(`CoinGecko ${response.status}`);
+        const coins = await response.json();
+        cryptoSignals.innerHTML = coins.map((coin) => {
+          const change = Number(coin.price_change_percentage_24h || 0);
+          const direction = change >= 0 ? "up" : "down";
+          const price = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: coin.current_price > 10 ? 2 : 4 }).format(coin.current_price);
+          return `
+            <div class="signal-item">
+              <div>
+                <strong>${coin.name}</strong>
+                <span>${price} · 24h</span>
+              </div>
+              <div class="change ${direction}">${change.toFixed(2)}%</div>
+            </div>
+          `;
+        }).join("");
+      } catch (error) {
+        cryptoSignals.innerHTML = `
+          <div class="signal-item">
+            <strong>Crypto feed unavailable</strong>
+            <span>Connect CoinGecko API key for production reliability</span>
+          </div>
+        `;
+      }
+    }
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -1140,6 +1296,8 @@
       }
       form.reset();
     });
+
+    loadCryptoSignals();
   </script>
 </body>
 </html>
