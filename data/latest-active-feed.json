@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-22T06:48:47.641Z",
+  "generated_at": "2026-08-22T07:35:42.606Z",
   "feed_date": "2026-08-22",
   "cadence": "hourly_github_actions",
   "legal_boundary": "Public market and social signals only. No private group scraping and no contact-data enrichment without vendor keys and lawful basis.",
-  "row_count": 119,
+  "row_count": 120,
   "connectors": [
     {
       "source": "CoinGecko",
@@ -52,135 +52,135 @@
     {
       "source": "Reddit public search",
       "status": "blocked_or_unavailable",
-      "note": "forex broker MT5: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=forex%20broker%20MT5&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
-      "seen_at": "2026-08-22T06:48:47.641Z"
-    },
-    {
-      "source": "Reddit public search",
-      "status": "blocked_or_unavailable",
-      "note": "silver trading XAGUSD: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=silver%20trading%20XAGUSD&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
-      "seen_at": "2026-08-22T06:48:47.641Z"
-    },
-    {
-      "source": "Reddit public search",
-      "status": "blocked_or_unavailable",
-      "note": "Nasdaq options trading: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=Nasdaq%20options%20trading&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
-      "seen_at": "2026-08-22T06:48:47.641Z"
-    },
-    {
-      "source": "Reddit public search",
-      "status": "blocked_or_unavailable",
-      "note": "gold trading XAUUSD: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=gold%20trading%20XAUUSD&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "note": "stock trading app: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=stock%20trading%20app&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Reddit public search",
       "status": "blocked_or_unavailable",
       "note": "bitcoin liquidation: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=bitcoin%20liquidation&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Reddit public search",
       "status": "blocked_or_unavailable",
-      "note": "forex trading educator: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=forex%20trading%20educator&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
-      "seen_at": "2026-08-22T06:48:47.641Z"
-    },
-    {
-      "source": "Reddit public search",
-      "status": "blocked_or_unavailable",
-      "note": "crypto trading community: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=crypto%20trading%20community&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "note": "silver trading XAGUSD: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=silver%20trading%20XAGUSD&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Reddit public search",
       "status": "blocked_or_unavailable",
       "note": "EURUSD trading: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=EURUSD%20trading&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "seen_at": "2026-08-22T07:35:42.606Z"
+    },
+    {
+      "source": "Reddit public search",
+      "status": "blocked_or_unavailable",
+      "note": "Nasdaq options trading: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=Nasdaq%20options%20trading&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
+      "seen_at": "2026-08-22T07:35:42.606Z"
+    },
+    {
+      "source": "Reddit public search",
+      "status": "blocked_or_unavailable",
+      "note": "forex broker MT5: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=forex%20broker%20MT5&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Reddit public search",
       "status": "blocked_or_unavailable",
       "note": "crypto futures trading: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=crypto%20futures%20trading&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Reddit public search",
       "status": "blocked_or_unavailable",
-      "note": "stock trading app: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=stock%20trading%20app&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "note": "crypto trading community: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=crypto%20trading%20community&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
+      "seen_at": "2026-08-22T07:35:42.606Z"
+    },
+    {
+      "source": "Reddit public search",
+      "status": "blocked_or_unavailable",
+      "note": "gold trading XAUUSD: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=gold%20trading%20XAUUSD&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
+      "seen_at": "2026-08-22T07:35:42.606Z"
+    },
+    {
+      "source": "Reddit public search",
+      "status": "blocked_or_unavailable",
+      "note": "forex trading educator: Command failed: curl -L --silent --show-error --fail --max-time 6 -H accept: application/json -A DailyActiveTraderLeadsBot/0.1 public-signal-monitor https://www.reddit.com/search.json?q=forex%20trading%20educator&sort=new&t=day&limit=8\ncurl: (22) The requested URL returned error: 403\n",
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Public contact prospecting",
       "status": "blocked_or_unavailable",
       "note": "https://www.cryptonews.com: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
-    },
-    {
-      "source": "Public contact prospecting",
-      "status": "blocked_or_unavailable",
-      "note": "https://substack.com/discover/business/finance: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
-    },
-    {
-      "source": "Public contact prospecting",
-      "status": "blocked_or_unavailable",
-      "note": "https://www.investing.com/about-us/contact-us: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Public contact prospecting",
       "status": "blocked_or_unavailable",
       "note": "https://www.investopedia.com: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "seen_at": "2026-08-22T07:35:42.606Z"
+    },
+    {
+      "source": "Public contact prospecting",
+      "status": "blocked_or_unavailable",
+      "note": "https://substack.com/discover/business/finance: No public pages fetched from seed or candidate contact paths",
+      "seen_at": "2026-08-22T07:35:42.606Z"
+    },
+    {
+      "source": "Public contact prospecting",
+      "status": "blocked_or_unavailable",
+      "note": "https://www.investing.com/about-us/contact-us: No public pages fetched from seed or candidate contact paths",
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Public contact prospecting",
       "status": "blocked_or_unavailable",
       "note": "https://www.forexfactory.com/contact: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
-    },
-    {
-      "source": "Public contact prospecting",
-      "status": "blocked_or_unavailable",
-      "note": "https://www.myfxbook.com: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Public contact prospecting",
       "status": "blocked_or_unavailable",
       "note": "https://www.babypips.com/contact: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
-    },
-    {
-      "source": "Public contact prospecting",
-      "status": "blocked_or_unavailable",
-      "note": "https://www.fxstreet.com/contact: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
-    },
-    {
-      "source": "Public contact prospecting",
-      "status": "blocked_or_unavailable",
-      "note": "https://cointelegraph.com/advertise: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Public contact prospecting",
       "status": "blocked_or_unavailable",
       "note": "https://www.coindesk.com/advertise/: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "seen_at": "2026-08-22T07:35:42.606Z"
+    },
+    {
+      "source": "Public contact prospecting",
+      "status": "blocked_or_unavailable",
+      "note": "https://www.myfxbook.com: No public pages fetched from seed or candidate contact paths",
+      "seen_at": "2026-08-22T07:35:42.606Z"
+    },
+    {
+      "source": "Public contact prospecting",
+      "status": "blocked_or_unavailable",
+      "note": "https://www.fxstreet.com/contact: No public pages fetched from seed or candidate contact paths",
+      "seen_at": "2026-08-22T07:35:42.606Z"
+    },
+    {
+      "source": "Public contact prospecting",
+      "status": "blocked_or_unavailable",
+      "note": "https://cointelegraph.com/advertise: No public pages fetched from seed or candidate contact paths",
+      "seen_at": "2026-08-22T07:35:42.606Z"
     },
     {
       "source": "Public contact prospecting",
       "status": "blocked_or_unavailable",
       "note": "https://www.dailyfx.com: No public pages fetched from seed or candidate contact paths",
-      "seen_at": "2026-08-22T06:48:47.641Z"
+      "seen_at": "2026-08-22T07:35:42.606Z"
     }
   ],
   "rows": [
     {
       "lead_id": "MKT-2026-08-22-ripple",
       "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-22T06:48:47.641Z",
+      "last_seen_at": "2026-08-22T07:35:42.606Z",
       "freshness_tier": "hot_24h",
       "lead_type": "Market Signal",
       "target_product": "Crypto Futures",
@@ -188,7 +188,7 @@
       "language": "Multi",
       "source_type": "CoinGecko public API",
       "source_url": "https://www.coingecko.com/en/coins/ripple",
-      "activity_signal": "XRP 24h change 16.50%",
+      "activity_signal": "XRP 24h change 19.70%",
       "intent_signal": "Crypto volatility campaign trigger",
       "activity_score": 100,
       "compliance_status": "market_signal_no_personal_data",
@@ -196,22 +196,22 @@
       "next_action": "Package crypto futures audience and creator topics"
     },
     {
-      "lead_id": "RSS-2026-08-22-crypto-futures-crypto-open-interest-drops-3b-triggering-308m-in-liquidations-tradingvie",
+      "lead_id": "RSS-2026-08-22-gold-silver-oil-oil-prices-up-21-08-26-armenpress",
       "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-22T06:09:00.000Z",
+      "last_seen_at": "2026-08-22T07:05:00.000Z",
       "freshness_tier": "hot_24h",
       "lead_type": "Public News Intent Signal",
-      "target_product": "Crypto Futures",
+      "target_product": "Metals / Energy CFD",
       "market": "Global",
       "language": "English",
       "source_type": "Google News RSS public search",
-      "source_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPRTJvRWVuTnZCbWhoR0FLWDRveGNUZG5laWtXdldPWVZPVnNPRHhpT2dFTDdLckE0a0loTkQxSmhPclNKbXA4V25JSkpGalFxMElJMTA5NmMybHdxanMxLUgtUEhmZ1JsTWZVeVVoR2RqdWZTVE5oOTd6UDVyc29ST1JHZXJnakRPTXEtd2d1ZFlOcXhtMzFSM0V5b09QWDlvSXFrRzZnWDBoZDdvNVpGaHBUVUc4WHl5UTZIT3RpQ2pOelFr?oc=5",
-      "public_author": "TradingView",
-      "activity_signal": "Crypto open interest drops $3B, triggering $308M in liquidations - TradingView",
-      "intent_signal": "Matched public news query: crypto futures trading",
+      "source_url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9qQXVfTTFmaDZOQ1J6VkZVajE2dW9GM1d6cnVEZFJmdjdBQXl6alJENU9CZFdaSlBmc0NzZmVHcUptRmhDZEhDQ2w3NnUtcWtHZ0HSAVdBVV95cUxQemtpa2YtcDQ0blRLbVU5ZDVobS1UY2N2YjRRZklxbXlncTROclMwcVN4c004WTZDU2xJRkU0N1VYaUtHalQ3V0JxOC11V0lQaWh6RHNCS0U?oc=5",
+      "public_author": "Armenpress",
+      "activity_signal": "Oil Prices Up - 21-08-26 - Armenpress",
+      "intent_signal": "Matched public news query: crude oil trading WTI",
       "activity_score": 90,
       "compliance_status": "public_news_signal_no_contact_data",
-      "recommended_offer": "Crypto futures demo and exchange affiliate offer",
+      "recommended_offer": "Gold, silver and oil CFD sample feed",
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
@@ -234,9 +234,47 @@
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
+      "lead_id": "RSS-2026-08-22-crypto-futures-crypto-open-interest-drops-3b-triggering-308m-in-liquidations-tradingvie",
+      "feed_date": "2026-08-22",
+      "last_seen_at": "2026-08-22T06:09:00.000Z",
+      "freshness_tier": "hot_24h",
+      "lead_type": "Public News Intent Signal",
+      "target_product": "Crypto Futures",
+      "market": "Global",
+      "language": "English",
+      "source_type": "Google News RSS public search",
+      "source_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPRTJvRWVuTnZCbWhoR0FLWDRveGNUZG5laWtXdldPWVZPVnNPRHhpT2dFTDdLckE0a0loTkQxSmhPclNKbXA4V25JSkpGalFxMElJMTA5NmMybHdxanMxLUgtUEhmZ1JsTWZVeVVoR2RqdWZTVE5oOTd6UDVyc29ST1JHZXJnakRPTXEtd2d1ZFlOcXhtMzFSM0V5b09QWDlvSXFrRzZnWDBoZDdvNVpGaHBUVUc4WHl5UTZIT3RpQ2pOelFr?oc=5",
+      "public_author": "TradingView",
+      "activity_signal": "Crypto open interest drops $3B, triggering $308M in liquidations - TradingView",
+      "intent_signal": "Matched public news query: crypto futures trading",
+      "activity_score": 90,
+      "compliance_status": "public_news_signal_no_contact_data",
+      "recommended_offer": "Crypto futures demo and exchange affiliate offer",
+      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
+    },
+    {
+      "lead_id": "RSS-2026-08-22-crypto-futures-bitcoin-slide-triggers-530-million-in-crypto-futures-liquidations-in-one",
+      "feed_date": "2026-08-22",
+      "last_seen_at": "2026-08-22T06:35:00.000Z",
+      "freshness_tier": "hot_24h",
+      "lead_type": "Public News Intent Signal",
+      "target_product": "Crypto Futures",
+      "market": "Global",
+      "language": "English",
+      "source_type": "Google News RSS public search",
+      "source_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1yUWRMejRsZENsb3BVVnRneGdRcUwxY19wYms0T0VmMWZpVDF6cHdEYXR0ZW1INGw3WllGcklkcms1dmotODFMOHFWT3czb29vRkdEN09HajEtR3dLdzZCTS1XdzJOVUhzZmxCZElRWVh3amEtUUE?oc=5",
+      "public_author": "finance.biggo.com",
+      "activity_signal": "Bitcoin Slide Triggers $530 Million in Crypto Futures Liquidations in One Hour; Ethereum Takes Biggest Hit - finance.biggo.com",
+      "intent_signal": "Matched public news query: crypto futures trading",
+      "activity_score": 90,
+      "compliance_status": "public_news_signal_no_contact_data",
+      "recommended_offer": "Crypto futures demo and exchange affiliate offer",
+      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
+    },
+    {
       "lead_id": "MKT-2026-08-22-binancecoin",
       "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-22T06:48:47.641Z",
+      "last_seen_at": "2026-08-22T07:35:42.606Z",
       "freshness_tier": "hot_24h",
       "lead_type": "Market Signal",
       "target_product": "Crypto Futures",
@@ -244,49 +282,12 @@
       "language": "Multi",
       "source_type": "CoinGecko public API",
       "source_url": "https://www.coingecko.com/en/coins/binancecoin",
-      "activity_signal": "BNB 24h change 5.70%",
-      "intent_signal": "Crypto volatility campaign trigger",
-      "activity_score": 83,
-      "compliance_status": "market_signal_no_personal_data",
-      "recommended_offer": "Crypto futures trader feed",
-      "next_action": "Package crypto futures audience and creator topics"
-    },
-    {
-      "lead_id": "MKT-2026-08-22-solana",
-      "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-22T06:48:47.641Z",
-      "freshness_tier": "hot_24h",
-      "lead_type": "Market Signal",
-      "target_product": "Crypto Futures",
-      "market": "Global",
-      "language": "Multi",
-      "source_type": "CoinGecko public API",
-      "source_url": "https://www.coingecko.com/en/coins/solana",
-      "activity_signal": "Solana 24h change 5.60%",
+      "activity_signal": "BNB 24h change 5.40%",
       "intent_signal": "Crypto volatility campaign trigger",
       "activity_score": 82,
       "compliance_status": "market_signal_no_personal_data",
       "recommended_offer": "Crypto futures trader feed",
       "next_action": "Package crypto futures audience and creator topics"
-    },
-    {
-      "lead_id": "RSS-2026-08-22-gold-silver-oil-gold-update-can-xau-usd-hold-above-4-500-forex-com",
-      "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-21T20:00:24.000Z",
-      "freshness_tier": "hot_24h",
-      "lead_type": "Public News Intent Signal",
-      "target_product": "Metals / Energy CFD",
-      "market": "Global",
-      "language": "English",
-      "source_type": "Google News RSS public search",
-      "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNdUN4cHFwOVI3UjRkeXRkOTR1WE8zWDNnV3poUkk5Z3dERjZhU09zeHlDMm1PUVhVRF9iRWc0ME91RW1nU1h0cWpRYmNkYVhUN3NCUGxEdHFhdXJaa3ZiYkN0cmdTX0hRbGFYdTZXdFhQdTNVRWdRcXZuYTFJTVhzaVNfRmEwcW5aTHZqTjRR?oc=5",
-      "public_author": "FOREX.com",
-      "activity_signal": "Gold Update: Can XAU/USD Hold Above $4,500? - FOREX.com",
-      "intent_signal": "Matched public news query: gold trading XAUUSD",
-      "activity_score": 82,
-      "compliance_status": "public_news_signal_no_contact_data",
-      "recommended_offer": "Gold, silver and oil CFD sample feed",
-      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
       "lead_id": "RSS-2026-08-22-gold-silver-oil-gold-xauusd-silver-platinum-forecasts-gold-tests-multi-month-highs-fxemp",
@@ -320,6 +321,25 @@
       "source_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxONDFNMkJKc1pRVi0tR3NBSWFJMFRzeW5FVHBjVUtPMW9XUHU5a0J6ZGE2YzctSHRWenJpaW1XUll5bkUzYUZLMVJEWm9qYi10WUdPalhPb1hpeU5FdXhaRVlqbkh1VkdkSWMzUW80UEdGbkNCbWdYT2hVV3NySERxU010U3htTEVmVlFkYVh1enhnUGY4b2lHM0RyaUxZdVVpeEI3bW1jYmVDdTE3NnNhMVJhdmRaQzJwd2ZZekEtNUprSUUwRl9KZ1F3SnhCd2EtQ2xxdmJjcXQ5OFM2alBITjRsYk5ZbXV5?oc=5",
       "public_author": "tmgm.com",
       "activity_signal": "Gold Price Forecast: XAU/USD testing three-month highs near $4,600 as the US Dollar dives - tmgm.com",
+      "intent_signal": "Matched public news query: gold trading XAUUSD",
+      "activity_score": 82,
+      "compliance_status": "public_news_signal_no_contact_data",
+      "recommended_offer": "Gold, silver and oil CFD sample feed",
+      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
+    },
+    {
+      "lead_id": "RSS-2026-08-22-gold-silver-oil-here-s-why-gold-and-bitcoin-are-soaring-how-high-could-xauusd-and-btc-go",
+      "feed_date": "2026-08-22",
+      "last_seen_at": "2026-08-21T10:58:59.000Z",
+      "freshness_tier": "hot_24h",
+      "lead_type": "Public News Intent Signal",
+      "target_product": "Metals / Energy CFD",
+      "market": "Global",
+      "language": "English",
+      "source_type": "Google News RSS public search",
+      "source_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPdVJWcDZSbVVVSXpLaTNKaTBrM0xKYWY5N3IyMkl0ODZNYXZMakNYdm5yRFROX2JHMFMzRkdOMVJ6aWV6OGV6ek5TQ18tV2taMlg4XzQ0eXN5QnRuNG9zOEgwdHVYSEI0eTU3RF9yaDhRX2NQa0pLaWJUNm9mZ01UU1FWc3M1N3dLOGtBOVlMRFZidUFHQ3ZjV3NDb1J3Zw?oc=5",
+      "public_author": "Bybit",
+      "activity_signal": "Here's why Gold and Bitcoin are soaring! How high could XAUUSD and BTC go? - Bybit",
       "intent_signal": "Matched public news query: gold trading XAUUSD",
       "activity_score": 82,
       "compliance_status": "public_news_signal_no_contact_data",
@@ -460,25 +480,6 @@
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
-      "lead_id": "RSS-2026-08-22-crypto-futures-kalshi-s-crypto-perpetual-futures-reach-17-98-million-open-interest-yaho",
-      "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-21T09:46:43.000Z",
-      "freshness_tier": "hot_24h",
-      "lead_type": "Public News Intent Signal",
-      "target_product": "Crypto Futures",
-      "market": "Global",
-      "language": "English",
-      "source_type": "Google News RSS public search",
-      "source_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPTXVLOWgtVFhvdnA2OUNaTWM4eXEyTURMempRM2k3QTg3LTctR3dMOUtFbEQ3VkNlVHdoSVZBdWZIaHVQcGxGT2RLMEc0UDQ2WkQ1R3hHUndqdjNVR2F1VnNJdUwxcERZbms4Q3pZeTlzQjdYQmIydVRHaVpac0xtaktZb2JpdjdtMHRjeTdXV3U2c09lZVdqa3JWTWtRMkZBM2JlYQ?oc=5",
-      "public_author": "Yahoo Finance",
-      "activity_signal": "Kalshi’s Crypto Perpetual Futures Reach $17.98 Million Open Interest - Yahoo Finance",
-      "intent_signal": "Matched public news query: crypto futures trading",
-      "activity_score": 82,
-      "compliance_status": "public_news_signal_no_contact_data",
-      "recommended_offer": "Crypto futures demo and exchange affiliate offer",
-      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
-    },
-    {
       "lead_id": "RSS-2026-08-22-crypto-futures-crypto-bears-burned-as-short-liquidations-hit-1-48-billion-in-24-hours-a",
       "feed_date": "2026-08-22",
       "last_seen_at": "2026-08-21T12:44:26.000Z",
@@ -555,19 +556,19 @@
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
-      "lead_id": "MKT-2026-08-22-ethereum",
+      "lead_id": "MKT-2026-08-22-solana",
       "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-22T06:48:47.641Z",
+      "last_seen_at": "2026-08-22T07:35:42.606Z",
       "freshness_tier": "hot_24h",
       "lead_type": "Market Signal",
       "target_product": "Crypto Futures",
       "market": "Global",
       "language": "Multi",
       "source_type": "CoinGecko public API",
-      "source_url": "https://www.coingecko.com/en/coins/ethereum",
-      "activity_signal": "Ethereum 24h change 3.60%",
+      "source_url": "https://www.coingecko.com/en/coins/solana",
+      "activity_signal": "Solana 24h change 3.90%",
       "intent_signal": "Crypto volatility campaign trigger",
-      "activity_score": 74,
+      "activity_score": 76,
       "compliance_status": "market_signal_no_personal_data",
       "recommended_offer": "Crypto futures trader feed",
       "next_action": "Package crypto futures audience and creator topics"
@@ -604,6 +605,25 @@
       "source_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPWElUX1NYY0J0eVhsV242bFNRaGZ5UHoyYkhYUXF6bmtydHkxa3lLQWNtSXhUYXFRVkZCMkk5bXdRM2tiUXVRRDhPVFR6UUNGN2k2OTR4QTFqUEN6RkV6WTlkWXQ3VVgtZ2hGcl9vMzB0YUZqY1dRM08xQXNWSzA4N2JDYVhqb0M2bjhKRUZ4bVp2SGwza0RB?oc=5",
       "public_author": "Economies.com",
       "activity_signal": "Evening update for EURUSD-21-08-2026 - Economies.com",
+      "intent_signal": "Matched public news query: EURUSD trading",
+      "activity_score": 74,
+      "compliance_status": "public_news_signal_no_contact_data",
+      "recommended_offer": "MT5 demo account onboarding",
+      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
+    },
+    {
+      "lead_id": "RSS-2026-08-22-fx-mt4-mt5-ny-forex-at-24-00-eur-usd-softens-as-u-s-10-year-yield-climbs-to-4-73-ra",
+      "feed_date": "2026-08-22",
+      "last_seen_at": "2026-08-21T16:25:00.000Z",
+      "freshness_tier": "hot_24h",
+      "lead_type": "Public News Intent Signal",
+      "target_product": "FX",
+      "market": "Global",
+      "language": "English",
+      "source_type": "Google News RSS public search",
+      "source_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1ZZjE5RVRDYlE2cUhHdEVWOWpOVWsyVzByb2RzVWZoNjVJNjdjUG1xcC12X29lUlZHdVdGeDhsQ1NLaThvQ0NmNlIwQ2YwX3dvZ1dvSDVFSGFUVEd1VWJKdnRHUGNGNno1M0ZUbkF4cU5vOHExemc?oc=5",
+      "public_author": "finance.biggo.com",
+      "activity_signal": "NY Forex at 24:00: EUR/USD Softens as U.S. 10-Year Yield Climbs to 4.73% Range, Dollar Buying Dominates - finance.biggo.com",
       "intent_signal": "Matched public news query: EURUSD trading",
       "activity_score": 74,
       "compliance_status": "public_news_signal_no_contact_data",
@@ -649,9 +669,27 @@
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
+      "lead_id": "MKT-2026-08-22-ethereum",
+      "feed_date": "2026-08-22",
+      "last_seen_at": "2026-08-22T07:35:42.606Z",
+      "freshness_tier": "hot_24h",
+      "lead_type": "Market Signal",
+      "target_product": "Crypto Futures",
+      "market": "Global",
+      "language": "Multi",
+      "source_type": "CoinGecko public API",
+      "source_url": "https://www.coingecko.com/en/coins/ethereum",
+      "activity_signal": "Ethereum 24h change 3.00%",
+      "intent_signal": "Crypto volatility campaign trigger",
+      "activity_score": 72,
+      "compliance_status": "market_signal_no_personal_data",
+      "recommended_offer": "Crypto futures trader feed",
+      "next_action": "Package crypto futures audience and creator topics"
+    },
+    {
       "lead_id": "MKT-2026-08-22-bitcoin",
       "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-22T06:48:47.641Z",
+      "last_seen_at": "2026-08-22T07:35:42.606Z",
       "freshness_tier": "hot_24h",
       "lead_type": "Market Signal",
       "target_product": "Crypto Futures",
@@ -659,9 +697,9 @@
       "language": "Multi",
       "source_type": "CoinGecko public API",
       "source_url": "https://www.coingecko.com/en/coins/bitcoin",
-      "activity_signal": "Bitcoin 24h change 3.20%",
+      "activity_signal": "Bitcoin 24h change 2.80%",
       "intent_signal": "Crypto volatility campaign trigger",
-      "activity_score": 73,
+      "activity_score": 71,
       "compliance_status": "market_signal_no_personal_data",
       "recommended_offer": "Crypto futures trader feed",
       "next_action": "Package crypto futures audience and creator topics"
@@ -705,25 +743,6 @@
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
-      "lead_id": "RSS-2026-08-22-fx-mt4-mt5-eur-usd-eurusd-surges-on-aug-19-what-are-the-key-reasons-tradingkey",
-      "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-19T12:50:17.000Z",
-      "freshness_tier": "warm_72h",
-      "lead_type": "Public News Intent Signal",
-      "target_product": "FX",
-      "market": "Global",
-      "language": "English",
-      "source_type": "Google News RSS public search",
-      "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNUEpvaFk3WTBiWHFoX1B6LXQyWU9zRFAzMnRTWFdOSXlxeVNNc1BidUdXMGFOMGtObE1haHNzY2J3SUxGRTZwRkd6bmRlQWVHbzZjdG04MjAxZnpHQlh4ZFZHZXBHc3hpeXM2VndfelNkTVR4M0R5dlYwenhpSUl6eGFQaE8zMzdpYmZIaWJ3?oc=5",
-      "public_author": "TradingKey",
-      "activity_signal": "EUR/USD (EURUSD) Surges on Aug 19: What Are the Key Reasons? - TradingKey",
-      "intent_signal": "Matched public news query: EURUSD trading",
-      "activity_score": 70,
-      "compliance_status": "public_news_signal_no_contact_data",
-      "recommended_offer": "MT5 demo account onboarding",
-      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
-    },
-    {
       "lead_id": "RSS-2026-08-22-gold-silver-oil-gold-24-7-in-usd-1-lot-10-ounces-min-0-01-lots-trade-ideas-thinkmarkets-",
       "feed_date": "2026-08-22",
       "last_seen_at": "2026-08-19T22:57:07.000Z",
@@ -736,6 +755,25 @@
       "source_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5qUW4wV0JJVVFNWGtOWEFuVTZuVXladk53YUVGUVk5UEJ2NnROWkxYdE8zWS0xaVFyOC1BMDBXa0pQbnlJVWROUklLSmVqMFVtY3BrWHZaakI5MC15Y1ZGM2xR?oc=5",
       "public_author": "TradingView",
       "activity_signal": "Gold 24/7 in USD 1 lot = 10 Ounces Min: 0.01 lots Trade Ideas — THINKMARKETS:XAUUSD247 - TradingView",
+      "intent_signal": "Matched public news query: gold trading XAUUSD",
+      "activity_score": 70,
+      "compliance_status": "public_news_signal_no_contact_data",
+      "recommended_offer": "Gold, silver and oil CFD sample feed",
+      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
+    },
+    {
+      "lead_id": "RSS-2026-08-22-gold-silver-oil-gold-update-can-xau-usd-hold-above-4-500-forex-com",
+      "feed_date": "2026-08-22",
+      "last_seen_at": "2026-08-20T07:00:00.000Z",
+      "freshness_tier": "warm_72h",
+      "lead_type": "Public News Intent Signal",
+      "target_product": "Metals / Energy CFD",
+      "market": "Global",
+      "language": "English",
+      "source_type": "Google News RSS public search",
+      "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNdUN4cHFwOVI3UjRkeXRkOTR1WE8zWDNnV3poUkk5Z3dERjZhU09zeHlDMm1PUVhVRF9iRWc0ME91RW1nU1h0cWpRYmNkYVhUN3NCUGxEdHFhdXJaa3ZiYkN0cmdTX0hRbGFYdTZXdFhQdTNVRWdRcXZuYTFJTVhzaVNfRmEwcW5aTHZqTjRR?oc=5",
+      "public_author": "FOREX.com",
+      "activity_signal": "Gold Update: Can XAU/USD Hold Above $4,500? - FOREX.com",
       "intent_signal": "Matched public news query: gold trading XAUUSD",
       "activity_score": 70,
       "compliance_status": "public_news_signal_no_contact_data",
@@ -838,7 +876,7 @@
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
-      "lead_id": "RSS-2026-08-22-gold-silver-oil-current-price-of-oil-as-of-aug-20-2026-fortune",
+      "lead_id": "RSS-2026-08-22-gold-silver-oil-current-price-of-oil-as-of-august-20-2026-fortune",
       "feed_date": "2026-08-22",
       "last_seen_at": "2026-08-20T11:00:00.000Z",
       "freshness_tier": "warm_72h",
@@ -849,26 +887,7 @@
       "source_type": "Google News RSS public search",
       "source_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5NSzl1LXBGM1VVVlVzazJjZjVwWjB2ekZhMjFwTkVqNVRJN2tuLXpyYnA5T2xxXzlBSnFCeXFyTVpxRUFtalN1QkNyWVFQc2J5amZtWDBDYVN2OEI1aDM5YjNn?oc=5",
       "public_author": "Fortune",
-      "activity_signal": "Current price of oil as of Aug. 20, 2026 - Fortune",
-      "intent_signal": "Matched public news query: crude oil trading WTI",
-      "activity_score": 70,
-      "compliance_status": "public_news_signal_no_contact_data",
-      "recommended_offer": "Gold, silver and oil CFD sample feed",
-      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
-    },
-    {
-      "lead_id": "RSS-2026-08-22-gold-silver-oil-oil-settles-up-more-than-2-after-trump-threatens-countries-supporting-ir",
-      "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-20T21:12:11.000Z",
-      "freshness_tier": "warm_72h",
-      "lead_type": "Public News Intent Signal",
-      "target_product": "Metals / Energy CFD",
-      "market": "Global",
-      "language": "English",
-      "source_type": "Google News RSS public search",
-      "source_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOM1ZTcG5JRHQxeFFrOEd6Q0s4eWdFZGZwRmUyaFlPQkEwWEFLZ2xtLUJxMDFGRzZEZ1VEMjA5MjlMazgtZkJRM01FRXJ3Yk5wZUJSRW8yUEc5THM4VEZBd3V0LVhiRHBBWExnTElPMTRCX3d1ODhKR2lDdHVDVktTZS1BTUtuLXN2ZGRwUmpnNzhEdDJBZnp3cHExVndUYWlrenVEOXI0dVppdw?oc=5",
-      "public_author": "Reuters",
-      "activity_signal": "Oil settles up more than 2% after Trump threatens countries supporting Iran - Reuters",
+      "activity_signal": "Current price of oil as of August 20, 2026 - Fortune",
       "intent_signal": "Matched public news query: crude oil trading WTI",
       "activity_score": 70,
       "compliance_status": "public_news_signal_no_contact_data",
@@ -1674,25 +1693,6 @@
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
-      "lead_id": "RSS-2026-08-22-fx-mt4-mt5-best-low-spread-forex-brokers-in-australia-2026-compare-spreads-fees-tra",
-      "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-13T07:00:00.000Z",
-      "freshness_tier": "stale",
-      "lead_type": "Public News Intent Signal",
-      "target_product": "FX",
-      "market": "Global",
-      "language": "English",
-      "source_type": "Google News RSS public search",
-      "source_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOT3FPLTB0VlRrNXRFcHhWSjl0elZRVnJVQ1pKSmtfNC1obFh3MUhIYnNSdGstbjM5WklDakQxYlRnX2ZwMDJfby1YVllnZ3M3VjZhQUdkT0ZjUUdUY2dCVEZLUlhReHNnQnVPeFBQY2NrS01JZzM4WW1BQ3JwOC1RZXptSC1hUzRlSGVsSWdCNFFCMkhMOGNGWDVB?oc=5",
-      "public_author": "Mitrade",
-      "activity_signal": "Best Low Spread Forex Brokers in Australia (2026): Compare Spreads, Fees & Trading Platforms - Mitrade",
-      "intent_signal": "Matched public news query: low spread forex broker",
-      "activity_score": 56,
-      "compliance_status": "public_news_signal_no_contact_data",
-      "recommended_offer": "MT5 demo account onboarding",
-      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
-    },
-    {
       "lead_id": "RSS-2026-08-22-fx-mt4-mt5-aurra-markets-named-top-low-spread-forex-broker-2026-at-money-expo-abu-d",
       "feed_date": "2026-08-22",
       "last_seen_at": "2026-07-17T07:00:00.000Z",
@@ -1705,6 +1705,25 @@
       "source_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPOGwzNDlSZDA0NnZxZ2k2TFNmc0tsTVJYLWFlYlBMbUNNQVVUM2s4eExDVFJhS21OckhhMG5BNWUzbmVaVG5MTUlqQ3hyX21MLTd4RUJPOUtlalo4cV91RTl2b1NFVVFCcFo4NktwMC1Nb2owZ2szYzlvN3FKZEJfQk5hc2xpaG1Ca201c21fdU51eVRrS3VzZmdaVjd5YmpEbEJvekoxVjRqcVJORHI1dVpNV0ZtNzlDSFJWQ3VkMHhtWGFtSEV1bTF4OW8?oc=5",
       "public_author": "PR Newswire",
       "activity_signal": "Aurra Markets Named 'Top Low Spread Forex Broker 2026' at Money Expo Abu Dhabi - PR Newswire",
+      "intent_signal": "Matched public news query: low spread forex broker",
+      "activity_score": 56,
+      "compliance_status": "public_news_signal_no_contact_data",
+      "recommended_offer": "MT5 demo account onboarding",
+      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
+    },
+    {
+      "lead_id": "RSS-2026-08-22-fx-mt4-mt5-best-low-spread-forex-brokers-in-australia-2026-compare-spreads-fees-tra",
+      "feed_date": "2026-08-22",
+      "last_seen_at": "2026-08-13T07:00:00.000Z",
+      "freshness_tier": "stale",
+      "lead_type": "Public News Intent Signal",
+      "target_product": "FX",
+      "market": "Global",
+      "language": "English",
+      "source_type": "Google News RSS public search",
+      "source_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOT3FPLTB0VlRrNXRFcHhWSjl0elZRVnJVQ1pKSmtfNC1obFh3MUhIYnNSdGstbjM5WklDakQxYlRnX2ZwMDJfby1YVllnZ3M3VjZhQUdkT0ZjUUdUY2dCVEZLUlhReHNnQnVPeFBQY2NrS01JZzM4WW1BQ3JwOC1RZXptSC1hUzRlSGVsSWdCNFFCMkhMOGNGWDVB?oc=5",
+      "public_author": "Mitrade",
+      "activity_signal": "Best Low Spread Forex Brokers in Australia (2026): Compare Spreads, Fees & Trading Platforms - Mitrade",
       "intent_signal": "Matched public news query: low spread forex broker",
       "activity_score": 56,
       "compliance_status": "public_news_signal_no_contact_data",
@@ -1769,41 +1788,22 @@
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
-      "lead_id": "RSS-2026-08-22-fx-mt4-mt5-14-best-gold-trading-brokers-for-2026-fxempire",
+      "lead_id": "RSS-2026-08-22-fx-mt4-mt5-forex-trading-market-drivers-trade-costs-risks-explained-thinkmarkets",
       "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-04T07:00:00.000Z",
+      "last_seen_at": "2026-04-08T07:00:00.000Z",
       "freshness_tier": "stale",
       "lead_type": "Public News Intent Signal",
       "target_product": "FX",
       "market": "Global",
       "language": "English",
       "source_type": "Google News RSS public search",
-      "source_url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBNbEg5Q2t0Nk93Q1FkdWk3WjJGaXEydUV4VWZKcG5HM2J2am9neWFhb0F5cEVMMXAtR2Q1dkZwRUVWX01QdnRyWGl5TEJyVkVlSlZkMg?oc=5",
-      "public_author": "FXEmpire",
-      "activity_signal": "14 Best Gold Trading Brokers for 2026 - FXEmpire",
+      "source_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQMHYyRnJtVFU1R2lmOFdoY3Zoemp6aUFVRzk5WHd5b0NmTXc0NFVXdFJzX3QzNlBLQXl0Y0M5RVZGRmd0aWRYREVybWtReXpPX2lZM3dPVE8tRmhER2pjc1BpNkxOeldGYTl6dWZUdk4tS2c5VTRhakoyemhOaGdnQXlPa3h4TnVOUmtsa0xiNVhSU1pxVThlLUdJTTA4YlhhVTBZNHlzWFV5aFNNNld6dHYwYXY?oc=5",
+      "public_author": "ThinkMarkets",
+      "activity_signal": "Forex trading: Market drivers, trade costs & risks explained - ThinkMarkets",
       "intent_signal": "Matched public news query: low spread forex broker",
       "activity_score": 56,
       "compliance_status": "public_news_signal_no_contact_data",
       "recommended_offer": "MT5 demo account onboarding",
-      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
-    },
-    {
-      "lead_id": "RSS-2026-08-22-gold-silver-oil-top-gold-signals-telegram-groups-2026-8-groups-ranked-by-real-pip-log-pe",
-      "feed_date": "2026-08-22",
-      "last_seen_at": "2026-08-13T13:40:16.000Z",
-      "freshness_tier": "stale",
-      "lead_type": "Public News Intent Signal",
-      "target_product": "Metals / Energy CFD",
-      "market": "Global",
-      "language": "English",
-      "source_type": "Google News RSS public search",
-      "source_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPVnppcU4xVVc3eVpBUWVQc2xPd1d0ekYwcmJnZ3dxSjQ4X0hWQXBKbVItODlRWlk0ZzhuVzlLOWU0Z2lRaWI2bmIxNXZaWlVBeElOM2dsWk1hX2M4OEtEWWVoNWxadk1FWUdmMXZfR01IeDF3aTNMNXBnVTNnMy1SMDdYbkIxbDhzN014cnROR0FkMWNnSHMxeDJKQ0w0cGxhR1Y1clpDSUQ3UFF5TkI4?oc=5",
-      "public_author": "Crypto News",
-      "activity_signal": "Top Gold signals Telegram groups 2026: 8 groups ranked by real pip-log performance - Crypto News",
-      "intent_signal": "Matched public news query: gold trading XAUUSD",
-      "activity_score": 56,
-      "compliance_status": "public_news_signal_no_contact_data",
-      "recommended_offer": "Gold, silver and oil CFD sample feed",
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
@@ -1959,6 +1959,25 @@
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
+      "lead_id": "RSS-2026-08-22-affiliate-ib-forex-broker-500-expands-educational-trading-resources-with-web-based-tr",
+      "feed_date": "2026-08-22",
+      "last_seen_at": "2026-05-09T07:00:00.000Z",
+      "freshness_tier": "stale",
+      "lead_type": "Public News Intent Signal",
+      "target_product": "Affiliate / IB",
+      "market": "Global",
+      "language": "English",
+      "source_type": "Google News RSS public search",
+      "source_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQbG5BTl9TNnhCMFJ2RkZudHFoNDdmYlJTYkp6aC1jVTZnN3dLRnNFUFBDWlN0cEJibmdHMzlwVlpQWFVacUpLZ1JvUVNTRkNwSmNBNkRXU0lPOWJiWkxaaVc3WWRTX1FNS2F3VVBVTnozbDkzWEFuR2xkS0hBcjdBMnotaXlTVDdnem1VVDFWWWlYNjBCWXExTXZGOHp3bFlkcTZKaG5WbEF4YVltblVBTTEyQW03UTRYVm5NdGNjSjBsOEdVc0E?oc=5",
+      "public_author": "Issuewire",
+      "activity_signal": "Forex Broker 500 Expands Educational Trading Resources With Web-Based Trader Toolkit - Issuewire",
+      "intent_signal": "Matched public news query: forex trading educator",
+      "activity_score": 56,
+      "compliance_status": "public_news_signal_no_contact_data",
+      "recommended_offer": "IB and affiliate partnership proposal",
+      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
+    },
+    {
       "lead_id": "RSS-2026-08-22-affiliate-ib-pain-in-forex-trading-was-never-the-teacher-but-the-structure-business-d",
       "feed_date": "2026-08-22",
       "last_seen_at": "2026-04-20T07:00:00.000Z",
@@ -1997,25 +2016,6 @@
       "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
     },
     {
-      "lead_id": "RSS-2026-08-22-affiliate-ib-forex-broker-500-expands-educational-trading-resources-with-web-based-tr",
-      "feed_date": "2026-08-22",
-      "last_seen_at": "2026-05-09T07:00:00.000Z",
-      "freshness_tier": "stale",
-      "lead_type": "Public News Intent Signal",
-      "target_product": "Affiliate / IB",
-      "market": "Global",
-      "language": "English",
-      "source_type": "Google News RSS public search",
-      "source_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQbG5BTl9TNnhCMFJ2RkZudHFoNDdmYlJTYkp6aC1jVTZnN3dLRnNFUFBDWlN0cEJibmdHMzlwVlpQWFVacUpLZ1JvUVNTRkNwSmNBNkRXU0lPOWJiWkxaaVc3WWRTX1FNS2F3VVBVTnozbDkzWEFuR2xkS0hBcjdBMnotaXlTVDdnem1VVDFWWWlYNjBCWXExTXZGOHp3bFlkcTZKaG5WbEF4YVltblVBTTEyQW03UTRYVm5NdGNjSjBsOEdVc0E?oc=5",
-      "public_author": "Issuewire",
-      "activity_signal": "Forex Broker 500 Expands Educational Trading Resources With Web-Based Trader Toolkit - Issuewire",
-      "intent_signal": "Matched public news query: forex trading educator",
-      "activity_score": 56,
-      "compliance_status": "public_news_signal_no_contact_data",
-      "recommended_offer": "IB and affiliate partnership proposal",
-      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
-    },
-    {
       "lead_id": "RSS-2026-08-22-affiliate-ib-how-kenya-s-youth-are-fuelling-a-forex-trading-revolution-capital-fm-afr",
       "feed_date": "2026-08-22",
       "last_seen_at": "2025-11-17T08:00:00.000Z",
@@ -2047,6 +2047,25 @@
       "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9ySTBwdHZOOU10TUliSlRzV2RESlNJMnlDcFd1TC1VX091cExrWGpIYWR0WmNaeUZyTW5xZlRZY2pMcTlybTZldk9KNEM1OV9lRWI1NzZjakp0bENrQW1STTVuRl9KWlYy?oc=5",
       "public_author": "Benzinga",
       "activity_signal": "6 Best Forex Trading Courses in 2026 • Online Courses - Benzinga",
+      "intent_signal": "Matched public news query: forex trading educator",
+      "activity_score": 56,
+      "compliance_status": "public_news_signal_no_contact_data",
+      "recommended_offer": "IB and affiliate partnership proposal",
+      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
+    },
+    {
+      "lead_id": "RSS-2026-08-22-affiliate-ib-forex-university-launches-comprehensive-educational-platform-for-currenc",
+      "feed_date": "2026-08-22",
+      "last_seen_at": "2025-04-09T07:00:00.000Z",
+      "freshness_tier": "stale",
+      "lead_type": "Public News Intent Signal",
+      "target_product": "Affiliate / IB",
+      "market": "Global",
+      "language": "English",
+      "source_type": "Google News RSS public search",
+      "source_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNUm42bDVTaUZCcnFHSVFWMG4zeDFQbTBYUVl1elh5cWVkZFVKTnI2eHBiMWxqeW0xU0dQYl84aGx0NENodURFbi1yY2YtLTl1MUdRTFZvV3dxUkR0REVfM1JsLVRwTmx0Rk5waDlCZGZRR1IxTjQ0cmZXYUhiX0hvOU92SGM3aVhVVTBfR3dJcVp5TVFqMW1lT0lSQTRwMnhueTVuTWN5UjIwU0tBMWx5MU5LSTN0TTFzMDRnc3dndWdVNmpLNE5CR1JCdG1iRDcwQkhqTU4tY25OM1I3c3U0V2dDZUt6T0RmX0tBMmxRcHhMbW5CVUE?oc=5",
+      "public_author": "GlobeNewswire",
+      "activity_signal": "Forex University Launches Comprehensive Educational Platform for Currency Trading Beginners - GlobeNewswire",
       "intent_signal": "Matched public news query: forex trading educator",
       "activity_score": 56,
       "compliance_status": "public_news_signal_no_contact_data",
@@ -2143,6 +2162,25 @@
       "public_author": "eMarketer",
       "activity_signal": "BitGo partners with InvestFi to help community banks offer crypto services - eMarketer",
       "intent_signal": "Matched public news query: crypto trading community",
+      "activity_score": 56,
+      "compliance_status": "public_news_signal_no_contact_data",
+      "recommended_offer": "IB and affiliate partnership proposal",
+      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
+    },
+    {
+      "lead_id": "RSS-2026-08-22-affiliate-ib-top-gold-signals-telegram-groups-2026-8-groups-ranked-by-real-pip-log-pe",
+      "feed_date": "2026-08-22",
+      "last_seen_at": "2026-08-13T13:40:16.000Z",
+      "freshness_tier": "stale",
+      "lead_type": "Public News Intent Signal",
+      "target_product": "Affiliate / IB",
+      "market": "Global",
+      "language": "English",
+      "source_type": "Google News RSS public search",
+      "source_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPVnppcU4xVVc3eVpBUWVQc2xPd1d0ekYwcmJnZ3dxSjQ4X0hWQXBKbVItODlRWlk0ZzhuVzlLOWU0Z2lRaWI2bmIxNXZaWlVBeElOM2dsWk1hX2M4OEtEWWVoNWxadk1FWUdmMXZfR01IeDF3aTNMNXBnVTNnMy1SMDdYbkIxbDhzN014cnROR0FkMWNnSHMxeDJKQ0w0cGxhR1Y1clpDSUQ3UFF5TkI4?oc=5",
+      "public_author": "Crypto News",
+      "activity_signal": "Top Gold signals Telegram groups 2026: 8 groups ranked by real pip-log performance - Crypto News",
+      "intent_signal": "Matched public news query: trading signals group",
       "activity_score": 56,
       "compliance_status": "public_news_signal_no_contact_data",
       "recommended_offer": "IB and affiliate partnership proposal",
@@ -2370,25 +2408,6 @@
       "source_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOdlF3SzFiSGpwaEowemZOMTJUTl80T1BGSVVMM095NlVFZGRnZGZOT1FEcTc0UUEzX2VBMXF5bkhuUEJaT1lLVHhic1hIX1d6eFY1UllCbTlSa0NMRkduNG9NNE13cWtEMENHRFBMdDZsME1LTWZVZlk2UVV5cWR2Z3F6TnNwLTRxWnZDaFpBR0w?oc=5",
       "public_author": "intlbm",
       "activity_signal": "How the UAE Is Becoming a Global Hub for Forex Education - intlbm",
-      "intent_signal": "Matched public news query: forex trading educator",
-      "activity_score": 48,
-      "compliance_status": "public_news_signal_no_contact_data",
-      "recommended_offer": "IB and affiliate partnership proposal",
-      "next_action": "Review source, identify author/company/channel, then enrich only through lawful public or vendor sources"
-    },
-    {
-      "lead_id": "RSS-2026-08-22-affiliate-ib-exness-team-pro-welcomes-african-trader-nathan-halaba-fxempire",
-      "feed_date": "2026-08-22",
-      "last_seen_at": "2026-07-23T07:00:00.000Z",
-      "freshness_tier": "stale",
-      "lead_type": "Public News Intent Signal",
-      "target_product": "Affiliate / IB",
-      "market": "Global",
-      "language": "English",
-      "source_type": "Google News RSS public search",
-      "source_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOLWp2QmpFNi1nR09wNkUybGw0NkZ3VnhJb29TNXNocFcybWEwaUVFOGg2UDVaZEhEOHh1SFNRb0QyajA3MU5IZEQxMV92VFNhcWpxNmV0MExGTndzRXZkVHcybW5ESExPSlRadEE5WW0zYzNKVEJoa1E3SXFLYzhROVJ5a2pNbWdhVndmNUp2Z3lSWmFrSlN0ZTVzcVBSZlFh?oc=5",
-      "public_author": "FXEmpire",
-      "activity_signal": "Exness Team Pro Welcomes African Trader Nathan Halaba - FXEmpire",
       "intent_signal": "Matched public news query: forex trading educator",
       "activity_score": 48,
       "compliance_status": "public_news_signal_no_contact_data",
